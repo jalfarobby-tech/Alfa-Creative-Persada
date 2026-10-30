@@ -13,7 +13,9 @@
 - [ ] Cek pratinjau link di WhatsApp, dan uji data terstruktur di Rich Results Test Google
 
 ## Opsional
-- [ ] Buat form Formspree lalu isi `contact.formEndpoint`
+- [ ] Periksa FAQ (pembayaran, kepemilikan source code, revisi, dukungan) di data/faq.json dan data/en/faq.json: sesuaikan dengan kebijakan Anda yang sebenarnya
+- [ ] Baca ulang tiga artikel blog di data/blog.json, sesuaikan agar sesuai suara Anda
+- [ ] Buat form Formspree lalu isi `contact.formEndpoint` (lihat README) agar tombol "Kirim Pesan" aktif
 - [ ] Tambah testimoni klien dan harga paket
 - [ ] Ganti QR kartu nama agar mengarah ke domain asli
 - [ ] Sebelum mendaftar PT/CV: cek ulang nama di AHU dan merek di PDKI (DJKI)

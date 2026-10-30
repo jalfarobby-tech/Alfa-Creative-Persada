@@ -1,0 +1,97 @@
+{
+  "services": [
+    {
+      "id": "web-development",
+      "short": "Company websites, landing pages, and online stores that are fast, responsive, and SEO-friendly.",
+      "description": "A professional website that reflects your brand and is ready to bring in customers.",
+      "features": [
+        "Mobile-first responsive design",
+        "SEO (Search Engine Optimization) & fast performance",
+        "Easy to update",
+        "Ready to deploy to hosting/domain"
+      ]
+    },
+    {
+      "id": "system-development",
+      "short": "Custom information systems for business operations: data, users, access rights, and reports.",
+      "description": "Systems designed around your business workflow, not the other way around.",
+      "features": [
+        "Data & user management",
+        "Roles & access rights",
+        "Automated reports",
+        "Architecture that is easy to extend"
+      ]
+    },
+    {
+      "id": "application-development",
+      "short": "Interactive web apps and PWAs that feel good on both phone and desktop.",
+      "description": "Applications focused on speed, ease of use, and real user needs.",
+      "features": [
+        "Web apps & PWA",
+        "Simple interface",
+        "Third-party integrations",
+        "Mobile device support"
+      ]
+    },
+    {
+      "id": "business-dashboard",
+      "short": "Visual dashboards to monitor sales, team performance, and business data in real time.",
+      "description": "Turn raw data into insights that are easy to read and act on.",
+      "features": [
+        "Charts & KPIs",
+        "Filtering and data export",
+        "Data synchronization",
+        "Concise view for management"
+      ]
+    },
+    {
+      "id": "automation",
+      "short": "Automate repetitive tasks: notifications, data recaps, reporting, and integrations between apps.",
+      "description": "Save time and reduce manual errors with automated workflows.",
+      "features": [
+        "Automated reports & recaps",
+        "Google Sheets/WhatsApp integration",
+        "Scheduled notifications",
+        "Custom scripts & workflows"
+      ]
+    },
+    {
+      "id": "digital-solutions",
+      "short": "End-to-end digital solutions: consulting, planning, and supporting digital products for your business.",
+      "description": "A digital partner to find the right solution, including products such as NFC cards.",
+      "features": [
+        "Needs consultation",
+        "Planning & roadmap",
+        "Supporting digital products",
+        "Support after release"
+      ]
+    }
+  ],
+  "process": [
+    {
+      "step": "01",
+      "title": "Consultation",
+      "text": "Understanding your goals, target users, and needs."
+    },
+    {
+      "step": "02",
+      "title": "Planning",
+      "text": "Defining scope and design, with a time and cost estimate."
+    },
+    {
+      "step": "03",
+      "title": "Development",
+      "text": "Building in stages with regular progress updates."
+    },
+    {
+      "step": "04",
+      "title": "Test & Launch",
+      "text": "Testing across devices, then deploying to your domain."
+    },
+    {
+      "step": "05",
+      "title": "Support",
+      "text": "Guidance and fixes after the site goes live."
+    }
+  ]
+}

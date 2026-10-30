@@ -450,3 +450,31 @@ h1,h2,h3,h4{color:#fff}
   .hero{background:radial-gradient(90% 50% at 50% 14%,rgba(226,230,240,.16),transparent 70%),radial-gradient(60% 40% at 0% 100%,rgba(138,141,147,.10),transparent 70%),var(--black)}
   .page-hero{background:radial-gradient(90% 70% at 50% 0%,rgba(226,230,240,.13),transparent 70%),var(--black)}
 }
+
+/* ========== Pengalih bahasa ========== */
+.lang-switch{display:inline-grid;place-items:center;min-width:40px;height:34px;padding:0 10px;border:1px solid var(--line-strong);border-radius:20px;font-size:.68rem;font-weight:500;letter-spacing:.16em;color:var(--silver);transition:border-color .25s,color .25s,background .25s}
+.lang-switch:hover,.lang-switch:focus-visible{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.06)}
+@media (max-width:860px){.lang-switch{align-self:flex-start;margin-top:20px;height:40px;min-width:56px}}
+
+/* ========== Blog ========== */
+.post-card{display:flex;flex-direction:column;gap:12px}
+.post-card h3{font-size:.95rem;letter-spacing:.06em;line-height:1.5;text-transform:none;font-weight:500}
+.post-card p{font-size:.9rem}
+.post-card .tags{margin-top:auto;padding-top:6px}
+.post-card .card-link{margin-top:6px}
+.post-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.72rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.post-meta span+span::before{content:"";display:inline-block;width:3px;height:3px;margin-right:14px;vertical-align:middle;border-radius:50%;background:var(--muted)}
+.article-hero h1{font-size:clamp(1.35rem,3.6vw,2.2rem);letter-spacing:.06em;max-width:900px;text-transform:none;line-height:1.35}
+.article-hero .post-meta{margin-top:22px}
+.crumbs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.crumbs a{color:var(--silver)}
+.crumbs a:hover{color:#fff}
+.article{max-width:760px}
+.prose h2{margin:44px 0 14px;font-size:1.05rem;letter-spacing:.06em;text-transform:none;font-weight:500}
+.prose h2:first-child{margin-top:0}
+.prose p{margin:0 0 18px;color:#D3D6DC;font-size:1rem;line-height:1.85}
+.prose ul{margin:0 0 20px;padding:0;list-style:none;display:grid;gap:10px}
+.prose li{position:relative;padding-left:22px;color:#D3D6DC;line-height:1.75}
+.prose li::before{content:"";position:absolute;left:2px;top:.8em;width:8px;height:1px;background:var(--silver)}
+.article-foot{margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.article-foot .back-link{margin-bottom:0}

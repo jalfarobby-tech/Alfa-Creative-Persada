@@ -6,27 +6,51 @@
 
   const page = document.body.dataset.page || '';
   const root = document.body.dataset.root || '';
+  const lang = document.body.dataset.lang || 'id';
+  const slug = document.body.dataset.slug || '';
+  let UI = {};                                              // string antarmuka (site.json -> ui), per bahasa
   const $ = (s, c = document) => c.querySelector(s);
 
   /* ---------- Helpers ---------- */
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const url = (p) => (/^(https?:|mailto:|tel:|#)/.test(p) ? p : root + p);
+  const PAGE_ROUTE = /^(index\.html|about\.html|services\.html|portfolio\.html|contact\.html|blog\/)/;
+  const url = (p) => {
+    if (/^(https?:|mailto:|tel:|#)/.test(p)) return p;
+    return lang === 'en' && PAGE_ROUTE.test(p) ? `${root}en/${p}` : root + p;
+  };
   const waLink = (site, msg) =>
     `https://wa.me/${String(site.contact.whatsapp).replace(/\D/g, '')}?text=${encodeURIComponent(msg || site.contact.waGreeting || '')}`;
+  /* Gabungkan terjemahan ke data dasar: objek digabung per kunci, array berisi {id} digabung per id, lainnya diganti */
+  const isObj = (v) => v && typeof v === 'object' && !Array.isArray(v);
+  const merge = (a, b) => {
+    if (Array.isArray(a) && Array.isArray(b)) {
+      const keyed = (arr) => arr.every((x) => isObj(x) && x.id);
+      return keyed(a) && keyed(b) ? a.map((x) => { const y = b.find((z) => z.id === x.id); return y ? merge(x, y) : x; }) : b;
+    }
+    if (isObj(a) && isObj(b)) { const o = { ...a }; Object.keys(b).forEach((k) => { o[k] = k in a ? merge(a[k], b[k]) : b[k]; }); return o; }
+    return b;
+  };
   const loadJSON = async (name) => {
     const r = await fetch(`${root}data/${name}.json`);
     if (!r.ok) throw new Error(`Gagal memuat ${name}.json`);
-    return r.json();
+    const base = await r.json();
+    if (lang === 'id') return base;
+    try {
+      const t = await fetch(`${root}data/${lang}/${name}.json`);
+      return t.ok ? merge(base, await t.json()) : base;
+    } catch (_) { return base; }
   };
 
   /* Data yang dibutuhkan tiap halaman (site.json selalu dimuat) */
   const NEEDS = {
-    home: ['services', 'projects', 'stack', 'faq'],
+    home: ['services', 'projects', 'stack', 'faq', 'blog'],
     about: ['stack'],
     services: ['services', 'stack', 'faq'],
     portfolio: ['projects', 'stack'],
     contact: ['services', 'stack'],
     products: ['products'],
+    blog: ['blog'],
+    article: ['blog'],
     notfound: []
   };
 
@@ -60,7 +84,7 @@
 
   /* ---------- Komponen reusable ---------- */
   const brand = (site) =>
-    `<a class="brand" href="${esc(url('index.html'))}" aria-label="${esc(site.brand.short)}, kembali ke beranda">${logoS()}<span class="brand-text"><span>${esc(site.brand.wordmark[0])}</span><span>${esc(site.brand.wordmark[1])}</span></span></a>`;
+    `<a class="brand" href="${esc(url('index.html'))}" aria-label="${esc(site.brand.short)}, ${esc(UI.backHome)}">${logoS()}<span class="brand-text"><span>${esc(site.brand.wordmark[0])}</span><span>${esc(site.brand.wordmark[1])}</span></span></a>`;
 
   const button = (label, href, { ghost = false, ext = false, ico = '' } = {}) =>
     `<a class="btn${ghost ? ' btn--ghost' : ''}" href="${esc(url(href))}"${ext ? ' target="_blank" rel="noopener"' : ''}>${esc(label)}${ico ? icon(ico) : ''}</a>`;
@@ -75,7 +99,7 @@
     `<ul class="checklist">${items.map((t) => `<li>${icon('check')}<span>${esc(t)}</span></li>`).join('')}</ul>`;
 
   const serviceCard = (s, i = 0) =>
-    `<a class="card service-card reveal" style="--d:${i * 0.06}s" href="${esc(url('services.html'))}#${esc(s.id)}"><span class="icon">${icon(s.icon)}</span><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p><span class="card-link">Detail ${icon('arrow')}</span></a>`;
+    `<a class="card service-card reveal" style="--d:${i * 0.06}s" href="${esc(url('services.html'))}#${esc(s.id)}"><span class="icon">${icon(s.icon)}</span><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p><span class="card-link">${esc(UI.detail)} ${icon('arrow')}</span></a>`;
 
   const hostOf = (u) => { try { return new URL(u).host.replace(/^www\./, ''); } catch (_) { return ''; } };
   const thumbOf = (img, alt, link = '') => img
@@ -90,7 +114,7 @@
 
   /* Kartu proyek di halaman Portfolio (bisa difilter) */
   const projectItem = (p, cats = [], i = 0) => {
-    const link = p.link ? `<a class="card-link" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel || 'Lihat proyek')} ${icon('arrow')}</a>` : '';
+    const link = p.link ? `<a class="card-link" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel || UI.viewProject)} ${icon('arrow')}</a>` : '';
     const meta = p.note ? `<p class="meta">${esc(p.note)}</p>` : '';
     return `<article class="card project-card reveal" id="${esc(p.id)}" data-cat="${esc(p.category)}" style="--d:${(i % 3) * 0.06}s">${thumbOf(p.image, p.title, p.link)}<div class="project-body"><span class="tag">${esc(catLabel(p, cats))}</span><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><div class="tags">${(p.stack || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>${meta}${link ? `<div class="links">${link}</div>` : ''}</div></article>`;
   };
@@ -111,25 +135,49 @@
     const items = faqFor(data);
     if (!items.length) return '';
     const f = data.faq;
-    const more = page === 'home' ? button('Semua Pertanyaan', 'services.html#faq', { ghost: true, ico: 'arrow' }) : '';
+    const more = page === 'home' ? button(UI.allFaq, 'services.html#faq', { ghost: true, ico: 'arrow' }) : '';
     return `<section class="section" id="faq"><div class="container">
   ${sectionHead(f.eyebrow, f.title, f.text, more)}
   <div class="faq">${items.map((i) => `<details class="faq-item reveal"><summary><span>${esc(i.q)}</span><i aria-hidden="true"></i></summary><div class="faq-a"><p>${esc(i.a)}</p></div></details>`).join('')}</div>
 </div></section>`;
   };
 
+  /* ---------- Blog ---------- */
+  const fmtDate = (d) => new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'id-ID', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(d));
+  const postUrl = (p) => `blog/${p.id}.html`;
+  const postCard = (p, i = 0) =>
+    `<a class="card post-card reveal" style="--d:${i * 0.06}s" href="${esc(url(postUrl(p)))}"><div class="post-meta"><time datetime="${esc(p.date)}">${esc(fmtDate(p.date))}</time><span>${esc(p.minutes)} ${esc(UI.minRead)}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p><div class="tags">${(p.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div><span class="card-link">${esc(UI.readMore)} ${icon('arrow')}</span></a>`;
+  const sortedPosts = (blog) => [...blog.posts].sort((a, b) => b.date.localeCompare(a.date));
+  const blogSection = (site, blog) => {
+    const i = site.home.blogIntro;
+    return `<section class="section"><div class="container">
+  ${sectionHead(i.eyebrow, i.title, i.text, button(UI.allArticles, 'blog/', { ghost: true, ico: 'arrow' }))}
+  <div class="grid grid--3">${sortedPosts(blog).slice(0, 3).map(postCard).join('')}</div>
+</div></section>`;
+  };
+
   const ctaBand = (site) => {
     const c = site.home.cta;
-    return `<section class="cta-band"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal"><span class="eyebrow">${esc(c.eyebrow)}</span><h2>${esc(c.title)}</h2><p>${esc(c.text)}</p><div class="btn-row">${button('Chat WhatsApp', waLink(site, site.contact.waGreeting), { ext: true, ico: 'message' })}${button('Halaman Kontak', 'contact.html', { ghost: true })}</div></div></section>`;
+    return `<section class="cta-band"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal"><span class="eyebrow">${esc(c.eyebrow)}</span><h2>${esc(c.title)}</h2><p>${esc(c.text)}</p><div class="btn-row">${button(UI.chatWa, waLink(site, site.contact.waGreeting), { ext: true, ico: 'message' })}${button(UI.contactPage, 'contact.html', { ghost: true })}</div></div></section>`;
   };
 
   /* ---------- Header & Footer ---------- */
+  /* Pengalih bahasa: tampil hanya di halaman yang punya padanan */
+  const REL = { home: 'index.html', about: 'about.html', services: 'services.html', portfolio: 'portfolio.html', contact: 'contact.html', blog: 'blog/' };
+  const relPath = () => (page === 'article' ? `blog/${slug}.html` : REL[page]);
+  const langSwitch = () => {
+    const rel = relPath();
+    if (!rel) return '';
+    const href = lang === 'en' ? root + rel : `${root}en/${rel}`;
+    return `<a class="lang-switch" href="${esc(href)}" hreflang="${esc(UI.switchLang)}" lang="${esc(UI.switchLang)}" aria-label="${esc(UI.switchLabel)}">${esc(UI.switchCode)}</a>`;
+  };
+
   function renderHeader(site) {
     const links = site.nav
       .filter((n) => !n.hidden)
-      .map((n) => `<li><a href="${esc(url(n.href))}"${n.page === page ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`)
+      .map((n) => `<li><a href="${esc(url(n.href))}"${n.page === page || (n.page === 'blog' && page === 'article') ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`)
       .join('');
-    $('#site-header').innerHTML = `<div class="container nav">${brand(site)}<nav id="nav-menu" class="nav-menu" aria-label="Menu utama"><ul>${links}</ul><a class="btn btn--sm nav-cta" href="${esc(url('contact.html'))}">Hubungi</a></nav><button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button></div>`;
+    $('#site-header').innerHTML = `<div class="container nav">${brand(site)}<nav id="nav-menu" class="nav-menu" aria-label="${esc(UI.menuLabel)}"><ul>${links}</ul><a class="btn btn--sm nav-cta" href="${esc(url('contact.html'))}">${esc(UI.hire)}</a>${langSwitch()}</nav><button class="burger" type="button" aria-label="${esc(UI.menuOpen)}" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button></div>`;
   }
 
   function renderFooter(site) {
@@ -138,11 +186,11 @@
       .filter((s) => s.url)
       .map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener" aria-label="${esc(s.name)}">${icon(s.icon)}</a>`)
       .join('');
-    $('#site-footer').innerHTML = `<span class="diag diag--tr" aria-hidden="true"></span><div class="container"><div class="footer-grid"><div>${brand(site)}<p>${esc(site.brand.acpTagline)}. ${esc(site.brand.fullName)} by ${esc(site.owner.name)}.</p>${social ? `<div class="social">${social}</div>` : ''}</div><div><h4>Menu</h4><ul class="footer-links">${links}</ul></div><div><h4>Kontak</h4><ul class="footer-contact"><li>${icon('mail')}<a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></li><li>${icon('message')}<a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(site.contact.whatsappDisplay)}</a></li><li>${icon('pin')}<span>${esc(site.contact.location)}</span></li></ul></div></div><div class="footer-bottom"><span>&copy; ${new Date().getFullYear()} ${esc(site.brand.fullName)}. Hak cipta dilindungi.</span><span>${esc(site.brand.tagline)}</span></div></div>`;
+    $('#site-footer').innerHTML = `<span class="diag diag--tr" aria-hidden="true"></span><div class="container"><div class="footer-grid"><div>${brand(site)}<p>${esc(site.brand.acpTagline)}. ${esc(site.brand.fullName)} by ${esc(site.owner.name)}.</p>${social ? `<div class="social">${social}</div>` : ''}</div><div><h4>${esc(UI.footerMenu)}</h4><ul class="footer-links">${links}</ul></div><div><h4>${esc(UI.footerContact)}</h4><ul class="footer-contact"><li>${icon('mail')}<a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></li><li>${icon('message')}<a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(site.contact.whatsappDisplay)}</a></li><li>${icon('pin')}<span>${esc(site.contact.location)}</span></li></ul></div></div><div class="footer-bottom"><span>&copy; ${new Date().getFullYear()} ${esc(site.brand.fullName)}. ${esc(UI.rights)}</span><span>${esc(site.brand.tagline)}</span></div></div>`;
   }
 
   /* ---------- Halaman: Home ---------- */
-  function renderHome({ site, services, projects, stack, faq }) {
+  function renderHome({ site, services, projects, stack, faq, blog }) {
     const h = site.home.hero;
     const featured = projects.projects.filter((p) => p.featured).slice(0, 3);
     return `
@@ -159,15 +207,16 @@
 </div></section>
 
 <section class="section section--alt"><div class="container">
-  ${sectionHead('Layanan', site.home.servicesIntro.title, site.home.servicesIntro.text, button('Semua Layanan', 'services.html', { ghost: true, ico: 'arrow' }))}
+  ${sectionHead(UI.servicesEyebrow, site.home.servicesIntro.title, site.home.servicesIntro.text, button(UI.allServices, 'services.html', { ghost: true, ico: 'arrow' }))}
   <div class="grid grid--3">${services.services.map(serviceCard).join('')}</div>
 </div></section>
 
 <section class="section"><div class="container">
-  ${sectionHead('Portfolio', site.home.portfolioIntro.title, site.home.portfolioIntro.text, button('Lihat Portfolio', 'portfolio.html', { ghost: true, ico: 'arrow' }))}
+  ${sectionHead(UI.portfolioEyebrow, site.home.portfolioIntro.title, site.home.portfolioIntro.text, button(UI.viewPortfolio, 'portfolio.html', { ghost: true, ico: 'arrow' }))}
   <div class="grid grid--3">${featured.map((p, i) => projectCard(p, projects.categories, i)).join('')}</div>
 </div></section>
 ${stackSection(stack, site.home.stackIntro, true)}
+${blogSection(site, blog)}
 ${faqSection({ faq })}
 ${ctaBand(site)}`;
   }
@@ -183,7 +232,7 @@ ${pageHero(a.hero.eyebrow, a.hero.title, a.hero.text)}
   <figure class="profile-photo reveal">
     <div class="photo-frame">
       <img src="${esc(url(o.photo))}" alt="${esc(o.name)}, ${esc(o.role)} ${esc(site.brand.fullName)}" width="480" height="600" decoding="async" data-photo>
-      <div class="photo-ph" hidden aria-hidden="true">${logoA()}<span>Foto profil</span></div>
+      <div class="photo-ph" hidden aria-hidden="true">${logoA()}<span>${esc(UI.photoPh)}</span></div>
     </div>
     <figcaption><strong>${esc(o.name)}</strong><span>${esc(o.role)}</span></figcaption>
   </figure>
@@ -222,7 +271,7 @@ ${pageHero(s.hero.eyebrow, s.hero.title, s.hero.text)}
       <h2>${esc(v.title)}</h2>
       <p class="lead">${esc(v.description)}</p>
       ${checklist(v.features)}
-      <div class="card-foot">${button('Konsultasi', waLink(site, `Halo Alfa Creative Persada, saya ingin konsultasi tentang layanan ${v.title}.`), { ghost: true, ext: true, ico: 'message' })}</div>
+      <div class="card-foot">${button(UI.consult, waLink(site, UI.waConsult.replace('{layanan}', v.title)), { ghost: true, ext: true, ico: 'message' })}</div>
     </article>`).join('')}
   </div>
 </div></section>
@@ -243,9 +292,9 @@ ${ctaBand(site)}`;
 ${pageHero(p.hero.eyebrow, p.hero.title, p.hero.text)}
 
 <section class="section"><div class="container">
-  <div class="filters reveal" role="group" aria-label="Filter kategori">${projects.categories.map((c, i) => `<button class="chip" type="button" data-filter="${esc(c.id)}" aria-pressed="${i === 0}">${esc(c.label)}</button>`).join('')}</div>
+  <div class="filters reveal" role="group" aria-label="${esc(UI.filterLabel)}">${projects.categories.map((c, i) => `<button class="chip" type="button" data-filter="${esc(c.id)}" aria-pressed="${i === 0}">${esc(c.label)}</button>`).join('')}</div>
   <div class="grid grid--3" id="project-grid">${projects.projects.map((x, i) => projectItem(x, projects.categories, i)).join('')}</div>
-  <p class="empty" id="project-empty" hidden>Belum ada proyek di kategori ini.</p>
+  <p class="empty" id="project-empty" hidden>${esc(UI.emptyCat)}</p>
   <p class="note">${esc(p.note)}</p>
 </div></section>
 
@@ -258,8 +307,8 @@ ${ctaBand(site)}`;
     const cp = site.contactPage;
     const hasForm = Boolean(c.formEndpoint);
     const buttons = hasForm
-      ? '<button class="btn" type="submit" data-channel="form">Kirim Pesan</button><button class="btn btn--ghost" type="submit" data-channel="wa">WhatsApp</button>'
-      : '<button class="btn" type="submit" data-channel="wa">Kirim via WhatsApp</button><button class="btn btn--ghost" type="submit" data-channel="mail">Kirim via Email</button>';
+      ? `<button class="btn" type="submit" data-channel="form">${esc(UI.send)}</button><button class="btn btn--ghost" type="submit" data-channel="wa">${esc(UI.wa)}</button>`
+      : `<button class="btn" type="submit" data-channel="wa">${esc(UI.sendWa)}</button><button class="btn btn--ghost" type="submit" data-channel="mail">${esc(UI.sendMail)}</button>`;
     const social = (site.social || []).filter((s) => s.url).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener" aria-label="${esc(s.name)}">${icon(s.icon)}</a>`).join('');
     return `
 ${pageHero(cp.hero.eyebrow, cp.hero.title, cp.hero.text)}
@@ -268,12 +317,13 @@ ${pageHero(cp.hero.eyebrow, cp.hero.title, cp.hero.text)}
   <div class="reveal">
     <form id="contact-form" class="form">
       <div class="field-row">
-        <div class="field"><label for="f-name">Nama</label><input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Nama Anda"></div>
-        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required placeholder="nama@email.com"></div>
+        <div class="field"><label for="f-name">${esc(UI.formName)}</label><input id="f-name" name="name" type="text" autocomplete="name" required placeholder="${esc(UI.formNamePh)}"></div>
+        <div class="field"><label for="f-email">${esc(UI.formEmail)}</label><input id="f-email" name="email" type="email" autocomplete="email" required placeholder="nama@email.com"></div>
       </div>
-      <div class="field"><label for="f-service">Layanan</label>
-        <select id="f-service" name="service"><option value="">Pilih layanan (opsional)</option>${services.services.map((s) => `<option value="${esc(s.title)}">${esc(s.title)}</option>`).join('')}<option value="Lainnya">Lainnya</option></select></div>
-      <div class="field"><label for="f-message">Pesan</label><textarea id="f-message" name="message" required placeholder="Ceritakan kebutuhan Anda secara singkat"></textarea></div>
+      <div class="field"><label for="f-service">${esc(UI.formService)}</label>
+        <select id="f-service" name="service"><option value="">${esc(UI.formServicePh)}</option>${services.services.map((s) => `<option value="${esc(s.title)}">${esc(s.title)}</option>`).join('')}<option value="${esc(UI.formOther)}">${esc(UI.formOther)}</option></select></div>
+      <div class="field"><label for="f-message">${esc(UI.formMessage)}</label><textarea id="f-message" name="message" required placeholder="${esc(UI.formMessagePh)}"></textarea></div>
+      <input type="hidden" name="_subject" value="${esc(UI.formSubject)}">
       <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="btn-row">${buttons}</div>
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
@@ -282,10 +332,10 @@ ${pageHero(cp.hero.eyebrow, cp.hero.title, cp.hero.text)}
   <aside class="card info-card reveal" style="--d:.08s">
     <h2>${esc(cp.info.title)}</h2>
     <ul class="info-list">
-      <li><span class="icon">${icon('mail')}</span><div><small>Email</small><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div></li>
-      <li><span class="icon">${icon('message')}</span><div><small>WhatsApp</small><a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(c.whatsappDisplay)}</a></div></li>
-      <li><span class="icon">${icon('pin')}</span><div><small>Lokasi</small><span class="v">${esc(c.location)}</span></div></li>
-      <li><span class="icon">${icon('zap')}</span><div><small>Respon</small><span class="v">${esc(cp.info.response)}</span></div></li>
+      <li><span class="icon">${icon('mail')}</span><div><small>${esc(UI.infoEmail)}</small><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div></li>
+      <li><span class="icon">${icon('message')}</span><div><small>${esc(UI.infoWa)}</small><a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(c.whatsappDisplay)}</a></div></li>
+      <li><span class="icon">${icon('pin')}</span><div><small>${esc(UI.infoLoc)}</small><span class="v">${esc(c.location)}</span></div></li>
+      <li><span class="icon">${icon('zap')}</span><div><small>${esc(UI.infoResp)}</small><span class="v">${esc(cp.info.response)}</span></div></li>
     </ul>
     ${social ? `<div class="social">${social}</div>` : ''}
   </aside>
@@ -296,6 +346,45 @@ ${pageHero(cp.hero.eyebrow, cp.hero.title, cp.hero.text)}
   function renderNotFound({ site }) {
     const n = site.notFound;
     return `<section class="page-hero nf"><span class="diag diag--tr" aria-hidden="true"></span><div class="container fade-in"><span class="nf-code" aria-hidden="true">404</span><span class="eyebrow">${esc(n.eyebrow)}</span><h1 class="title-line">${esc(n.title)}</h1><p>${esc(n.text)}</p><div class="btn-row">${button('Kembali ke Beranda', 'index.html')}${button('Hubungi Kami', 'contact.html', { ghost: true })}</div></div></section>`;
+  }
+
+  /* ---------- Halaman: Blog & Artikel ---------- */
+  function renderBlog({ site, blog }) {
+    const b = site.blogPage;
+    return `
+${pageHero(b.hero.eyebrow, b.hero.title, b.hero.text)}
+
+<section class="section"><div class="container">
+  <div class="grid grid--3">${sortedPosts(blog).map(postCard).join('')}</div>
+</div></section>
+
+${ctaBand(site)}`;
+  }
+
+  const bodyBlock = (b) => (b.h ? `<h2>${esc(b.h)}</h2>` : b.ul ? `<ul>${b.ul.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : `<p>${esc(b.p)}</p>`);
+
+  function renderArticle({ site, blog }) {
+    const post = blog.posts.find((x) => x.id === slug);
+    if (!post) return renderNotFound({ site });
+    const others = sortedPosts(blog).filter((x) => x.id !== post.id).slice(0, 2);
+    return `
+<section class="page-hero article-hero"><div class="container fade-in">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="${esc(url('index.html'))}">${esc(UI.breadHome)}</a><span aria-hidden="true">/</span><a href="${esc(url('blog/'))}">${esc(UI.pageNames.blog)}</a></nav>
+  <h1 class="title-line">${esc(post.title)}</h1>
+  <p class="post-meta"><time datetime="${esc(post.date)}">${esc(fmtDate(post.date))}</time><span>${esc(post.minutes)} ${esc(UI.minRead)}</span></p>
+</div></section>
+
+<section class="section"><div class="container article">
+  <div class="prose reveal">${post.body.map(bodyBlock).join('')}</div>
+  <div class="article-foot reveal"><a class="back-link" href="${esc(url('blog/'))}">${icon('arrow')} ${esc(UI.backBlog)}</a></div>
+</div></section>
+
+${others.length ? `<section class="section section--alt"><div class="container">
+  ${sectionHead(UI.pageNames.blog, UI.relatedPosts, '')}
+  <div class="grid grid--3">${others.map(postCard).join('')}</div>
+</div></section>` : ''}
+
+${ctaBand(site)}`;
   }
 
   /* ---------- Halaman: Katalog produk (menu disembunyikan lewat nav[].hidden di site.json) ---------- */
@@ -341,24 +430,25 @@ ${ctaBand(site)}`;
     portfolio: renderPortfolio,
     contact: renderContact,
     products: renderProducts,
+    blog: renderBlog,
+    article: renderArticle,
     notfound: renderNotFound
   };
 
   /* ---------- SEO: JSON-LD (disusun dari site.json + data halaman) ---------- */
-  const PAGE_PATH = { home: '', about: 'about.html', services: 'services.html', portfolio: 'portfolio.html', contact: 'contact.html' };
-  const PAGE_META = {
-    home: { type: 'WebPage', name: 'Beranda' }, about: { type: 'AboutPage', name: 'Tentang' },
-    services: { type: 'WebPage', name: 'Layanan' }, portfolio: { type: 'CollectionPage', name: 'Portfolio' },
-    contact: { type: 'ContactPage', name: 'Kontak' }
-  };
+  const PAGE_PATH = { home: '', about: 'about.html', services: 'services.html', portfolio: 'portfolio.html', contact: 'contact.html', blog: 'blog/', article: '' };
+  const PAGE_TYPE = { home: 'WebPage', about: 'AboutPage', services: 'WebPage', portfolio: 'CollectionPage', contact: 'ContactPage', blog: 'Blog', article: 'WebPage' };
 
   function injectSEO(site, data = {}) {
     if (!(page in PAGE_PATH)) return;                       // 404 & katalog tersembunyi: tanpa JSON-LD
     const base = site.url.replace(/\/$/, '');
     const abs = (p = '') => `${base}/${String(p).replace(/^\//, '')}`;
     const b = site.brand, c = site.contact, o = site.owner, seo = site.seo || {};
-    const path = PAGE_PATH[page];
-    const pm = PAGE_META[page];
+    const lp = lang === 'en' ? 'en/' : '';
+    const post = page === 'article' && data.blog ? data.blog.posts.find((x) => x.id === slug) : null;
+    const path = lp + (page === 'article' ? `blog/${slug}.html` : PAGE_PATH[page]);
+    const pm = { type: PAGE_TYPE[page], name: post ? post.title : (UI.pageNames || {})[page] };
+    const inLang = UI.lang || 'id';
     const sameAs = (site.social || []).map((s) => s.url).filter(Boolean);
     const knows = data.stack ? data.stack.groups.flatMap((g) => g.items) : undefined;
     const orgId = abs('#org'), personId = abs('about.html#person'), siteId = abs('#website'), pageId = `${abs(path)}#webpage`;
@@ -374,35 +464,49 @@ ${ctaBand(site)}`;
         email: c.email, telephone: '+' + String(c.whatsapp).replace(/\D/g, ''), address: place,
         areaServed: { '@type': 'Country', name: 'Indonesia' },
         founder: { '@id': personId },
-        contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', email: c.email, telephone: '+' + String(c.whatsapp).replace(/\D/g, ''), availableLanguage: ['id'], areaServed: 'ID' },
+        contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', email: c.email, telephone: '+' + String(c.whatsapp).replace(/\D/g, ''), availableLanguage: ['id', 'en'], areaServed: 'ID' },
         sameAs: sameAs.length ? sameAs : undefined, knowsAbout: knows,
         hasOfferCatalog: data.services ? {
-          '@type': 'OfferCatalog', name: 'Layanan',
+          '@type': 'OfferCatalog', name: UI.offerCatalog,
           itemListElement: data.services.services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.title, description: s.description } }))
         } : undefined
       },
       {
-        '@type': 'Person', '@id': personId, name: o.name, jobTitle: o.role, url: abs('about.html'),
+        '@type': 'Person', '@id': personId, name: o.name, jobTitle: o.role, url: abs(lp + 'about.html'),
         image: o.photoPublished ? { '@type': 'ImageObject', url: abs(o.photo), caption: `${o.name}, ${o.role} ${b.fullName}` } : undefined,
         worksFor: { '@id': orgId }, homeLocation: place, sameAs: sameAs.length ? sameAs : undefined, knowsAbout: knows
       },
-      { '@type': 'WebSite', '@id': siteId, url: abs(), name: b.fullName, alternateName: `${b.fullName} | ${b.name}`, inLanguage: 'id', publisher: { '@id': orgId } },
+      { '@type': 'WebSite', '@id': siteId, url: abs(), name: b.fullName, alternateName: `${b.fullName} | ${b.name}`, inLanguage: ['id', 'en'], publisher: { '@id': orgId } },
       {
-        '@type': pm.type, '@id': pageId, url: abs(path), name: document.title, description: metaDesc, inLanguage: 'id',
+        '@type': pm.type, '@id': pageId, url: abs(path), name: document.title, description: metaDesc, inLanguage: inLang,
         isPartOf: { '@id': siteId }, about: { '@id': orgId },
         primaryImageOfPage: { '@type': 'ImageObject', url: abs(seo.ogImage), width: 1200, height: 630 },
         breadcrumb: page === 'home' ? undefined : { '@id': `${abs(path)}#breadcrumb` },
-        mainEntity: page === 'about' ? { '@id': personId } : (page === 'portfolio' ? { '@id': `${abs(path)}#projects` } : undefined)
+        mainEntity: page === 'about' ? { '@id': personId } : (page === 'portfolio' ? { '@id': `${abs(path)}#projects` } : (post ? { '@id': `${abs(path)}#article` } : undefined))
       }
     ];
 
     if (page !== 'home') {
+      const crumbs = [{ name: UI.breadHome, item: abs(lp) }];
+      if (post) crumbs.push({ name: UI.pageNames.blog, item: abs(`${lp}blog/`) });
+      crumbs.push({ name: pm.name, item: abs(path) });
       graph.push({
         '@type': 'BreadcrumbList', '@id': `${abs(path)}#breadcrumb`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Beranda', item: abs() },
-          { '@type': 'ListItem', position: 2, name: pm.name, item: abs(path) }
-        ]
+        itemListElement: crumbs.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, item: x.item }))
+      });
+    }
+    if (post) {
+      graph.push({
+        '@type': 'BlogPosting', '@id': `${abs(path)}#article`, headline: post.title, description: post.description,
+        datePublished: post.date, dateModified: post.updated || post.date, inLanguage: inLang,
+        author: { '@id': personId }, publisher: { '@id': orgId }, mainEntityOfPage: { '@id': pageId },
+        image: abs(seo.ogImage), keywords: (post.tags || []).join(', ')
+      });
+    }
+    if (page === 'blog' && data.blog) {
+      graph.push({
+        '@type': 'ItemList', '@id': `${abs(path)}#posts`, numberOfItems: data.blog.posts.length,
+        itemListElement: sortedPosts(data.blog).map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`${lp}blog/${x.id}.html`), name: x.title }))
       });
     }
     if (data.faq && (page === 'home' || page === 'services')) {
@@ -414,19 +518,19 @@ ${ctaBand(site)}`;
     }
     if (page === 'services' && data.services) {
       data.services.services.forEach((s) => graph.push({
-        '@type': 'Service', '@id': abs(`services.html#${s.id}`), url: abs(`services.html#${s.id}`),
+        '@type': 'Service', '@id': abs(`${lp}services.html#${s.id}`), url: abs(`${lp}services.html#${s.id}`),
         name: s.title, serviceType: s.title, description: s.description,
         provider: { '@id': orgId }, areaServed: { '@type': 'Country', name: 'Indonesia' }
       }));
     }
     if (page === 'portfolio' && data.projects) {
       graph.push({
-        '@type': 'ItemList', '@id': `${abs(path)}#projects`, name: 'Portfolio proyek', numberOfItems: data.projects.projects.length,
+        '@type': 'ItemList', '@id': `${abs(path)}#projects`, name: UI.portfolioList, numberOfItems: data.projects.projects.length,
         itemListElement: data.projects.projects.map((p, i) => ({
           '@type': 'ListItem', position: i + 1,
           item: {
             '@type': 'CreativeWork', name: p.title, description: p.summary,
-            url: p.link || abs(`portfolio.html#${p.id}`), image: p.image ? abs(p.image) : undefined,
+            url: p.link || abs(`${lp}portfolio.html#${p.id}`), image: p.image ? abs(p.image) : undefined,
             keywords: (p.stack || []).join(', '), creator: { '@id': personId }
           }
         }))
@@ -449,7 +553,7 @@ ${ctaBand(site)}`;
       header.classList.toggle('menu-open', open);
       document.body.classList.toggle('no-scroll', open);
       burger.setAttribute('aria-expanded', String(open));
-      burger.setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu');
+      burger.setAttribute('aria-label', open ? UI.menuClose : UI.menuOpen);
     };
     burger.addEventListener('click', () => setOpen(!header.classList.contains('menu-open')));
     header.addEventListener('click', (e) => { if (e.target.closest('.nav-menu a')) setOpen(false); });
@@ -496,22 +600,26 @@ ${ctaBand(site)}`;
       if (form.elements._gotcha && form.elements._gotcha.value) return;
       const ch = (e.submitter && e.submitter.dataset.channel) || 'wa';
       const f = Object.fromEntries(new FormData(form));
-      const text = `Halo Alfa Creative Persada,\n\nNama: ${f.name}\nEmail: ${f.email}\nLayanan: ${f.service || '-'}\n\nPesan:\n${f.message}`;
+      const text = `${UI.waIntro}\n\n${UI.waName}: ${f.name}\n${UI.waEmail}: ${f.email}\n${UI.waService}: ${f.service || '-'}\n\n${UI.waMsg}:\n${f.message}`;
       if (ch === 'wa') {
         window.open(waLink(site, text), '_blank', 'noopener');
-        say('Membuka WhatsApp…', 'ok');
+        say(UI.stOpenWa, 'ok');
       } else if (ch === 'mail') {
-        location.href = `mailto:${site.contact.email}?subject=${encodeURIComponent('Permintaan proyek dari ' + f.name)}&body=${encodeURIComponent(text)}`;
-        say('Membuka aplikasi email Anda…', 'ok');
+        location.href = `mailto:${site.contact.email}?subject=${encodeURIComponent(UI.mailSubject + ' ' + f.name)}&body=${encodeURIComponent(text)}`;
+        say(UI.stOpenMail, 'ok');
       } else {
-        say('Mengirim…');
+        say(UI.stSending);
+        const btns = form.querySelectorAll('button');
+        btns.forEach((b) => { b.disabled = true; });
         try {
           const r = await fetch(site.contact.formEndpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
           if (!r.ok) throw new Error('bad');
           form.reset();
-          say('Terima kasih! Pesan terkirim, kami segera membalas.', 'ok');
+          say(UI.stOk, 'ok');
         } catch (_) {
-          say('Gagal mengirim. Silakan coba lewat WhatsApp atau email.', 'err');
+          say(UI.stErr, 'err');
+        } finally {
+          btns.forEach((b) => { b.disabled = false; });
         }
       }
     });
@@ -530,7 +638,7 @@ ${ctaBand(site)}`;
   }
 
   /* ---------- Skeleton (tampil saat data belum siap / sinyal lambat) ---------- */
-  const skeleton = () => `<div class="sk-page" role="status" aria-live="polite"><span class="visually-hidden">Memuat konten…</span><div class="container sk-hero" aria-hidden="true"><span class="sk sk-eyebrow"></span><span class="sk sk-title"></span><span class="sk sk-title sk-title--s"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span><div class="sk-btns"><span class="sk sk-btn"></span><span class="sk sk-btn"></span></div></div><div class="container sk-grid" aria-hidden="true">${Array.from({ length: 6 }, () => '<div class="sk-card"><span class="sk sk-ico"></span><span class="sk sk-line sk-line--w"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span></div>').join('')}</div></div>`;
+  const skeleton = () => `<div class="sk-page" role="status" aria-live="polite"><span class="visually-hidden">${document.documentElement.lang === 'en' ? 'Loading content…' : 'Memuat konten…'}</span><div class="container sk-hero" aria-hidden="true"><span class="sk sk-eyebrow"></span><span class="sk sk-title"></span><span class="sk sk-title sk-title--s"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span><div class="sk-btns"><span class="sk sk-btn"></span><span class="sk sk-btn"></span></div></div><div class="container sk-grid" aria-hidden="true">${Array.from({ length: 6 }, () => '<div class="sk-card"><span class="sk sk-ico"></span><span class="sk sk-line sk-line--w"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span></div>').join('')}</div></div>`;
 
   /* Gambar: shimmer selama memuat, lalu fade-in */
   function setupImageLoading(root) {
@@ -559,6 +667,7 @@ ${ctaBand(site)}`;
       const data = { site };
       names.forEach((n, i) => { data[n] = loaded[i]; });
 
+      UI = site.ui || {};
       renderHeader(site);
       renderFooter(site);
       const render = PAGES[page];

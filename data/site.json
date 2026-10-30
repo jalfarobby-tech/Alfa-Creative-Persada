@@ -5,7 +5,7 @@
     "TODO: taruh foto profil di assets/img/profile.jpg",
     "TODO: tambah proyek lain di data/projects.json bila ada (4 proyek pertama sudah terisi)",
     "TODO: buat gambar OG 1200x630 di assets/img/og-image.jpg",
-    "TODO: isi contact.formEndpoint dengan URL Formspree jika ingin form via Formspree"
+    "TODO: isi contact.formEndpoint dengan URL Formspree (lihat README) agar tombol 'Kirim Pesan' aktif"
   ],
   "url": "https://www.yourwebsite.com",
   "brand": {
@@ -69,6 +69,11 @@
       "page": "portfolio"
     },
     {
+      "label": "Blog",
+      "href": "blog/",
+      "page": "blog"
+    },
+    {
       "label": "Produk",
       "href": "products/",
       "page": "products",
@@ -109,6 +114,11 @@
       "eyebrow": "Teknologi",
       "title": "Stack Teknologi",
       "text": "Dari frontend sampai database dan backend, semuanya dipilih agar proyek Anda cepat, aman, dan mudah dirawat."
+    },
+    "blogIntro": {
+      "eyebrow": "Blog",
+      "title": "Artikel Terbaru",
+      "text": "Catatan praktis seputar website, sistem, dan SEO (Search Engine Optimization) untuk pemilik bisnis."
     }
   },
   "about": {
@@ -258,7 +268,96 @@
         "title": "404 | Halaman Tidak Ditemukan | Alfa Creative Persada",
         "description": "",
         "noindex": true
+      },
+      "blog": {
+        "path": "blog/",
+        "title": "Blog: Panduan Website, Sistem & SEO | Alfa Creative Persada",
+        "description": "Artikel praktis seputar biaya website, sistem informasi untuk bisnis, dan SEO (Search Engine Optimization) dari Alfa Creative Persada."
       }
+    }
+  },
+  "ui": {
+    "lang": "id",
+    "locale": "id_ID",
+    "switchCode": "EN",
+    "switchLabel": "Switch to English",
+    "switchLang": "en",
+    "menuOpen": "Buka menu",
+    "menuClose": "Tutup menu",
+    "menuLabel": "Menu utama",
+    "backHome": "kembali ke beranda",
+    "hire": "Hubungi",
+    "detail": "Detail",
+    "allServices": "Semua Layanan",
+    "viewPortfolio": "Lihat Portfolio",
+    "allFaq": "Semua Pertanyaan",
+    "chatWa": "Chat WhatsApp",
+    "contactPage": "Halaman Kontak",
+    "consult": "Konsultasi",
+    "servicesEyebrow": "Layanan",
+    "portfolioEyebrow": "Portfolio",
+    "allArticles": "Semua Artikel",
+    "readMore": "Baca artikel",
+    "minRead": "menit baca",
+    "published": "Diterbitkan",
+    "relatedPosts": "Artikel Lainnya",
+    "backBlog": "Semua artikel",
+    "ctaArticle": "Punya kebutuhan serupa?",
+    "footerMenu": "Menu",
+    "footerContact": "Kontak",
+    "rights": "Hak cipta dilindungi.",
+    "by": "by",
+    "photoPh": "Foto profil",
+    "filterLabel": "Filter kategori",
+    "emptyCat": "Belum ada proyek di kategori ini.",
+    "viewProject": "Lihat proyek",
+    "formName": "Nama",
+    "formNamePh": "Nama Anda",
+    "formEmail": "Email",
+    "formService": "Layanan",
+    "formServicePh": "Pilih layanan (opsional)",
+    "formOther": "Lainnya",
+    "formMessage": "Pesan",
+    "formMessagePh": "Ceritakan kebutuhan Anda secara singkat",
+    "send": "Kirim Pesan",
+    "sendWa": "Kirim via WhatsApp",
+    "sendMail": "Kirim via Email",
+    "wa": "WhatsApp",
+    "infoEmail": "Email",
+    "infoWa": "WhatsApp",
+    "infoLoc": "Lokasi",
+    "infoResp": "Respon",
+    "stOpenWa": "Membuka WhatsApp…",
+    "stOpenMail": "Membuka aplikasi email Anda…",
+    "stSending": "Mengirim…",
+    "stOk": "Terima kasih! Pesan terkirim, kami segera membalas.",
+    "stErr": "Gagal mengirim. Silakan coba lewat WhatsApp atau email.",
+    "waIntro": "Halo Alfa Creative Persada,",
+    "waName": "Nama",
+    "waEmail": "Email",
+    "waService": "Layanan",
+    "waMsg": "Pesan",
+    "mailSubject": "Permintaan proyek dari",
+    "waConsult": "Halo Alfa Creative Persada, saya ingin konsultasi tentang layanan {layanan}.",
+    "formSubject": "Pesan baru dari website Alfa Creative Persada",
+    "loading": "Memuat konten…",
+    "breadHome": "Beranda",
+    "offerCatalog": "Layanan",
+    "portfolioList": "Portfolio proyek",
+    "pageNames": {
+      "home": "Beranda",
+      "about": "Tentang",
+      "services": "Layanan",
+      "portfolio": "Portfolio",
+      "contact": "Kontak",
+      "blog": "Blog"
+    }
+  },
+  "blogPage": {
+    "hero": {
+      "eyebrow": "Blog",
+      "title": "Catatan & Panduan",
+      "text": "Tulisan singkat dan praktis seputar website, sistem informasi, dan SEO (Search Engine Optimization) untuk pemilik bisnis."
     }
   }
 }

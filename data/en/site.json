@@ -1,0 +1,287 @@
+{
+  "brand": {
+    "description": "Website, system, application, business dashboard, and automation development."
+  },
+  "contact": {
+    "location": "Indonesia",
+    "waGreeting": "Hello Alfa Creative Persada, I'm interested in your services and would like to discuss a project."
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "href": "index.html",
+      "page": "home"
+    },
+    {
+      "label": "About",
+      "href": "about.html",
+      "page": "about"
+    },
+    {
+      "label": "Services",
+      "href": "services.html",
+      "page": "services"
+    },
+    {
+      "label": "Portfolio",
+      "href": "portfolio.html",
+      "page": "portfolio"
+    },
+    {
+      "label": "Blog",
+      "href": "blog/",
+      "page": "blog"
+    },
+    {
+      "label": "Produk",
+      "href": "products/",
+      "page": "products",
+      "hidden": true
+    },
+    {
+      "label": "Contact",
+      "href": "contact.html",
+      "page": "contact"
+    }
+  ],
+  "home": {
+    "hero": {
+      "desc": "We help businesses and personal brands look professional with websites, systems, applications, dashboards, and automation that are clean, fast, and ready to grow.",
+      "ctaPrimary": {
+        "label": "View Services",
+        "href": "services.html"
+      },
+      "ctaSecondary": {
+        "label": "Chat on WhatsApp"
+      }
+    },
+    "servicesIntro": {
+      "title": "Core Services",
+      "text": "From company websites to internal systems and automation, everything is built around your business needs."
+    },
+    "portfolioIntro": {
+      "title": "Selected Work",
+      "text": "A few examples that show how we work: clean, functional, and measurable."
+    },
+    "cta": {
+      "eyebrow": "Start a Project",
+      "title": "Got an idea? Let's build it.",
+      "text": "Tell us what you need. The first consultation is free and comes with no commitment."
+    },
+    "stackIntro": {
+      "eyebrow": "Technology",
+      "title": "Tech Stack",
+      "text": "From frontend to database and backend, every tool is chosen to keep your project fast, secure, and easy to maintain."
+    },
+    "blogIntro": {
+      "eyebrow": "Blog",
+      "title": "Latest Articles",
+      "text": "Practical notes on websites, systems, and SEO (Search Engine Optimization) for business owners."
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About",
+      "title": "About Alfa Creative Persada",
+      "text": "Alfa Creative Persada is a digital studio that builds websites, systems, and automation to a clean, professional standard."
+    },
+    "profile": {
+      "eyebrow": "Profile",
+      "title": "Joanda Alfarobby",
+      "paragraphs": [
+        "Joanda Alfarobby is the Software Developer behind Alfa Creative Persada. We build websites, applications, systems, and software products that help businesses look professional and work more efficiently.",
+        "Our approach is simple: understand the need first, build it cleanly, then release it ready to use. No feature exists just for show.",
+        "Based in Indonesia and open to remote projects from anywhere."
+      ],
+      "facts": [
+        {
+          "label": "Role",
+          "value": "Software Developer"
+        },
+        {
+          "label": "Location",
+          "value": "Indonesia"
+        },
+        {
+          "label": "Focus",
+          "value": "Web, applications, systems, dashboards, software products, automation"
+        }
+      ]
+    },
+    "valuesIntro": {
+      "eyebrow": "Values",
+      "title": "How We Work",
+      "text": "Four principles we hold on to in every project."
+    },
+    "values": [
+      {
+        "icon": "layers",
+        "title": "Clean & Structured",
+        "text": "Code and content are well organized, easy to maintain, and easy to extend."
+      },
+      {
+        "icon": "zap",
+        "title": "Fast & Light",
+        "text": "No heavy libraries, so pages open quickly, including on mobile networks."
+      },
+      {
+        "icon": "check",
+        "title": "Reliable",
+        "text": "Clear communication, transparent progress, and results that match the agreement."
+      },
+      {
+        "icon": "chart",
+        "title": "Results-Driven",
+        "text": "Every design and feature decision is aimed at your business goals."
+      }
+    ],
+    "acp": {
+      "eyebrow": "Brand",
+      "title": "Alfa Creative Persada · Creative Ideas for a Better Future",
+      "text": "Alfa Creative Persada is a digital studio under the Software & Digital Solutions identity. We deliver digital solutions that are creative, measurable, and impactful. Build. Automate. Grow."
+    }
+  },
+  "servicesPage": {
+    "hero": {
+      "eyebrow": "Services",
+      "title": "Our Services",
+      "text": "Six services you can use separately or combine as your business grows."
+    },
+    "process": {
+      "eyebrow": "Workflow",
+      "title": "From Idea to Launch",
+      "text": "A clear process keeps projects on schedule with few surprises."
+    }
+  },
+  "portfolioPage": {
+    "hero": {
+      "eyebrow": "Portfolio",
+      "title": "Selected Work",
+      "text": "Examples of websites, systems, dashboards, and automation. Use the filter to browse by category."
+    },
+    "note": "For client internal systems, screens are censored to protect data privacy."
+  },
+  "contactPage": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Let's Talk",
+      "text": "Tell us what you need. The first consultation is free and comes with no commitment."
+    },
+    "info": {
+      "title": "Contact Information",
+      "response": "Usually replied to within 24 hours"
+    }
+  },
+  "blogPage": {
+    "hero": {
+      "eyebrow": "Blog",
+      "title": "Notes & Guides",
+      "text": "Short, practical writing on websites, information systems, and SEO (Search Engine Optimization) for business owners."
+    }
+  },
+  "ui": {
+    "lang": "en",
+    "locale": "en_US",
+    "switchCode": "ID",
+    "switchLabel": "Ganti ke Bahasa Indonesia",
+    "switchLang": "id",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "menuLabel": "Main menu",
+    "backHome": "back to home",
+    "hire": "Contact",
+    "detail": "Details",
+    "allServices": "All Services",
+    "viewPortfolio": "View Portfolio",
+    "allFaq": "All Questions",
+    "chatWa": "Chat on WhatsApp",
+    "contactPage": "Contact Page",
+    "consult": "Consult",
+    "servicesEyebrow": "Services",
+    "portfolioEyebrow": "Portfolio",
+    "allArticles": "All Articles",
+    "readMore": "Read article",
+    "minRead": "min read",
+    "published": "Published",
+    "relatedPosts": "More Articles",
+    "backBlog": "All articles",
+    "ctaArticle": "Have a similar need?",
+    "footerMenu": "Menu",
+    "footerContact": "Contact",
+    "rights": "All rights reserved.",
+    "by": "by",
+    "photoPh": "Profile photo",
+    "filterLabel": "Category filter",
+    "emptyCat": "No projects in this category yet.",
+    "viewProject": "View project",
+    "formName": "Name",
+    "formNamePh": "Your name",
+    "formEmail": "Email",
+    "formService": "Service",
+    "formServicePh": "Choose a service (optional)",
+    "formOther": "Other",
+    "formMessage": "Message",
+    "formMessagePh": "Briefly tell us what you need",
+    "send": "Send Message",
+    "sendWa": "Send via WhatsApp",
+    "sendMail": "Send via Email",
+    "wa": "WhatsApp",
+    "infoEmail": "Email",
+    "infoWa": "WhatsApp",
+    "infoLoc": "Location",
+    "infoResp": "Response",
+    "stOpenWa": "Opening WhatsApp…",
+    "stOpenMail": "Opening your email app…",
+    "stSending": "Sending…",
+    "stOk": "Thank you! Your message was sent, we will reply soon.",
+    "stErr": "Could not send. Please try WhatsApp or email.",
+    "waIntro": "Hello Alfa Creative Persada,",
+    "waName": "Name",
+    "waEmail": "Email",
+    "waService": "Service",
+    "waMsg": "Message",
+    "mailSubject": "Project inquiry from",
+    "waConsult": "Hello Alfa Creative Persada, I would like to consult about the {layanan} service.",
+    "formSubject": "New message from the Alfa Creative Persada website",
+    "loading": "Loading content…",
+    "breadHome": "Home",
+    "offerCatalog": "Services",
+    "portfolioList": "Project portfolio",
+    "pageNames": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "portfolio": "Portfolio",
+      "contact": "Contact",
+      "blog": "Blog"
+    }
+  },
+  "seo": {
+    "pages": {
+      "home": {
+        "title": "Alfa Creative Persada | Website, System & Automation Services",
+        "description": "Website, information system, application, business dashboard, and automation development. Clean, fast, and mobile-first. Free initial consultation."
+      },
+      "about": {
+        "title": "About Joanda Alfarobby | Alfa Creative Persada",
+        "description": "Meet Joanda Alfarobby, the Software Developer behind Alfa Creative Persada: how we work, the technology we use (MySQL, Supabase, Firebase), and what we have built."
+      },
+      "services": {
+        "title": "Website, System & Application Services | Alfa Creative Persada",
+        "description": "Web development, information systems, applications, business dashboards, automation, and digital solutions, with a clear workflow from consultation to launch."
+      },
+      "portfolio": {
+        "title": "Website, Dashboard & System Portfolio | Alfa Creative Persada",
+        "description": "Real projects: a company website, a team management dashboard, a PDF tools site, link-in-bio pages, and an online job application system, with the technology behind each."
+      },
+      "contact": {
+        "title": "Contact & Free Consultation | Alfa Creative Persada",
+        "description": "Contact Alfa Creative Persada for a consultation on websites, systems, applications, dashboards, or automation. Replies via WhatsApp or email, usually within 24 hours."
+      },
+      "blog": {
+        "title": "Blog: Website, System & SEO Guides | Alfa Creative Persada",
+        "description": "Practical articles on website costs, information systems for business, and SEO (Search Engine Optimization) from Alfa Creative Persada."
+      }
+    }
+  }
+}

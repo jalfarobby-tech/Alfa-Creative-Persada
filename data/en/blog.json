@@ -1,0 +1,198 @@
+{
+  "posts": [
+    {
+      "id": "biaya-membuat-website-company-profile",
+      "title": "How Much Does a Company Website Cost? The Factors That Decide the Price",
+      "description": "A company website cannot be priced the same for every business. Learn the factors that affect the price and what to prepare before asking for a quote.",
+      "minutes": 4,
+      "tags": [
+        "Website",
+        "Cost"
+      ],
+      "excerpt": "There is no single number that fits every business. Here are six factors that decide the price, so you can compare quotes fairly.",
+      "body": [
+        {
+          "p": "The question we get most often is about cost. The honest answer: there is no single number that fits everyone. Two websites that are both called a company profile can differ a lot in the work behind them. Here are the factors that matter most, so you can compare quotes fairly."
+        },
+        {
+          "h": "1. Number and type of pages"
+        },
+        {
+          "p": "A five-page website (home, about, services, portfolio, contact) is clearly different from a twenty-page website with a catalog or articles. The more unique pages, the more design and content needs to be prepared."
+        },
+        {
+          "h": "2. Design: template or custom"
+        },
+        {
+          "p": "A template saves time and money, but it may look like many other websites. A custom design takes longer because it is tailored to your brand identity. Both are valid, depending on your goal and budget."
+        },
+        {
+          "h": "3. Features beyond regular pages"
+        },
+        {
+          "ul": [
+            "A contact form connected to email or WhatsApp",
+            "A blog or product catalog",
+            "Two languages",
+            "Integration with Google Maps, Google Sheets, or other services",
+            "A login system or member area"
+          ]
+        },
+        {
+          "p": "Every extra feature adds build and testing time."
+        },
+        {
+          "h": "4. Content: who prepares it"
+        },
+        {
+          "p": "Ready-made text, photos, and logos speed things up. If content has to be written or photographed from scratch, that is separate work and should be priced separately."
+        },
+        {
+          "h": "5. Domain, hosting, and recurring costs"
+        },
+        {
+          "p": "Domain and hosting are paid yearly and are usually separate from the build cost. Ask early whose name they are registered under. Ideally, yours."
+        },
+        {
+          "h": "6. SEO and speed"
+        },
+        {
+          "p": "Page structure, titles, descriptions, image size, and load speed affect how easily a website is found on Google. Make sure this is part of the work, not an add-on discussed only at the end."
+        },
+        {
+          "h": "What to prepare before asking for a quote"
+        },
+        {
+          "ul": [
+            "The goal of the website: look professional, get leads, or sell",
+            "An estimate of the pages you need",
+            "Example websites you like",
+            "Existing logo, photos, and text",
+            "Your target completion date"
+          ]
+        },
+        {
+          "p": "With that material, the quotes you receive will be more accurate and easier to compare. At Alfa Creative Persada, the first consultation is free and we send a written estimate of cost and time before work starts."
+        }
+      ]
+    },
+    {
+      "id": "kapan-bisnis-butuh-sistem-sendiri",
+      "title": "When Does a Business Need Its Own System, Not Just a Spreadsheet?",
+      "description": "Spreadsheets help a lot early on. Learn the signs your business needs its own information system, and how to start without building something huge.",
+      "minutes": 4,
+      "tags": [
+        "System",
+        "Business"
+      ],
+      "excerpt": "Spreadsheets are a great start. Here are the signs it is time to move to your own system, and how to begin safely.",
+      "body": [
+        {
+          "p": "Many businesses start with a spreadsheet, and that is a sensible choice: quick, cheap, and everyone can use it. The trouble begins when the business grows and the same file is used by too many people for too many purposes."
+        },
+        {
+          "h": "Signs a spreadsheet is no longer enough"
+        },
+        {
+          "ul": [
+            "There are several versions of the file and nobody is sure which is the latest",
+            "Data gets changed by people who should only be able to view it",
+            "Recaps and reports are still compiled by hand every week or month",
+            "Formulas break when someone moves a column",
+            "It is hard to trace who changed what and when",
+            "The file gets slow to open because it is too heavy"
+          ]
+        },
+        {
+          "p": "If two or three of these feel familiar, you are probably paying a high price in time and input errors."
+        },
+        {
+          "h": "What your own system gives you"
+        },
+        {
+          "ul": [
+            "Role-based access, so everyone only sees and edits their own part",
+            "Data kept in one place with a change history",
+            "Reports and dashboards that update automatically",
+            "A workflow that follows your business process, such as attendance, approvals, or sales records"
+          ]
+        },
+        {
+          "h": "It does not have to start big"
+        },
+        {
+          "p": "A common mistake is trying to build everything at once. A safer approach: pick the one process that eats the most time, build a simple version, use it for a few weeks, then grow it based on real use. The spreadsheet does not need to be thrown away either. It often stays useful as an export or backup."
+        },
+        {
+          "h": "Three questions to start with"
+        },
+        {
+          "ul": [
+            "Which process goes wrong most often or takes the longest?",
+            "Who needs access to the data, and what are their limits?",
+            "Which reports are actually used to make decisions?"
+          ]
+        },
+        {
+          "p": "The answers to these three questions are usually enough to start a discussion. We have built a team management dashboard and an online job application system the same way, starting from one concrete problem."
+        }
+      ]
+    },
+    {
+      "id": "checklist-seo-website-baru",
+      "title": "SEO (Search Engine Optimization) Checklist for a New Website Before Launch",
+      "description": "A practical checklist to make a new website easier to find on Google: titles, descriptions, speed, mobile view, sitemap, and Google Search Console.",
+      "minutes": 4,
+      "tags": [
+        "SEO",
+        "Website"
+      ],
+      "excerpt": "Most SEO basics can be done before a website launches. This is the checklist we use on every project.",
+      "body": [
+        {
+          "p": "SEO (Search Engine Optimization) often sounds complicated, yet most of the basics can be done before a website launches. Here is the checklist we use on every project."
+        },
+        {
+          "h": "Before going live"
+        },
+        {
+          "ul": [
+            "A unique, clear title for every page, with the main topic and brand name",
+            "A short description per page that explains its content in one or two sentences",
+            "One main heading (H1) per page, with subheadings in order below it",
+            "Original, useful text, not copied from other websites",
+            "Compressed images with alternative text",
+            "A comfortable mobile view, since most visitors come from phones",
+            "Good load speed, especially on mobile networks",
+            "Clean page addresses, with one main (canonical) version"
+          ]
+        },
+        {
+          "h": "At and after launch"
+        },
+        {
+          "ul": [
+            "Enable HTTPS",
+            "Create and submit sitemap.xml",
+            "Register the site in Google Search Console and request indexing of the home page",
+            "Create a Google Business Profile so the business shows up in local search and maps",
+            "Test structured data with Google's Rich Results Test",
+            "Make sure link previews look good when shared on WhatsApp and social media"
+          ]
+        },
+        {
+          "h": "What often gets missed"
+        },
+        {
+          "p": "Stuffing in keywords backfires. Write for people first: answer what potential customers actually ask. A frequently asked questions (FAQ) section and short articles are a good way to do that."
+        },
+        {
+          "h": "Be patient with results"
+        },
+        {
+          "p": "SEO is not an instant button. It usually takes a few weeks to a few months before a new website starts to appear steadily. What you can do is get the foundation right from day one, then add content consistently. The websites we build already cover the technical points above, so you can focus on the content."
+        }
+      ]
+    }
+  ]
+}

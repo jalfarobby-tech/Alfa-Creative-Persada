@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Technology",
+  "title": "Tech Stack",
+  "text": "The technology we use to build projects, chosen to fit the need: light, secure, and easy to maintain.",
+  "groups": [
+    {
+      "id": "language",
+      "title": "Programming Languages"
+    },
+    {
+      "id": "framework",
+      "title": "Frameworks & Runtime"
+    },
+    {
+      "id": "database",
+      "title": "Database & Backend"
+    },
+    {
+      "id": "expertise",
+      "title": "Technical Skills"
+    }
+  ]
+}

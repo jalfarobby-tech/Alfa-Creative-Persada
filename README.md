@@ -7,6 +7,8 @@ Website portfolio + jasa Alfa Creative Persada. HTML/CSS/JS vanilla, siap GitHub
 ```
 /
 ├── index.html  about.html  services.html  portfolio.html  contact.html  404.html
+├── blog/                      (daftar + artikel, dibuat otomatis dari data/blog.json)
+├── en/                        (versi Bahasa Inggris: halaman yang sama + en/blog/)
 ├── sitemap.xml  robots.txt  manifest.webmanifest  favicon.ico  README.md  TODO.md
 ├── tools/build.py             (SEO: head, sitemap, robots, ganti domain, prerender)
 ├── products/index.html        (katalog, menu disembunyikan)
@@ -14,7 +16,8 @@ Website portfolio + jasa Alfa Creative Persada. HTML/CSS/JS vanilla, siap GitHub
 ├── assets/fonts/              (Poppins self-hosted, tanpa Google Fonts)
 ├── assets/js/main.js          (komponen + render konten)
 ├── assets/img/                (favicon, logo, og-image.jpg, profile.jpg, projects/)
-└── data/                      (site.json, services.json, projects.json, stack.json, faq.json, products.json)
+└── data/                      (site.json, services.json, projects.json, stack.json, faq.json, blog.json, products.json)
+    └── en/                    (terjemahan Inggris: hanya teks yang berbeda, sisanya diwarisi dari data/)
 ```
 
 ## Jalankan lokal
@@ -39,7 +42,7 @@ Semua placeholder dikumpulkan di `data/site.json`:
 | Link sosial | `social[].url` (kosong = tidak tampil) |
 | Foto profil | simpan sebagai `assets/img/profile.jpg` (rasio 4:5, minimal 800x1000), lalu jalankan build (lihat bagian SEO) |
 | Gambar share | sudah tersedia di `assets/img/og-image.jpg` (1200x630), ganti bila ingin desain lain |
-| Form Formspree | `contact.formEndpoint` (mis. `https://formspree.io/f/xxxx`). Kosong = form memakai WhatsApp/email |
+| Form kontak aktif | buat akun di formspree.io → New Form (email tujuan: alfacreativeproject@gmail.com) → salin URL `https://formspree.io/f/xxxx` ke `contact.formEndpoint`. Kosong = form memakai WhatsApp/email. Pesan masuk langsung ke email Anda, tombol otomatis menjadi "Kirim Pesan" |
 
 ## SEO
 
@@ -65,6 +68,21 @@ Setelah online: daftarkan situs di Google Search Console, kirim `sitemap.xml`, d
 - **FAQ**: ubah `data/faq.json` → `items` (`q`, `a`). `home: true` = ikut tampil di Home (semua tampil di Services). Data terstruktur FAQPage dibuat otomatis. Catatan: sejak 2026 Google tidak lagi menampilkan FAQ rich result, tetapi FAQ tetap berguna untuk kata kunci long-tail dan pengunjung.
 - **Teks halaman**: ubah `data/site.json`.
 - **Menu**: `nav` di `site.json`. `hidden: true` menyembunyikan dari navbar dan footer.
+
+## Blog
+
+- Artikel ada di `data/blog.json` → `posts` (field: `id` = nama file/URL, `title`, `description`, `date` format `YYYY-MM-DD`, `minutes`, `tags`, `excerpt`, `body`).
+- `body` berisi blok berurutan: `{"h": "Subjudul"}`, `{"p": "Paragraf"}`, `{"ul": ["poin 1", "poin 2"]}`.
+- Setelah menambah/mengubah artikel, jalankan `python tools/build.py --prerender`: halaman `blog/<id>.html` dibuat otomatis, lengkap dengan SEO, data terstruktur (BlogPosting), dan sitemap.
+- Menghapus artikel dari JSON otomatis menghapus file halamannya saat build.
+
+## Versi Bahasa Inggris
+
+- Halaman Inggris ada di `en/` dan dibuat otomatis oleh build. Pengalih bahasa (ID/EN) muncul di navbar.
+- Teks Inggris ada di `data/en/*.json`. File itu hanya berisi bagian yang diterjemahkan; sisanya (gambar, link, nomor) diwarisi dari `data/*.json`. Daftar yang punya `id` digabung per `id`, daftar lain diganti seluruhnya.
+- Teks antarmuka (tombol, label form, dll.) ada di `site.json` → `ui` (Indonesia) dan `data/en/site.json` → `ui` (Inggris).
+- Artikel blog memakai `id` yang sama di kedua bahasa; tambahkan terjemahannya di `data/en/blog.json` (kalau tidak ada, artikel Inggris tampil dengan teks Indonesia).
+- SEO: setiap halaman punya `hreflang` id/en/x-default, dan sitemap memuat pasangan bahasanya.
 
 ## Katalog produk
 

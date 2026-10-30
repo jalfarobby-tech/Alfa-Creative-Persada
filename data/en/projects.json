@@ -1,0 +1,66 @@
+{
+  "categories": [
+    {
+      "id": "all",
+      "label": "All"
+    },
+    {
+      "id": "website",
+      "label": "Website"
+    },
+    {
+      "id": "system",
+      "label": "System"
+    },
+    {
+      "id": "dashboard",
+      "label": "Dashboard"
+    },
+    {
+      "id": "linkinbio",
+      "label": "Link in Bio"
+    }
+  ],
+  "projects": [
+    {
+      "id": "icabeee-website",
+      "summary": "Company website for a live-commerce agency: services, team, awards, brand partners, and job openings. Optimized for mobile and SEO.",
+      "linkLabel": "Visit site"
+    },
+    {
+      "id": "kompak",
+      "title": "KOMPAK: Photo Compressor & PDF Tools",
+      "summary": "A site with 25 free tools to compress photos, merge PDFs, convert Word to PDF, and more. Runs on the user's device, with no upload and no sign-up.",
+      "linkLabel": "Open KOMPAK"
+    },
+    {
+      "id": "icabeee-dashboard",
+      "title": "Live Team Management Dashboard",
+      "summary": "An internal system to monitor live-selling staff: live sessions, attendance, finance, leaderboard, and real-time notifications.",
+      "linkLabel": "Login page",
+      "note": "Screen censored to protect data privacy. Access is limited to registered accounts."
+    },
+    {
+      "id": "jastipkuy",
+      "summary": "A link-in-bio page for a personal-shopper brand: WhatsApp orders, promo group, TikTok, and Instagram on one fast, light page.",
+      "linkLabel": "Open page"
+    },
+    {
+      "id": "titipkuyy",
+      "summary": "A link-in-bio page with its own color identity for a shopping-errand brand: WhatsApp orders, promo group, TikTok, and Instagram.",
+      "linkLabel": "Open page"
+    },
+    {
+      "id": "kost-almadinah",
+      "title": "Kost Al-Madinah Website",
+      "summary": "A website for a two-unit women's boarding house in Mendalo, Jambi: facilities, a map for each unit, and WhatsApp buttons to each manager.",
+      "linkLabel": "Visit site"
+    },
+    {
+      "id": "icabeee-lamaran",
+      "title": "Online Job Application Form",
+      "summary": "A step-by-step job application flow with document upload and automatic saving to a spreadsheet.",
+      "linkLabel": "View openings"
+    }
+  ]
+}
