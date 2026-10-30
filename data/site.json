@@ -31,7 +31,7 @@
     "email": "alfacreativeproject@gmail.com",
     "whatsapp": "628197284796",
     "whatsappDisplay": "+62 819-7284-796",
-    "location": "Palembang, Indonesia",
+    "location": "Indonesia",
     "waGreeting": "Halo Alfa Creative Persada, saya tertarik dengan layanan Anda dan ingin berdiskusi.",
     "formEndpoint": ""
   },
@@ -123,7 +123,7 @@
       "paragraphs": [
         "Joanda Alfarobby adalah Founder & Developer Alfa Creative Persada. Kami membangun website, sistem, dan aplikasi yang membantu bisnis tampil profesional dan bekerja lebih efisien.",
         "Pendekatan kami sederhana: pahami kebutuhan lebih dulu, bangun dengan rapi, lalu rilis dalam kondisi siap pakai. Tidak ada fitur yang sekadar pajangan.",
-        "Berbasis di Palembang, Indonesia, dan terbuka untuk proyek dari seluruh Indonesia secara jarak jauh."
+        "Berbasis di Indonesia dan terbuka untuk proyek dari seluruh Indonesia secara jarak jauh."
       ],
       "facts": [
         {
@@ -132,7 +132,7 @@
         },
         {
           "label": "Lokasi",
-          "value": "Palembang, Indonesia"
+          "value": "Indonesia"
         },
         {
           "label": "Fokus",
@@ -218,8 +218,6 @@
     "previewNote": "Mode pratinjau: katalog belum dipublikasikan (data/products.json → enabled: false)."
   },
   "seo": {
-    "city": "Palembang",
-    "region": "Sumatera Selatan",
     "country": "ID",
     "ogImage": "assets/img/og-image.jpg",
     "themeColor": "#0B0B0B",

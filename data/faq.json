@@ -10,7 +10,7 @@
     {"q": "Siapa pemilik domain dan hosting-nya?", "a": "Domain dan hosting didaftarkan atas nama Anda agar kendali penuh tetap ada pada Anda. Kami membantu proses pembelian, pengaturan, dan deploy.", "home": true},
     {"q": "Apakah ada dukungan setelah website selesai?", "a": "Ada. Kami mendampingi setelah rilis, termasuk perbaikan bug dan bantuan penggunaan. Cakupan dukungan lanjutan disepakati bersama sebelum proyek dimulai."},
     {"q": "Bagaimana keamanan data di sistem yang dibuat?", "a": "Kami menerapkan autentikasi, pembagian hak akses berbasis peran (RBAC), dan aturan keamanan database sesuai kebutuhan, supaya data hanya bisa diakses oleh pihak yang berwenang."},
-    {"q": "Apakah melayani klien di luar Palembang?", "a": "Ya. Pengerjaan dilakukan secara remote, sehingga kami bisa melayani klien di seluruh Indonesia melalui WhatsApp, email, dan video call.", "home": true},
+    {"q": "Apa saja yang perlu disiapkan sebelum konsultasi?", "a": "Cukup gambaran tujuan, target pengguna, dan contoh referensi jika ada. Belum punya konsep pun tidak masalah, kami bantu merumuskannya saat konsultasi.", "home": true},
     {"q": "Bagaimana cara memulai proyek bersama Alfa Creative Persada?", "a": "Hubungi kami lewat WhatsApp atau halaman kontak, ceritakan kebutuhan Anda, lalu kami jadwalkan konsultasi gratis dan susun rencana pengerjaannya."}
   ]
 }
