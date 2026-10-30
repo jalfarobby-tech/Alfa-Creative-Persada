@@ -411,3 +411,27 @@ body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;op
 .hero::after{height:200px}
 .site-header.scrolled,.site-header.menu-open{border-bottom-color:rgba(192,192,192,.1)}
 .section{overflow-x:clip}
+
+/* ========== Skeleton loading ========== */
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@keyframes sk-shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+.sk,.thumb-img:has(img.img-loading),.photo-frame:has(img.img-loading){
+  background:linear-gradient(90deg,rgba(192,192,192,.05) 30%,rgba(192,192,192,.13) 50%,rgba(192,192,192,.05) 70%) 0 0/200% 100%;
+  animation:sk-shimmer 1.8s linear infinite}
+.sk{display:block;border-radius:6px}
+img{transition:opacity .5s var(--ease)}
+img.img-loading{opacity:0}
+.sk-page{padding-block:clamp(56px,9vw,120px)}
+.sk-hero{display:grid;gap:18px;margin-bottom:clamp(48px,8vw,96px)}
+.sk-eyebrow{width:140px;height:12px}
+.sk-title{width:min(560px,90%);height:clamp(28px,5vw,46px);border-radius:8px}
+.sk-title--s{width:min(400px,70%)}
+.sk-line{width:min(520px,100%);height:14px}
+.sk-line--w{width:70%;height:18px}
+.sk-line--s{width:55%}
+.sk-btns{display:flex;gap:14px;margin-top:14px}
+.sk-btn{width:150px;height:46px;border-radius:var(--radius)}
+.sk-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.sk-card{display:grid;gap:14px;padding:30px 26px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.sk-ico{width:52px;height:52px;border-radius:var(--radius);margin-bottom:6px}
+@media (prefers-reduced-motion:reduce){.sk,.thumb-img:has(img.img-loading),.photo-frame:has(img.img-loading){animation:none}}

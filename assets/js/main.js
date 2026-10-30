@@ -529,9 +529,29 @@ ${ctaBand(site)}`;
     els.forEach((el) => io.observe(el));
   }
 
+  /* ---------- Skeleton (tampil saat data belum siap / sinyal lambat) ---------- */
+  const skeleton = () => `<div class="sk-page" role="status" aria-live="polite"><span class="visually-hidden">Memuat konten…</span><div class="container sk-hero" aria-hidden="true"><span class="sk sk-eyebrow"></span><span class="sk sk-title"></span><span class="sk sk-title sk-title--s"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span><div class="sk-btns"><span class="sk sk-btn"></span><span class="sk sk-btn"></span></div></div><div class="container sk-grid" aria-hidden="true">${Array.from({ length: 6 }, () => '<div class="sk-card"><span class="sk sk-ico"></span><span class="sk sk-line sk-line--w"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span></div>').join('')}</div></div>`;
+
+  /* Gambar: shimmer selama memuat, lalu fade-in */
+  function setupImageLoading(root) {
+    root.querySelectorAll('img').forEach((img) => {
+      if (img.complete) return;
+      img.classList.add('img-loading');
+      const done = () => img.classList.remove('img-loading');
+      img.addEventListener('load', done, { once: true });
+      img.addEventListener('error', done, { once: true });
+    });
+  }
+
   /* ---------- Init ---------- */
   async function init() {
-    document.documentElement.classList.add('js');
+    const main = $('#main');
+    const prerendered = !!(main && main.dataset.pre);
+    if (main && !prerendered && page !== 'notfound') {
+      document.documentElement.classList.add('js');
+      main.setAttribute('aria-busy', 'true');
+      main.innerHTML = skeleton();
+    }
     try {
       const site = await loadJSON('site');
       const names = NEEDS[page] || [];
@@ -542,13 +562,17 @@ ${ctaBand(site)}`;
       renderHeader(site);
       renderFooter(site);
       const render = PAGES[page];
-      if (render) $('#main').innerHTML = render(data);
+      document.documentElement.classList.add('js');
+      if (render) main.innerHTML = render(data);
+      main.removeAttribute('aria-busy');
+      setupImageLoading(main);
       setupHeader();
       setupPhotoFallback();
       setupPortfolioFilter();
       setupContactForm(site);
       injectSEO(site, data);
       setupReveal();
+      if (prerendered) main.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
       if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
     } catch (err) {
       console.error(err);
