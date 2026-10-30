@@ -1,0 +1,266 @@
+{
+  "_todo": [
+    "TODO: ganti domain 'www.yourwebsite.com' di url, canonical, og:url, sitemap.xml, robots.txt",
+    "TODO: isi url akun sosial di social[] (kosong = tidak ditampilkan)",
+    "TODO: taruh foto profil di assets/img/profile.jpg",
+    "TODO: tambah proyek lain di data/projects.json bila ada (4 proyek pertama sudah terisi)",
+    "TODO: buat gambar OG 1200x630 di assets/img/og-image.jpg",
+    "TODO: isi contact.formEndpoint dengan URL Formspree jika ingin form via Formspree"
+  ],
+  "url": "https://www.yourwebsite.com",
+  "brand": {
+    "name": "Software & Digital Solutions",
+    "wordmark": [
+      "SOFTWARE &",
+      "DIGITAL SOLUTIONS"
+    ],
+    "short": "Alfa Creative Persada",
+    "fullName": "Alfa Creative Persada",
+    "tagline": "Build. Automate. Grow.",
+    "acpTagline": "Creative Ideas for a Better Future",
+    "description": "Jasa pembuatan website, sistem, aplikasi, dashboard bisnis, dan otomasi.",
+    "logoPng": "assets/img/logo-512.png"
+  },
+  "owner": {
+    "name": "Joanda Alfarobby",
+    "role": "Founder & Developer",
+    "photo": "assets/img/profile.jpg",
+    "photoPublished": true
+  },
+  "contact": {
+    "email": "alfacreativeproject@gmail.com",
+    "whatsapp": "628197284796",
+    "whatsappDisplay": "+62 819-7284-796",
+    "location": "Palembang, Indonesia",
+    "waGreeting": "Halo Alfa Creative Persada, saya tertarik dengan layanan Anda dan ingin berdiskusi.",
+    "formEndpoint": ""
+  },
+  "social": [
+    {
+      "name": "Instagram",
+      "icon": "instagram",
+      "url": ""
+    },
+    {
+      "name": "LinkedIn",
+      "icon": "linkedin",
+      "url": ""
+    }
+  ],
+  "nav": [
+    {
+      "label": "Home",
+      "href": "index.html",
+      "page": "home"
+    },
+    {
+      "label": "About",
+      "href": "about.html",
+      "page": "about"
+    },
+    {
+      "label": "Services",
+      "href": "services.html",
+      "page": "services"
+    },
+    {
+      "label": "Portfolio",
+      "href": "portfolio.html",
+      "page": "portfolio"
+    },
+    {
+      "label": "Produk",
+      "href": "products/",
+      "page": "products",
+      "hidden": true
+    },
+    {
+      "label": "Contact",
+      "href": "contact.html",
+      "page": "contact"
+    }
+  ],
+  "home": {
+    "hero": {
+      "eyebrow": "Alfa Creative Persada",
+      "desc": "Kami membantu bisnis dan personal brand tampil profesional lewat website, sistem, aplikasi, dashboard, dan otomasi yang rapi, cepat, dan siap tumbuh.",
+      "ctaPrimary": {
+        "label": "Lihat Layanan",
+        "href": "services.html"
+      },
+      "ctaSecondary": {
+        "label": "Chat WhatsApp"
+      }
+    },
+    "servicesIntro": {
+      "title": "Layanan Utama",
+      "text": "Dari website company profile sampai sistem internal dan otomasi, semuanya dibangun sesuai kebutuhan bisnis Anda."
+    },
+    "portfolioIntro": {
+      "title": "Portfolio Pilihan",
+      "text": "Beberapa contoh pekerjaan yang menunjukkan pendekatan kami: rapi, fungsional, dan terukur."
+    },
+    "cta": {
+      "eyebrow": "Mulai Proyek",
+      "title": "Punya ide? Mari wujudkan.",
+      "text": "Ceritakan kebutuhan Anda. Konsultasi awal gratis dan tanpa komitmen."
+    },
+    "stackIntro": {
+      "eyebrow": "Teknologi",
+      "title": "Stack Teknologi",
+      "text": "Dari frontend sampai database dan backend, semuanya dipilih agar proyek Anda cepat, aman, dan mudah dirawat."
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Tentang",
+      "title": "Tentang Alfa Creative Persada",
+      "text": "Alfa Creative Persada: studio digital yang membangun website, sistem, dan otomasi dengan standar rapi dan profesional."
+    },
+    "profile": {
+      "eyebrow": "Profil",
+      "title": "Joanda Alfarobby",
+      "paragraphs": [
+        "Joanda Alfarobby adalah Founder & Developer Alfa Creative Persada. Kami membangun website, sistem, dan aplikasi yang membantu bisnis tampil profesional dan bekerja lebih efisien.",
+        "Pendekatan kami sederhana: pahami kebutuhan lebih dulu, bangun dengan rapi, lalu rilis dalam kondisi siap pakai. Tidak ada fitur yang sekadar pajangan.",
+        "Berbasis di Palembang, Indonesia, dan terbuka untuk proyek dari seluruh Indonesia secara jarak jauh."
+      ],
+      "facts": [
+        {
+          "label": "Peran",
+          "value": "Founder & Developer"
+        },
+        {
+          "label": "Lokasi",
+          "value": "Palembang, Indonesia"
+        },
+        {
+          "label": "Fokus",
+          "value": "Web, sistem, dashboard, otomasi"
+        }
+      ]
+    },
+    "valuesIntro": {
+      "eyebrow": "Nilai Kerja",
+      "title": "Cara Kami Bekerja",
+      "text": "Empat prinsip yang kami pegang di setiap proyek."
+    },
+    "values": [
+      {
+        "icon": "layers",
+        "title": "Rapi & Terstruktur",
+        "text": "Kode dan konten tertata, mudah dirawat, dan mudah dikembangkan."
+      },
+      {
+        "icon": "zap",
+        "title": "Cepat & Ringan",
+        "text": "Tanpa library berat, sehingga halaman terbuka cepat, termasuk di jaringan seluler."
+      },
+      {
+        "icon": "check",
+        "title": "Terpercaya",
+        "text": "Komunikasi jelas, progres transparan, dan hasil sesuai kesepakatan."
+      },
+      {
+        "icon": "chart",
+        "title": "Berorientasi Hasil",
+        "text": "Setiap keputusan desain dan fitur diarahkan untuk tujuan bisnis Anda."
+      }
+    ],
+    "acp": {
+      "eyebrow": "Brand",
+      "title": "Alfa Creative Persada · Creative Ideas for a Better Future",
+      "text": "Alfa Creative Persada adalah studio digital di bawah identitas Software & Digital Solutions. Kami menghadirkan solusi digital yang kreatif, terukur, dan berdampak. Build. Automate. Grow."
+    }
+  },
+  "servicesPage": {
+    "hero": {
+      "eyebrow": "Layanan",
+      "title": "Layanan Kami",
+      "text": "Enam layanan yang dapat dipakai terpisah atau digabung sesuai tahap pertumbuhan bisnis Anda."
+    },
+    "process": {
+      "eyebrow": "Alur Kerja",
+      "title": "Dari Ide Sampai Rilis",
+      "text": "Proses yang jelas membuat proyek berjalan tepat waktu dan minim kejutan."
+    }
+  },
+  "portfolioPage": {
+    "hero": {
+      "eyebrow": "Portfolio",
+      "title": "Karya Pilihan",
+      "text": "Contoh proyek website, sistem, dashboard, dan otomasi. Gunakan filter untuk melihat kategori tertentu."
+    },
+    "note": "Untuk sistem internal klien, tampilan disensor demi privasi data."
+  },
+  "contactPage": {
+    "hero": {
+      "eyebrow": "Kontak",
+      "title": "Mari Bicara",
+      "text": "Ceritakan kebutuhan Anda. Konsultasi awal gratis dan tanpa komitmen."
+    },
+    "info": {
+      "title": "Informasi Kontak",
+      "response": "Biasanya dibalas dalam 1x24 jam"
+    }
+  },
+  "notFound": {
+    "eyebrow": "Halaman tidak ditemukan",
+    "title": "Tersesat?",
+    "text": "Halaman yang Anda cari tidak ada atau sudah dipindahkan. Kembali ke beranda atau hubungi kami."
+  },
+  "productsPage": {
+    "hero": {
+      "eyebrow": "Produk",
+      "title": "Produk Digital",
+      "text": "Produk siap pakai untuk mendukung bisnis Anda. Pesan langsung lewat WhatsApp."
+    },
+    "previewNote": "Mode pratinjau: katalog belum dipublikasikan (data/products.json → enabled: false)."
+  },
+  "seo": {
+    "city": "Palembang",
+    "region": "Sumatera Selatan",
+    "country": "ID",
+    "ogImage": "assets/img/og-image.jpg",
+    "themeColor": "#0B0B0B",
+    "pages": {
+      "home": {
+        "path": "",
+        "title": "Alfa Creative Persada | Jasa Website, Sistem & Otomasi",
+        "description": "Jasa pembuatan website, sistem informasi, aplikasi, dashboard bisnis, dan otomasi. Rapi, cepat, dan mobile-first. Konsultasi awal gratis."
+      },
+      "about": {
+        "path": "about.html",
+        "title": "Tentang Joanda Alfarobby | Alfa Creative Persada",
+        "description": "Kenali Joanda Alfarobby, Founder & Developer Alfa Creative Persada: pendekatan kerja, teknologi (MySQL, Supabase, Firebase), dan proyek yang dibangun."
+      },
+      "services": {
+        "path": "services.html",
+        "title": "Layanan Website, Sistem & Aplikasi | Alfa Creative Persada",
+        "description": "Web development, sistem informasi, aplikasi, dashboard bisnis, otomasi, dan digital solutions, dengan alur kerja jelas dari konsultasi sampai rilis."
+      },
+      "portfolio": {
+        "path": "portfolio.html",
+        "title": "Portfolio Website, Dashboard & Sistem | Alfa Creative Persada",
+        "description": "Contoh proyek nyata: website perusahaan, dashboard manajemen tim, situs alat PDF, link in bio, dan sistem lamaran kerja online beserta teknologinya."
+      },
+      "contact": {
+        "path": "contact.html",
+        "title": "Kontak & Konsultasi Gratis | Alfa Creative Persada",
+        "description": "Hubungi Alfa Creative Persada untuk konsultasi website, sistem, aplikasi, dashboard, atau otomasi. Respon via WhatsApp atau email, biasanya dalam 1x24 jam."
+      },
+      "products": {
+        "path": "products/",
+        "title": "Produk Digital | Alfa Creative Persada",
+        "description": "Katalog produk digital Alfa Creative Persada. Pesan via WhatsApp.",
+        "noindex": true
+      },
+      "notfound": {
+        "path": "404.html",
+        "title": "404 | Halaman Tidak Ditemukan | Alfa Creative Persada",
+        "description": "",
+        "noindex": true
+      }
+    }
+  }
+}

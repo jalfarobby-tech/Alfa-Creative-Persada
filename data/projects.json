@@ -1,0 +1,135 @@
+{
+  "categories": [
+    {
+      "id": "all",
+      "label": "Semua"
+    },
+    {
+      "id": "website",
+      "label": "Website"
+    },
+    {
+      "id": "system",
+      "label": "Sistem"
+    },
+    {
+      "id": "dashboard",
+      "label": "Dashboard"
+    },
+    {
+      "id": "linkinbio",
+      "label": "Link in Bio"
+    }
+  ],
+  "projects": [
+    {
+      "id": "icabeee-website",
+      "title": "ICABEEE TEAM Company Website",
+      "category": "website",
+      "summary": "Website perusahaan agensi live commerce: layanan, tim, penghargaan, brand partner, dan lowongan. Dioptimalkan untuk mobile dan SEO.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "SEO"
+      ],
+      "image": "assets/img/projects/icabeee-website.webp",
+      "link": "https://icabeee.id",
+      "linkLabel": "Kunjungi situs",
+      "featured": true
+    },
+    {
+      "id": "kompak",
+      "title": "KOMPAK: Kompres Foto & Olah PDF",
+      "category": "website",
+      "summary": "Situs 25 alat gratis untuk kompres foto, gabung PDF, Word ke PDF, dan lainnya. Berjalan di perangkat pengguna, tanpa upload dan tanpa daftar.",
+      "stack": [
+        "JavaScript",
+        "PWA",
+        "Privacy-first"
+      ],
+      "image": "assets/img/projects/kompak.webp",
+      "link": "https://kompak.biz.id",
+      "linkLabel": "Buka KOMPAK",
+      "featured": true
+    },
+    {
+      "id": "icabeee-dashboard",
+      "title": "Dashboard Manajemen Tim Live",
+      "category": "dashboard",
+      "summary": "Sistem internal untuk memantau karyawan live selling: sesi live, absensi, keuangan, leaderboard, dan notifikasi real-time.",
+      "stack": [
+        "Firebase",
+        "Firestore",
+        "Chart.js"
+      ],
+      "image": "assets/img/projects/dashboard.webp",
+      "link": "https://icabeee.id/login.html",
+      "linkLabel": "Halaman login",
+      "note": "Tampilan disensor demi privasi data. Akses hanya untuk akun terdaftar.",
+      "featured": true
+    },
+    {
+      "id": "jastipkuy",
+      "title": "Link in Bio: jastipkuy",
+      "category": "linkinbio",
+      "summary": "Halaman link-in-bio untuk brand jastip: order via WhatsApp, grup promo, TikTok, dan Instagram dalam satu halaman yang cepat dan ringan.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Netlify"
+      ],
+      "image": "assets/img/projects/jastipkuy.webp",
+      "link": "https://info-jastipkuyy.netlify.app",
+      "linkLabel": "Buka halaman",
+      "featured": false
+    },
+    {
+      "id": "titipkuyy",
+      "title": "Link in Bio: titipkuyy",
+      "category": "linkinbio",
+      "summary": "Halaman link-in-bio dengan identitas warna sendiri untuk brand titip belanja: order WhatsApp, grup promo, TikTok, dan Instagram.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Netlify"
+      ],
+      "image": "assets/img/projects/titipkuyy.webp",
+      "link": "https://info-titipkuyy.netlify.app",
+      "linkLabel": "Buka halaman",
+      "featured": false
+    },
+    {
+      "id": "kost-almadinah",
+      "title": "Website Kost Al-Madinah",
+      "category": "website",
+      "summary": "Website kost putri dua unit di Mendalo, Jambi: fasilitas, peta lokasi per unit, dan tombol WhatsApp ke masing-masing pengelola.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Google Maps"
+      ],
+      "image": "assets/img/projects/kost-almadinah.webp",
+      "link": "https://almadinah.my.id",
+      "linkLabel": "Kunjungi situs",
+      "featured": false
+    },
+    {
+      "id": "icabeee-lamaran",
+      "title": "Form Lamaran Kerja Online",
+      "category": "system",
+      "summary": "Alur lamaran kerja langkah demi langkah dengan unggah dokumen dan penyimpanan data otomatis ke spreadsheet.",
+      "stack": [
+        "JavaScript",
+        "Google Apps Script"
+      ],
+      "image": "assets/img/projects/icabeee-lamaran.webp",
+      "link": "https://icabeee.id/lowongan.html",
+      "linkLabel": "Lihat lowongan",
+      "featured": false
+    }
+  ]
+}
