@@ -1,0 +1,65 @@
+{
+  "eyebrow": "Teknologi",
+  "title": "Stack Teknologi",
+  "text": "Teknologi yang kami pakai untuk membangun proyek, dipilih sesuai kebutuhan: ringan, aman, dan mudah dirawat.",
+  "groups": [
+    {
+      "id": "language",
+      "title": "Bahasa Pemrograman",
+      "icon": "code",
+      "items": [
+        "JavaScript (ES6+)",
+        "TypeScript",
+        "Python",
+        "PHP",
+        "Java",
+        "SQL",
+        "HTML5 & CSS3"
+      ]
+    },
+    {
+      "id": "framework",
+      "title": "Framework & Runtime",
+      "icon": "layers",
+      "items": [
+        "React",
+        "Node.js",
+        "Express.js",
+        "Laravel",
+        "Tailwind CSS",
+        "Bootstrap",
+        "Chart.js"
+      ]
+    },
+    {
+      "id": "database",
+      "title": "Database & Backend",
+      "icon": "database",
+      "items": [
+        "MySQL",
+        "PostgreSQL",
+        "Supabase",
+        "Firebase",
+        "Cloud Firestore",
+        "REST API",
+        "Authentication & RBAC",
+        "Google Apps Script"
+      ]
+    },
+    {
+      "id": "expertise",
+      "title": "Keahlian Teknis",
+      "icon": "zap",
+      "items": [
+        "SEO (Search Engine Optimization)",
+        "UI/UX Design",
+        "Progressive Web App (PWA)",
+        "Data Visualization",
+        "Workflow Automation",
+        "Web Security",
+        "Performance Optimization",
+        "API Integration"
+      ]
+    }
+  ]
+}

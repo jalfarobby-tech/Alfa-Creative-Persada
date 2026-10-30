@@ -1,0 +1,109 @@
+{
+  "services": [
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "icon": "code",
+      "short": "Website company profile, landing page, dan toko online yang cepat, responsif, dan SEO-friendly.",
+      "description": "Website profesional yang mencerminkan brand Anda dan siap mendatangkan pelanggan.",
+      "features": [
+        "Desain responsif mobile-first",
+        "SEO (Search Engine Optimization) & performa cepat",
+        "Mudah diperbarui",
+        "Siap deploy ke hosting/domain"
+      ]
+    },
+    {
+      "id": "system-development",
+      "title": "System Development",
+      "icon": "layers",
+      "short": "Sistem informasi custom untuk operasional bisnis: data, user, hak akses, dan laporan.",
+      "description": "Sistem yang dirancang mengikuti alur kerja bisnis Anda, bukan sebaliknya.",
+      "features": [
+        "Manajemen data & pengguna",
+        "Role & hak akses",
+        "Laporan otomatis",
+        "Arsitektur yang mudah dikembangkan"
+      ]
+    },
+    {
+      "id": "application-development",
+      "title": "Application Development",
+      "icon": "smartphone",
+      "short": "Aplikasi web interaktif dan PWA yang nyaman dipakai di ponsel maupun desktop.",
+      "description": "Aplikasi yang fokus pada kecepatan, kemudahan penggunaan, dan kebutuhan nyata pengguna.",
+      "features": [
+        "Web app & PWA",
+        "Antarmuka sederhana",
+        "Integrasi layanan pihak ketiga",
+        "Dukungan perangkat mobile"
+      ]
+    },
+    {
+      "id": "business-dashboard",
+      "title": "Business Dashboard",
+      "icon": "chart",
+      "short": "Dashboard visual untuk memantau penjualan, kinerja tim, dan data bisnis secara real-time.",
+      "description": "Ubah data mentah menjadi insight yang mudah dibaca dan ditindaklanjuti.",
+      "features": [
+        "Grafik & KPI",
+        "Filter dan ekspor data",
+        "Sinkronisasi data",
+        "Tampilan ringkas untuk pimpinan"
+      ]
+    },
+    {
+      "id": "automation",
+      "title": "Automation",
+      "icon": "zap",
+      "short": "Otomasi tugas berulang: notifikasi, rekap data, pelaporan, dan integrasi antar aplikasi.",
+      "description": "Hemat waktu dan kurangi kesalahan manual dengan alur kerja otomatis.",
+      "features": [
+        "Otomasi laporan & rekap",
+        "Integrasi Google Sheets/WhatsApp",
+        "Notifikasi terjadwal",
+        "Skrip & workflow custom"
+      ]
+    },
+    {
+      "id": "digital-solutions",
+      "title": "Digital Solutions",
+      "icon": "globe",
+      "short": "Solusi digital menyeluruh: konsultasi, perencanaan, hingga produk digital pendukung bisnis.",
+      "description": "Pendamping digital untuk menemukan solusi yang tepat, termasuk produk seperti kartu NFC.",
+      "features": [
+        "Konsultasi kebutuhan",
+        "Perencanaan & roadmap",
+        "Produk digital pendukung",
+        "Pendampingan setelah rilis"
+      ]
+    }
+  ],
+  "process": [
+    {
+      "step": "01",
+      "title": "Konsultasi",
+      "text": "Memahami tujuan, target pengguna, dan kebutuhan Anda."
+    },
+    {
+      "step": "02",
+      "title": "Perencanaan",
+      "text": "Menyusun lingkup, desain, dan estimasi waktu serta biaya."
+    },
+    {
+      "step": "03",
+      "title": "Pengembangan",
+      "text": "Membangun secara bertahap dengan update progres berkala."
+    },
+    {
+      "step": "04",
+      "title": "Uji & Rilis",
+      "text": "Pengujian di berbagai perangkat lalu deploy ke domain Anda."
+    },
+    {
+      "step": "05",
+      "title": "Dukungan",
+      "text": "Pendampingan dan perbaikan setelah situs berjalan."
+    }
+  ]
+}
