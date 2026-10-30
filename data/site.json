@@ -23,7 +23,7 @@
   },
   "owner": {
     "name": "Joanda Alfarobby",
-    "role": "Founder & Developer",
+    "role": "Software Developer",
     "photo": "assets/img/profile.jpg",
     "photoPublished": true
   },
@@ -121,14 +121,14 @@
       "eyebrow": "Profil",
       "title": "Joanda Alfarobby",
       "paragraphs": [
-        "Joanda Alfarobby adalah Founder & Developer Alfa Creative Persada. Kami membangun website, sistem, dan aplikasi yang membantu bisnis tampil profesional dan bekerja lebih efisien.",
+        "Joanda Alfarobby adalah Software Developer di balik Alfa Creative Persada. Kami membangun website, aplikasi, sistem, dan produk software yang membantu bisnis tampil profesional dan bekerja lebih efisien.",
         "Pendekatan kami sederhana: pahami kebutuhan lebih dulu, bangun dengan rapi, lalu rilis dalam kondisi siap pakai. Tidak ada fitur yang sekadar pajangan.",
         "Berbasis di Indonesia dan terbuka untuk proyek dari seluruh Indonesia secara jarak jauh."
       ],
       "facts": [
         {
           "label": "Peran",
-          "value": "Founder & Developer"
+          "value": "Software Developer"
         },
         {
           "label": "Lokasi",
@@ -136,7 +136,7 @@
         },
         {
           "label": "Fokus",
-          "value": "Web, sistem, dashboard, otomasi"
+          "value": "Web, aplikasi, sistem, dashboard, produk software, otomasi"
         }
       ]
     },
@@ -230,7 +230,7 @@
       "about": {
         "path": "about.html",
         "title": "Tentang Joanda Alfarobby | Alfa Creative Persada",
-        "description": "Kenali Joanda Alfarobby, Founder & Developer Alfa Creative Persada: pendekatan kerja, teknologi (MySQL, Supabase, Firebase), dan proyek yang dibangun."
+        "description": "Kenali Joanda Alfarobby, Software Developer di balik Alfa Creative Persada: pendekatan kerja, teknologi (MySQL, Supabase, Firebase), dan proyek yang dibangun."
       },
       "services": {
         "path": "services.html",
