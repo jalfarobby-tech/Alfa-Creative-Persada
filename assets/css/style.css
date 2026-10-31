@@ -454,7 +454,6 @@ h1,h2,h3,h4{color:#fff}
 /* ========== Pengalih bahasa ========== */
 .lang-switch{display:inline-grid;place-items:center;min-width:40px;height:34px;padding:0 10px;border:1px solid var(--line-strong);border-radius:20px;font-size:.68rem;font-weight:500;letter-spacing:.16em;color:var(--silver);transition:border-color .25s,color .25s,background .25s}
 .lang-switch:hover,.lang-switch:focus-visible{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.06)}
-@media (max-width:860px){.lang-switch{align-self:flex-start;margin-top:20px;height:40px;min-width:56px}}
 
 /* ========== Blog ========== */
 .post-card{display:flex;flex-direction:column;gap:12px}
@@ -478,3 +477,26 @@ h1,h2,h3,h4{color:#fff}
 .prose li::before{content:"";position:absolute;left:2px;top:.8em;width:8px;height:1px;background:var(--silver)}
 .article-foot{margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
 .article-foot .back-link{margin-bottom:0}
+
+/* ========== Bar navigasi bawah (ponsel) ========== */
+.tabbar{display:none}
+@media (max-width:860px){
+  .has-tabbar{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+  .has-tabbar .burger{display:none}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:120;
+    padding:6px 6px calc(6px + env(safe-area-inset-bottom));background:rgba(8,8,10,.94);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line-strong)}
+  .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:54px;border:0;border-radius:12px;background:none;
+    font:500 .6rem var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .2s,background .2s}
+  .tab svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .tab:active{background:rgba(255,255,255,.06)}
+  .tab:focus-visible{outline:2px solid var(--silver);outline-offset:-2px}
+  .tab.is-current{color:#fff}
+  .tab.is-current svg{stroke-width:2}
+  .tab--wa{color:#0B0B0B;background:var(--silver-grad);margin:0 4px}
+  .tab--wa:active{filter:brightness(.9);background:var(--silver-grad)}
+  .tab--menu[aria-expanded="true"]{color:#fff;background:rgba(255,255,255,.08)}
+  .nav-menu{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+  .nav-menu .nav-cta{margin-top:24px}
+}
+@media (min-width:861px){.tabbar{display:none!important}}

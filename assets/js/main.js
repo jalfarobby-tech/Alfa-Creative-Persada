@@ -72,6 +72,9 @@
     link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
     check: '<polyline points="20 6 9 17 4 12"/>',
     database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+    home: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>',
+    menu: '<line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>',
+    close: '<line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>',
     tool: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'
   };
   const icon = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ICONS.code}</svg>`;
@@ -177,7 +180,34 @@
       .filter((n) => !n.hidden)
       .map((n) => `<li><a href="${esc(url(n.href))}"${n.page === page || (n.page === 'blog' && page === 'article') ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`)
       .join('');
-    $('#site-header').innerHTML = `<div class="container nav">${brand(site)}<nav id="nav-menu" class="nav-menu" aria-label="${esc(UI.menuLabel)}"><ul>${links}</ul><a class="btn btn--sm nav-cta" href="${esc(url('contact.html'))}">${esc(UI.hire)}</a>${langSwitch()}</nav><button class="burger" type="button" aria-label="${esc(UI.menuOpen)}" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button></div>`;
+    $('#site-header').innerHTML = `<div class="container nav">${brand(site)}<nav id="nav-menu" class="nav-menu" aria-label="${esc(UI.menuLabel)}"><ul>${links}</ul><a class="btn btn--sm nav-cta" href="${esc(url('contact.html'))}">${esc(UI.hire)}</a></nav>${langSwitch()}<button class="burger" type="button" aria-label="${esc(UI.menuOpen)}" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button></div>`;
+  }
+
+  /* Bar navigasi bawah (ponsel): menu utama selalu terlihat dan mudah dijangkau ibu jari */
+  function renderTabbar(site) {
+    if (page === 'notfound' || $('.tabbar')) return;
+    const item = (href, ico, label, cur) => `<a class="tab${cur ? ' is-current' : ''}" href="${esc(url(href))}"${cur ? ' aria-current="page"' : ''}>${icon(ico)}<span>${esc(label)}</span></a>`;
+    const label = (key) => (site.nav.find((n) => n.page === key) || {}).label || key;
+    const nav = document.createElement('nav');
+    nav.className = 'tabbar';
+    nav.setAttribute('aria-label', UI.menuLabel);
+    nav.innerHTML =
+      item('index.html', 'home', label('home'), page === 'home') +
+      item('services.html', 'layers', label('services'), page === 'services') +
+      item('portfolio.html', 'code', label('portfolio'), page === 'portfolio') +
+      `<a class="tab tab--wa" href="${esc(waLink(site, site.contact.waGreeting))}" target="_blank" rel="noopener">${icon('message')}<span>${esc(UI.wa)}</span></a>` +
+      `<button class="tab tab--menu" type="button" aria-expanded="false" aria-controls="nav-menu">${icon('menu')}<span>Menu</span></button>`;
+    document.body.appendChild(nav);
+    document.body.classList.add('has-tabbar');
+    const header = $('#site-header');
+    const btn = $('.tab--menu', nav);
+    const sync = () => {
+      const open = header.classList.contains('menu-open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = `${icon(open ? 'close' : 'menu')}<span>${open ? esc(UI.menuClose.split(' ')[0]) : 'Menu'}</span>`;
+    };
+    btn.addEventListener('click', () => $('.burger', header).click());
+    new MutationObserver(sync).observe(header, { attributes: true, attributeFilter: ['class'] });
   }
 
   function renderFooter(site) {
@@ -676,6 +706,7 @@ ${ctaBand(site)}`;
       main.removeAttribute('aria-busy');
       setupImageLoading(main);
       setupHeader();
+      renderTabbar(site);
       setupPhotoFallback();
       setupPortfolioFilter();
       setupContactForm(site);
