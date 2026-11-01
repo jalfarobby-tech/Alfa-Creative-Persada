@@ -500,3 +500,72 @@ h1,h2,h3,h4{color:#fff}
   .nav-menu .nav-cta{margin-top:24px}
 }
 @media (min-width:861px){.tabbar{display:none!important}}
+
+/* ========== Motion v6: gerak halus & profesional (semua mati otomatis bila perangkat memilih "reduce motion") ========== */
+
+/* Progress baca (garis tipis di paling atas) */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:210;pointer-events:none;
+  background:var(--silver-grad);transform:scaleX(0);transform-origin:left;will-change:transform}
+
+/* Tombol utama: kilau tipis lewat saat hover */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn:not(.btn--ghost)::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);
+  transform:translateX(-120%);transition:transform .8s var(--ease)}
+.btn:not(.btn--ghost):hover::after{transform:translateX(120%)}
+
+/* Kartu: cahaya lembut mengikuti kursor */
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.07),transparent 65%)}
+@media (hover:hover){.card:hover::after{opacity:1}}
+
+/* Hero: cincin orbit tipis berputar pelan di sekitar logo */
+.orbit{position:absolute;inset:4%;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 0 74%,rgba(255,255,255,.55) 100%);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - 1px));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - 1px));
+  animation:orbit 16s linear infinite}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.orbit{display:none}}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes piece-in{from{opacity:0;transform:translateX(var(--px,-16px))}to{opacity:1;transform:none}}
+@keyframes line-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes faq-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:no-preference){
+  /* Masuk berurutan: eyebrow, judul, tagline, deskripsi, tombol */
+  .hero-inner>.fade-in:first-child,.page-hero .container.fade-in{animation:none}
+  .hero-inner>.fade-in:first-child>*,.page-hero .container.fade-in>*{animation:rise .9s var(--ease) both}
+  .hero-inner>.fade-in:first-child>:nth-child(1),.page-hero .container.fade-in>:nth-child(1){animation-delay:.05s}
+  .hero-inner>.fade-in:first-child>:nth-child(2),.page-hero .container.fade-in>:nth-child(2){animation-delay:.15s}
+  .hero-inner>.fade-in:first-child>:nth-child(3),.page-hero .container.fade-in>:nth-child(3){animation-delay:.27s}
+  .hero-inner>.fade-in:first-child>:nth-child(4),.page-hero .container.fade-in>:nth-child(4){animation-delay:.38s}
+  .hero-inner>.fade-in:first-child>:nth-child(5),.page-hero .container.fade-in>:nth-child(5){animation-delay:.5s}
+  .hero-art.fade-in{animation-delay:.15s}
+
+  /* Logo: tiga potongan menyatu saat halaman dibuka */
+  .hero-art .logo polygon{transform-box:fill-box;animation:piece-in 1s var(--ease) both}
+  .hero-art .logo polygon:nth-child(1){--px:-18px;animation-delay:.25s}
+  .hero-art .logo polygon:nth-child(2){--px:18px;animation-delay:.4s}
+  .hero-art .logo polygon:nth-child(3){--px:-18px;animation-delay:.55s}
+
+  /* Garis di bawah judul tumbuh saat terlihat */
+  .fade-in .title-line::after{transform-origin:left;animation:line-grow .8s var(--ease) .6s both}
+  .js .reveal h2::after{transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .2s}
+  .js .reveal.is-visible h2::after{transform:scaleX(1)}
+  .js .cta-band h2::after{transform-origin:center}
+
+  /* Langkah proses: penanda berlian muncul bersama kartunya */
+  .js .process li::before{transform:rotate(45deg) scale(0);transition:transform .5s var(--ease) calc(var(--d,0s) + .25s)}
+  .js .process li.is-visible::before{transform:rotate(45deg) scale(1)}
+
+  /* FAQ & filter portfolio */
+  .faq-item[open] .faq-a{animation:faq-in .35s var(--ease)}
+  .js .card.pop{animation:pop .45s var(--ease) both}
+}
+
+/* Form: label menyala saat kolom aktif */
+.field label{transition:color .25s}
+.field:focus-within label{color:#fff}

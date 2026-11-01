@@ -233,7 +233,7 @@
     <div class="btn-row">${button(h.ctaPrimary.label, h.ctaPrimary.href)}${button(h.ctaSecondary.label, waLink(site, site.contact.waGreeting), { ghost: true, ext: true, ico: 'message' })}</div>
   </div>
   <div class="vline" aria-hidden="true"></div>
-  <div class="hero-art fade-in" aria-hidden="true">${logoS()}</div>
+  <div class="hero-art fade-in" aria-hidden="true"><span class="orbit"></span>${logoS()}</div>
 </div></section>
 
 <section class="section section--alt"><div class="container">
@@ -615,7 +615,15 @@ ${ctaBand(site)}`;
       wrap.querySelectorAll('[data-filter]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       const f = b.dataset.filter;
       let n = 0;
-      items.forEach((el) => { const show = f === 'all' || el.dataset.cat === f; el.hidden = !show; if (show) n++; });
+      items.forEach((el) => {
+        const show = f === 'all' || el.dataset.cat === f;
+        const wasHidden = el.hidden;
+        el.hidden = !show;
+        if (show) {
+          n++;
+          if (wasHidden) { el.classList.add('pop'); el.addEventListener('animationend', () => el.classList.remove('pop'), { once: true }); }
+        }
+      });
       empty.hidden = n > 0;
     });
   }
@@ -667,6 +675,34 @@ ${ctaBand(site)}`;
     els.forEach((el) => io.observe(el));
   }
 
+  /* Gerak halus: progress baca di atas halaman + sorot cahaya mengikuti kursor pada kartu (hanya perangkat dengan mouse) */
+  function setupMotion() {
+    if (!$('.scroll-progress')) {
+      const bar = document.createElement('div');
+      bar.className = 'scroll-progress';
+      bar.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(bar);
+      let queued = false;
+      const paint = () => {
+        queued = false;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+      };
+      window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(paint); } }, { passive: true });
+      window.addEventListener('resize', paint);
+      paint();
+    }
+    if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+      document.addEventListener('pointermove', (e) => {
+        const card = e.target.closest && e.target.closest('.card');
+        if (!card) return;
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+      }, { passive: true });
+    }
+  }
+
   /* ---------- Skeleton (tampil saat data belum siap / sinyal lambat) ---------- */
   const skeleton = () => `<div class="sk-page" role="status" aria-live="polite"><span class="visually-hidden">${document.documentElement.lang === 'en' ? 'Loading content…' : 'Memuat konten…'}</span><div class="container sk-hero" aria-hidden="true"><span class="sk sk-eyebrow"></span><span class="sk sk-title"></span><span class="sk sk-title sk-title--s"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span><div class="sk-btns"><span class="sk sk-btn"></span><span class="sk sk-btn"></span></div></div><div class="container sk-grid" aria-hidden="true">${Array.from({ length: 6 }, () => '<div class="sk-card"><span class="sk sk-ico"></span><span class="sk sk-line sk-line--w"></span><span class="sk sk-line"></span><span class="sk sk-line sk-line--s"></span></div>').join('')}</div></div>`;
 
@@ -712,6 +748,7 @@ ${ctaBand(site)}`;
       setupContactForm(site);
       injectSEO(site, data);
       setupReveal();
+      setupMotion();
       if (prerendered) main.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
       if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
     } catch (err) {
