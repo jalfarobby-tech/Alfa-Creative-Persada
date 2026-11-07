@@ -749,7 +749,13 @@ ${ctaBand(site)}`;
       injectSEO(site, data);
       setupReveal();
       setupMotion();
-      if (prerendered) main.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
+      if (prerendered) {
+        /* Konten di layar pertama langsung tampil tanpa kedip (sudah terlihat dari HTML statis); sisanya tetap muncul saat di-scroll */
+        const atTop = [...main.querySelectorAll('.reveal')].filter((el) => el.getBoundingClientRect().top < window.innerHeight);
+        atTop.forEach((el) => { el.style.transition = 'none'; el.classList.add('is-visible'); });
+        void main.offsetWidth;
+        atTop.forEach((el) => { el.style.transition = ''; });
+      }
       if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
     } catch (err) {
       console.error(err);
