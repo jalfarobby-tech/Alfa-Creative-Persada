@@ -11,7 +11,7 @@ Jalankan setiap selesai mengubah data/*.json (termasuk data/en/*.json dan data/b
 Sumber kebenaran SEO: data/site.json (url, seo.pages, brand, contact, owner) dan terjemahannya di data/en/site.json.
 Halaman artikel (blog/<id>.html dan en/blog/<id>.html) dibuat otomatis dari data/blog.json.
 """
-import argparse, datetime, json, re, sys
+import argparse, datetime, hashlib, json, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -25,6 +25,13 @@ esc = lambda s: (s or '').replace('&', '&amp;').replace('"', '&quot;').replace('
 
 def load(p): return json.loads((ROOT / p).read_text(encoding='utf8'))
 def save_json(p, d): (ROOT / p).write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n', encoding='utf8')
+
+def asset_ver():   # cache-busting: berubah otomatis saat CSS/JS berubah
+    h = hashlib.md5()
+    for f in ('assets/css/style.css', 'assets/js/main.js'):
+        h.update((ROOT / f).read_bytes())
+    return h.hexdigest()[:8]
+
 
 def merge(a, b):   # sama dengan merge() di main.js
     keyed = lambda arr: all(isinstance(x, dict) and x.get('id') for x in arr)
@@ -75,7 +82,7 @@ def shell(d, site):
   <header id="site-header" class="site-header"></header>
   <main id="main"></main>
   <footer id="site-footer" class="site-footer"></footer>
-  <script src="{root}assets/js/main.js" defer></script>
+  <script src="{root}assets/js/main.js?v={asset_ver()}" defer></script>
 </body>
 </html>
 '''
@@ -137,7 +144,7 @@ def head(site, d, ld=''):
     for w in (400, 500):
         if (ROOT / f'assets/fonts/poppins-latin-{w}-normal.woff2').exists():
             a(f'<link rel="preload" href="{pre}assets/fonts/poppins-latin-{w}-normal.woff2" as="font" type="font/woff2" crossorigin>')
-    a(f'<link rel="stylesheet" href="{pre}assets/css/style.css">')
+    a(f'<link rel="stylesheet" href="{pre}assets/css/style.css?v={asset_ver()}">')
     if ld: a(f'<script type="application/ld+json" data-ld="1">{ld}</script>')
     return '<head>\n  ' + '\n  '.join(L) + '\n</head>'
 
@@ -148,6 +155,7 @@ def write_head(sites, d, ld=''):
     html = path.read_text(encoding='utf8')
     new = head(sites[d['lang']], d, ld)
     html = re.sub(r'<head>.*?</head>', lambda m: new, html, count=1, flags=re.S)
+    html = re.sub(r'(assets/js/main\.js)(\?v=[0-9a-f]+)?"', lambda m: m.group(1) + '?v=' + asset_ver() + '"', html)
     path.write_text(html, encoding='utf8')
 
 def write_sitemap_robots(sites, defs, blogs, products):
