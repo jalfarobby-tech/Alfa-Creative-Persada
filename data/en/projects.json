@@ -61,6 +61,12 @@
       "title": "Online Job Application Form",
       "summary": "A step-by-step job application flow with document upload and automatic saving to a spreadsheet.",
       "linkLabel": "View openings"
+    },
+    {
+      "id": "jastip-manager",
+      "summary": "An app to run a jastip (personal shopper) business from a phone: shopping lists per store, customer payment status, and invoices sent via WhatsApp.",
+      "note": "Names and figures shown are sample data.",
+      "linkLabel": "View app"
     }
   ]
 }

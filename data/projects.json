@@ -70,6 +70,22 @@
       "featured": true
     },
     {
+      "id": "jastip-manager",
+      "title": "Jastip Manager",
+      "category": "system",
+      "summary": "Aplikasi untuk mengelola usaha jastip dari HP: daftar belanja per toko, status bayar pelanggan, dan nota yang dikirim lewat WhatsApp.",
+      "stack": [
+        "Web App",
+        "Mobile-first",
+        "WhatsApp"
+      ],
+      "image": "assets/img/projects/jastip-manager.webp",
+      "link": "https://jalfarobby-tech.github.io/Jastip-Manager/",
+      "linkLabel": "Lihat aplikasi",
+      "note": "Nama dan angka di tampilan adalah data contoh.",
+      "featured": false
+    },
+    {
       "id": "jastipkuy",
       "title": "Link in Bio: jastipkuy",
       "category": "linkinbio",
