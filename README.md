@@ -1,6 +1,6 @@
-# Alfa Creative Persada | Software & Digital Solutions
+# Alfa Cipta Persada | Software & Digital Solutions
 
-Website portfolio + jasa Alfa Creative Persada. HTML/CSS/JS vanilla, siap GitHub Pages. Situs jalan tanpa build; `tools/build.py` hanya dipakai untuk menyempurnakan SEO sebelum deploy.
+Website portfolio + jasa Alfa Cipta Persada. HTML/CSS/JS vanilla, siap GitHub Pages. Situs jalan tanpa build; `tools/build.py` hanya dipakai untuk menyempurnakan SEO sebelum deploy.
 
 ## Struktur
 

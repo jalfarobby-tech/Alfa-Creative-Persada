@@ -13,8 +13,8 @@
       "SOFTWARE &",
       "DIGITAL SOLUTIONS"
     ],
-    "short": "Alfa Creative Persada",
-    "fullName": "Alfa Creative Persada",
+    "short": "Alfa Cipta Persada",
+    "fullName": "Alfa Cipta Persada",
     "tagline": "Build. Automate. Grow.",
     "acpTagline": "Creative Ideas for a Better Future",
     "description": "Jasa pembuatan website, sistem, aplikasi, dashboard bisnis, dan otomasi.",
@@ -31,7 +31,7 @@
     "whatsapp": "628197284796",
     "whatsappDisplay": "+62 819-7284-796",
     "location": "Indonesia",
-    "waGreeting": "Halo Alfa Creative Persada, saya tertarik dengan layanan Anda dan ingin berdiskusi.",
+    "waGreeting": "Halo Alfa Cipta Persada, saya tertarik dengan layanan Anda dan ingin berdiskusi.",
     "formEndpoint": ""
   },
   "social": [
@@ -86,7 +86,7 @@
   ],
   "home": {
     "hero": {
-      "eyebrow": "Alfa Creative Persada",
+      "eyebrow": "Alfa Cipta Persada",
       "desc": "Kami membantu bisnis dan personal brand tampil profesional lewat website, sistem, aplikasi, dashboard, dan otomasi yang rapi, cepat, dan siap tumbuh.",
       "ctaPrimary": {
         "label": "Lihat Layanan",
@@ -123,14 +123,14 @@
   "about": {
     "hero": {
       "eyebrow": "Tentang",
-      "title": "Tentang Alfa Creative Persada",
-      "text": "Alfa Creative Persada: studio digital yang membangun website, sistem, dan otomasi dengan standar rapi dan profesional."
+      "title": "Tentang Alfa Cipta Persada",
+      "text": "Alfa Cipta Persada: studio digital yang membangun website, sistem, dan otomasi dengan standar rapi dan profesional."
     },
     "profile": {
       "eyebrow": "Profil",
       "title": "Joanda Alfarobby",
       "paragraphs": [
-        "Joanda Alfarobby adalah Software Developer di balik Alfa Creative Persada. Kami membangun website, aplikasi, sistem, dan produk software yang membantu bisnis tampil profesional dan bekerja lebih efisien.",
+        "Joanda Alfarobby adalah Software Developer di balik Alfa Cipta Persada. Kami membangun website, aplikasi, sistem, dan produk software yang membantu bisnis tampil profesional dan bekerja lebih efisien.",
         "Pendekatan kami sederhana: pahami kebutuhan lebih dulu, bangun dengan rapi, lalu rilis dalam kondisi siap pakai. Tidak ada fitur yang sekadar pajangan.",
         "Berbasis di Indonesia dan terbuka untuk proyek dari seluruh Indonesia secara jarak jauh."
       ],
@@ -178,8 +178,8 @@
     ],
     "acp": {
       "eyebrow": "Brand",
-      "title": "Alfa Creative Persada · Creative Ideas for a Better Future",
-      "text": "Alfa Creative Persada adalah studio digital di bawah identitas Software & Digital Solutions. Kami menghadirkan solusi digital yang kreatif, terukur, dan berdampak. Build. Automate. Grow."
+      "title": "Alfa Cipta Persada · Creative Ideas for a Better Future",
+      "text": "Alfa Cipta Persada adalah studio digital di bawah identitas Software & Digital Solutions. Kami menghadirkan solusi digital yang kreatif, terukur, dan berdampak. Build. Automate. Grow."
     }
   },
   "servicesPage": {
@@ -233,45 +233,45 @@
     "pages": {
       "home": {
         "path": "",
-        "title": "Alfa Creative Persada | Jasa Website, Sistem & Otomasi",
+        "title": "Alfa Cipta Persada | Jasa Website, Sistem & Otomasi",
         "description": "Jasa pembuatan website, sistem informasi, aplikasi, dashboard bisnis, dan otomasi. Rapi, cepat, dan mobile-first. Konsultasi awal gratis."
       },
       "about": {
         "path": "about.html",
-        "title": "Tentang Joanda Alfarobby | Alfa Creative Persada",
-        "description": "Kenali Joanda Alfarobby, Software Developer di balik Alfa Creative Persada: pendekatan kerja, teknologi (MySQL, Supabase, Firebase), dan proyek yang dibangun."
+        "title": "Tentang Joanda Alfarobby | Alfa Cipta Persada",
+        "description": "Kenali Joanda Alfarobby, Software Developer di balik Alfa Cipta Persada: pendekatan kerja, teknologi (MySQL, Supabase, Firebase), dan proyek yang dibangun."
       },
       "services": {
         "path": "services.html",
-        "title": "Layanan Website, Sistem & Aplikasi | Alfa Creative Persada",
+        "title": "Layanan Website, Sistem & Aplikasi | Alfa Cipta Persada",
         "description": "Web development, sistem informasi, aplikasi, dashboard bisnis, otomasi, dan digital solutions, dengan alur kerja jelas dari konsultasi sampai rilis."
       },
       "portfolio": {
         "path": "portfolio.html",
-        "title": "Portfolio Website, Dashboard & Sistem | Alfa Creative Persada",
+        "title": "Portfolio Website, Dashboard & Sistem | Alfa Cipta Persada",
         "description": "Contoh proyek nyata: website perusahaan, dashboard manajemen tim, situs alat PDF, link in bio, dan sistem lamaran kerja online beserta teknologinya."
       },
       "contact": {
         "path": "contact.html",
-        "title": "Kontak & Konsultasi Gratis | Alfa Creative Persada",
-        "description": "Hubungi Alfa Creative Persada untuk konsultasi website, sistem, aplikasi, dashboard, atau otomasi. Respon via WhatsApp atau email, biasanya dalam 1x24 jam."
+        "title": "Kontak & Konsultasi Gratis | Alfa Cipta Persada",
+        "description": "Hubungi Alfa Cipta Persada untuk konsultasi website, sistem, aplikasi, dashboard, atau otomasi. Respon via WhatsApp atau email, biasanya dalam 1x24 jam."
       },
       "products": {
         "path": "products/",
-        "title": "Produk Digital | Alfa Creative Persada",
-        "description": "Katalog produk digital Alfa Creative Persada. Pesan via WhatsApp.",
+        "title": "Produk Digital | Alfa Cipta Persada",
+        "description": "Katalog produk digital Alfa Cipta Persada. Pesan via WhatsApp.",
         "noindex": true
       },
       "notfound": {
         "path": "404.html",
-        "title": "404 | Halaman Tidak Ditemukan | Alfa Creative Persada",
+        "title": "404 | Halaman Tidak Ditemukan | Alfa Cipta Persada",
         "description": "",
         "noindex": true
       },
       "blog": {
         "path": "blog/",
-        "title": "Blog: Panduan Website, Sistem & SEO | Alfa Creative Persada",
-        "description": "Artikel praktis seputar biaya website, sistem informasi untuk bisnis, dan SEO (Search Engine Optimization) dari Alfa Creative Persada."
+        "title": "Blog: Panduan Website, Sistem & SEO | Alfa Cipta Persada",
+        "description": "Artikel praktis seputar biaya website, sistem informasi untuk bisnis, dan SEO (Search Engine Optimization) dari Alfa Cipta Persada."
       }
     }
   },
@@ -331,14 +331,14 @@
     "stSending": "Mengirim…",
     "stOk": "Terima kasih! Pesan terkirim, kami segera membalas.",
     "stErr": "Gagal mengirim. Silakan coba lewat WhatsApp atau email.",
-    "waIntro": "Halo Alfa Creative Persada,",
+    "waIntro": "Halo Alfa Cipta Persada,",
     "waName": "Nama",
     "waEmail": "Email",
     "waService": "Layanan",
     "waMsg": "Pesan",
     "mailSubject": "Permintaan proyek dari",
-    "waConsult": "Halo Alfa Creative Persada, saya ingin konsultasi tentang layanan {layanan}.",
-    "formSubject": "Pesan baru dari website Alfa Creative Persada",
+    "waConsult": "Halo Alfa Cipta Persada, saya ingin konsultasi tentang layanan {layanan}.",
+    "formSubject": "Pesan baru dari website Alfa Cipta Persada",
     "loading": "Memuat konten…",
     "breadHome": "Beranda",
     "offerCatalog": "Layanan",

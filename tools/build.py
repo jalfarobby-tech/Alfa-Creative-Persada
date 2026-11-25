@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Alat build opsional untuk Alfa Creative Persada (tanpa dependensi wajib).
+Alat build opsional untuk Alfa Cipta Persada (tanpa dependensi wajib).
 
   python tools/build.py                       -> tulis ulang <head> SEO, sitemap.xml, robots.txt, dan buat halaman blog/EN
   python tools/build.py --domain https://alfacreative.id

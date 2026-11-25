@@ -87,7 +87,7 @@ li{{display:flex;align-items:center;gap:2.2mm;font-weight:300;font-size:6.8pt;le
   <div class="abs name">{o['name']}</div><div class="abs role">{o['role']}</div><div class="abs rline"></div>
   <ul>{rows_html}</ul>
   <div class="abs qrbox">{qr}</div><div class="abs qcap">{caption}</div>
-  <div class="abs alogo">{A_LOGO}</div><div class="abs bname">ALFA CREATIVE</div><div class="abs bsub">PERSADA</div>
+  <div class="abs alogo">{A_LOGO}</div><div class="abs bname">ALFA CIPTA</div><div class="abs bsub">PERSADA</div>
   <div class="abs bdiv"></div><div class="abs btag">Creative Ideas<br>for a Better Future</div>
 </section></body></html>'''
 

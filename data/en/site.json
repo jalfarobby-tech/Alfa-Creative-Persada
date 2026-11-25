@@ -4,7 +4,7 @@
   },
   "contact": {
     "location": "Indonesia",
-    "waGreeting": "Hello Alfa Creative Persada, I'm interested in your services and would like to discuss a project."
+    "waGreeting": "Hello Alfa Cipta Persada, I'm interested in your services and would like to discuss a project."
   },
   "nav": [
     {
@@ -82,14 +82,14 @@
   "about": {
     "hero": {
       "eyebrow": "About",
-      "title": "About Alfa Creative Persada",
-      "text": "Alfa Creative Persada is a digital studio that builds websites, systems, and automation to a clean, professional standard."
+      "title": "About Alfa Cipta Persada",
+      "text": "Alfa Cipta Persada is a digital studio that builds websites, systems, and automation to a clean, professional standard."
     },
     "profile": {
       "eyebrow": "Profile",
       "title": "Joanda Alfarobby",
       "paragraphs": [
-        "Joanda Alfarobby is the Software Developer behind Alfa Creative Persada. We build websites, applications, systems, and software products that help businesses look professional and work more efficiently.",
+        "Joanda Alfarobby is the Software Developer behind Alfa Cipta Persada. We build websites, applications, systems, and software products that help businesses look professional and work more efficiently.",
         "Our approach is simple: understand the need first, build it cleanly, then release it ready to use. No feature exists just for show.",
         "Based in Indonesia and open to remote projects from anywhere."
       ],
@@ -137,8 +137,8 @@
     ],
     "acp": {
       "eyebrow": "Brand",
-      "title": "Alfa Creative Persada · Creative Ideas for a Better Future",
-      "text": "Alfa Creative Persada is a digital studio under the Software & Digital Solutions identity. We deliver digital solutions that are creative, measurable, and impactful. Build. Automate. Grow."
+      "title": "Alfa Cipta Persada · Creative Ideas for a Better Future",
+      "text": "Alfa Cipta Persada is a digital studio under the Software & Digital Solutions identity. We deliver digital solutions that are creative, measurable, and impactful. Build. Automate. Grow."
     }
   },
   "servicesPage": {
@@ -235,14 +235,14 @@
     "stSending": "Sending…",
     "stOk": "Thank you! Your message was sent, we will reply soon.",
     "stErr": "Could not send. Please try WhatsApp or email.",
-    "waIntro": "Hello Alfa Creative Persada,",
+    "waIntro": "Hello Alfa Cipta Persada,",
     "waName": "Name",
     "waEmail": "Email",
     "waService": "Service",
     "waMsg": "Message",
     "mailSubject": "Project inquiry from",
-    "waConsult": "Hello Alfa Creative Persada, I would like to consult about the {layanan} service.",
-    "formSubject": "New message from the Alfa Creative Persada website",
+    "waConsult": "Hello Alfa Cipta Persada, I would like to consult about the {layanan} service.",
+    "formSubject": "New message from the Alfa Cipta Persada website",
     "loading": "Loading content…",
     "breadHome": "Home",
     "offerCatalog": "Services",
@@ -259,28 +259,28 @@
   "seo": {
     "pages": {
       "home": {
-        "title": "Alfa Creative Persada | Website, System & Automation Services",
+        "title": "Alfa Cipta Persada | Website, System & Automation Services",
         "description": "Website, information system, application, business dashboard, and automation development. Clean, fast, and mobile-first. Free initial consultation."
       },
       "about": {
-        "title": "About Joanda Alfarobby | Alfa Creative Persada",
-        "description": "Meet Joanda Alfarobby, the Software Developer behind Alfa Creative Persada: how we work, the technology we use (MySQL, Supabase, Firebase), and what we have built."
+        "title": "About Joanda Alfarobby | Alfa Cipta Persada",
+        "description": "Meet Joanda Alfarobby, the Software Developer behind Alfa Cipta Persada: how we work, the technology we use (MySQL, Supabase, Firebase), and what we have built."
       },
       "services": {
-        "title": "Website, System & Application Services | Alfa Creative Persada",
+        "title": "Website, System & Application Services | Alfa Cipta Persada",
         "description": "Web development, information systems, applications, business dashboards, automation, and digital solutions, with a clear workflow from consultation to launch."
       },
       "portfolio": {
-        "title": "Website, Dashboard & System Portfolio | Alfa Creative Persada",
+        "title": "Website, Dashboard & System Portfolio | Alfa Cipta Persada",
         "description": "Real projects: a company website, a team management dashboard, a PDF tools site, link-in-bio pages, and an online job application system, with the technology behind each."
       },
       "contact": {
-        "title": "Contact & Free Consultation | Alfa Creative Persada",
-        "description": "Contact Alfa Creative Persada for a consultation on websites, systems, applications, dashboards, or automation. Replies via WhatsApp or email, usually within 24 hours."
+        "title": "Contact & Free Consultation | Alfa Cipta Persada",
+        "description": "Contact Alfa Cipta Persada for a consultation on websites, systems, applications, dashboards, or automation. Replies via WhatsApp or email, usually within 24 hours."
       },
       "blog": {
-        "title": "Blog: Website, System & SEO Guides | Alfa Creative Persada",
-        "description": "Practical articles on website costs, information systems for business, and SEO (Search Engine Optimization) from Alfa Creative Persada."
+        "title": "Blog: Website, System & SEO Guides | Alfa Cipta Persada",
+        "description": "Practical articles on website costs, information systems for business, and SEO (Search Engine Optimization) from Alfa Cipta Persada."
       }
     }
   }

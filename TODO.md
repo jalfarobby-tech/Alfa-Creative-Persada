@@ -10,7 +10,7 @@
 
 ## Setelah online (SEO)
 - [ ] Daftar Google Search Console, kirim sitemap.xml, minta pengindeksan halaman utama
-- [ ] Buat Google Business Profile (Alfa Creative Persada) agar muncul di pencarian lokal dan peta
+- [ ] Buat Google Business Profile (Alfa Cipta Persada) agar muncul di pencarian lokal dan peta
 - [ ] Cek pratinjau link di WhatsApp, dan uji data terstruktur di Rich Results Test Google
 
 ## Opsional

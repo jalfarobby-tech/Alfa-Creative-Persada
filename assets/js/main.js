@@ -1,4 +1,4 @@
-/* Alfa Creative Persada | Software & Digital Solutions
+/* Alfa Cipta Persada | Software & Digital Solutions
    Satu file JS untuk semua halaman: komponen reusable (navbar, footer, card, button) + render konten dari /data/*.json.
    Setiap halaman memakai <body data-page="..." data-root="...">  (root = "" di root, "../" di subfolder, "/" di 404). */
 (() => {
@@ -81,9 +81,9 @@
 
   /* ---------- Logo (SVG inline, dua tone silver) ---------- */
   const logoS = (cls = '') =>
-    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Logo Alfa Creative Persada"><polygon class="l1" points="12,5 42,5 36,12 14,12 14,20 6,20 6,11"/><polygon class="l1" points="14,20 36,20 42,28 14,28"/><polygon class="l2" points="34,28 42,28 42,37 36,43 6,43 12,36 34,36"/></svg>`;
+    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Logo Alfa Cipta Persada"><polygon class="l1" points="12,5 42,5 36,12 14,12 14,20 6,20 6,11"/><polygon class="l1" points="14,20 36,20 42,28 14,28"/><polygon class="l2" points="34,28 42,28 42,37 36,43 6,43 12,36 34,36"/></svg>`;
   const logoA = (cls = '') =>
-    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Mark Alfa Creative Persada"><polygon class="l1" points="21,5 27,5 13,43 6,43"/><polygon class="l2" points="21,5 27,5 42,43 35,43"/><polygon class="l1" points="11,32 37,32 39,38 9,38"/></svg>`;
+    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Mark Alfa Cipta Persada"><polygon class="l1" points="21,5 27,5 13,43 6,43"/><polygon class="l2" points="21,5 27,5 42,43 35,43"/><polygon class="l1" points="11,32 37,32 39,38 9,38"/></svg>`;
 
   /* ---------- Komponen reusable ---------- */
   const brand = (site) =>
@@ -422,11 +422,11 @@ ${ctaBand(site)}`;
     const pp = site.productsPage;
     const q = new URLSearchParams(location.search).get('p');
     const item = products.products.find((x) => x.id === q);
-    const wa = (p) => waLink(site, (products.whatsappTemplate || 'Halo Alfa Creative Persada, saya ingin memesan: {produk}').replace('{produk}', p.name));
+    const wa = (p) => waLink(site, (products.whatsappTemplate || 'Halo Alfa Cipta Persada, saya ingin memesan: {produk}').replace('{produk}', p.name));
     const banner = products.enabled ? '' : `<div class="preview-banner">${esc(pp.previewNote)}</div>`;
 
     if (item) {
-      document.title = `${item.name} | Alfa Creative Persada`;
+      document.title = `${item.name} | Alfa Cipta Persada`;
       return `${banner}
 <section class="section"><div class="container">
   <a class="back-link" href="${esc(url('products/'))}">${icon('arrow')} Semua produk</a>

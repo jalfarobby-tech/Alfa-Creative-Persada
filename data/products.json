@@ -1,6 +1,6 @@
 {
   "enabled": false,
-  "whatsappTemplate": "Halo Alfa Creative Persada, saya ingin memesan produk: {produk}",
+  "whatsappTemplate": "Halo Alfa Cipta Persada, saya ingin memesan produk: {produk}",
   "products": [
     {
       "id": "nfc-google-review-card",
