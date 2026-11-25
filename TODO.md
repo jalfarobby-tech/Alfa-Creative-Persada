@@ -1,7 +1,8 @@
 # Daftar TODO
 
 ## Wajib sebelum online
-- [ ] Beli domain, lalu: `python tools/build.py --domain https://domainanda.com --prerender`
+- [x] Domain: alfacipta.my.id (build: `python tools/build.py --domain https://alfacipta.my.id --prerender`; file `CNAME` sudah ada)
+- [ ] Atur DNS + aktifkan domain di GitHub Pages, lalu kirim `sitemap.xml` ke Google Search Console
 - [ ] Taruh foto profil: assets/img/profile.jpg (4:5, min. 800x1000), lalu jalankan build lagi
 - [ ] Cek data/stack.json: hapus teknologi yang belum Anda kuasai, supaya klien tidak salah ekspektasi
 - [ ] Isi link sosial di `social[]` (Instagram, LinkedIn)

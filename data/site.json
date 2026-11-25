@@ -1,13 +1,12 @@
 {
   "_todo": [
-    "TODO: ganti domain 'www.yourwebsite.com' di url, canonical, og:url, sitemap.xml, robots.txt",
     "TODO: isi url akun sosial di social[] (kosong = tidak ditampilkan)",
     "TODO: taruh foto profil di assets/img/profile.jpg",
     "TODO: tambah proyek lain di data/projects.json bila ada (4 proyek pertama sudah terisi)",
     "TODO: buat gambar OG 1200x630 di assets/img/og-image.jpg",
     "TODO: isi contact.formEndpoint dengan URL Formspree (lihat README) agar tombol 'Kirim Pesan' aktif"
   ],
-  "url": "https://www.yourwebsite.com",
+  "url": "https://alfacipta.my.id",
   "brand": {
     "name": "Software & Digital Solutions",
     "wordmark": [

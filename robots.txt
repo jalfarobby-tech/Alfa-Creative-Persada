@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /products/
 
-Sitemap: https://www.yourwebsite.com/sitemap.xml
+Sitemap: https://alfacipta.my.id/sitemap.xml
