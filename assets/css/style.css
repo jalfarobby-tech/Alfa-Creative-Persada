@@ -592,7 +592,6 @@ h1,h2,h3,h4{color:#fff}
   .profile-text>p:first-of-type{margin-top:28px}
 }
 
-/* Sub-brand: tanda S + "Software & Digital Solutions" (A = perusahaan, S = sub-merek) */
+/* Keterangan bidang usaha di footer */
 .subbrand{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:.6rem;font-weight:500;letter-spacing:.15em;white-space:nowrap;line-height:1;text-transform:uppercase;color:var(--silver)}
-.subbrand .logo{width:18px;height:18px}
 .subbrand+p{margin-top:10px}

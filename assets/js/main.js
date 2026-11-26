@@ -80,10 +80,8 @@
   const icon = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ICONS.code}</svg>`;
 
   /* ---------- Logo (SVG inline, dua tone silver) ---------- */
-  const logoS = (cls = '') =>
-    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Logo Alfa Cipta Persada"><polygon class="l1" points="12,5 42,5 36,12 14,12 14,20 6,20 6,11"/><polygon class="l1" points="14,20 36,20 42,28 14,28"/><polygon class="l2" points="34,28 42,28 42,37 36,43 6,43 12,36 34,36"/></svg>`;
   const logoA = (cls = '') =>
-    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Mark Alfa Cipta Persada"><polygon class="l1" points="21,5 27,5 13,43 6,43"/><polygon class="l2" points="21,5 27,5 42,43 35,43"/><polygon class="l1" points="11,32 37,32 39,38 9,38"/></svg>`;
+    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Mark Alfa Cipta Persada"><polygon class="l1" points="24,4 45.33,36 37.33,36 24,16 10.67,36 2.67,36"/><polygon class="l2" points="24,21 38.67,43 32.67,43 24,30 15.33,43 9.33,43"/></svg>`;
 
   /* ---------- Komponen reusable ---------- */
   const brand = (site) =>
@@ -216,7 +214,7 @@
       .filter((s) => s.url)
       .map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener" aria-label="${esc(s.name)}">${icon(s.icon)}</a>`)
       .join('');
-    $('#site-footer').innerHTML = `<span class="diag diag--tr" aria-hidden="true"></span><div class="container"><div class="footer-grid"><div>${brand(site)}<p class="subbrand">${logoS()}<span>${esc(site.brand.name)}</span></p><p>${esc(site.brand.acpTagline)}. ${esc(site.brand.fullName)} by ${esc(site.owner.name)}.</p>${social ? `<div class="social">${social}</div>` : ''}</div><div><h4>${esc(UI.footerMenu)}</h4><ul class="footer-links">${links}</ul></div><div><h4>${esc(UI.footerContact)}</h4><ul class="footer-contact"><li>${icon('mail')}<a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></li><li>${icon('message')}<a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(site.contact.whatsappDisplay)}</a></li><li>${icon('pin')}<span>${esc(site.contact.location)}</span></li></ul></div></div><div class="footer-bottom"><span>&copy; ${new Date().getFullYear()} ${esc(site.brand.fullName)}. ${esc(UI.rights)}</span><span>${esc(site.brand.tagline)}</span></div></div>`;
+    $('#site-footer').innerHTML = `<span class="diag diag--tr" aria-hidden="true"></span><div class="container"><div class="footer-grid"><div>${brand(site)}<p class="subbrand">${esc(site.brand.name)}</p><p>${esc(site.brand.acpTagline)}. ${esc(site.brand.fullName)} by ${esc(site.owner.name)}.</p>${social ? `<div class="social">${social}</div>` : ''}</div><div><h4>${esc(UI.footerMenu)}</h4><ul class="footer-links">${links}</ul></div><div><h4>${esc(UI.footerContact)}</h4><ul class="footer-contact"><li>${icon('mail')}<a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></li><li>${icon('message')}<a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(site.contact.whatsappDisplay)}</a></li><li>${icon('pin')}<span>${esc(site.contact.location)}</span></li></ul></div></div><div class="footer-bottom"><span>&copy; ${new Date().getFullYear()} ${esc(site.brand.fullName)}. ${esc(UI.rights)}</span><span>${esc(site.brand.tagline)}</span></div></div>`;
   }
 
   /* ---------- Halaman: Home ---------- */
@@ -233,7 +231,7 @@
     <div class="btn-row">${button(h.ctaPrimary.label, h.ctaPrimary.href)}${button(h.ctaSecondary.label, waLink(site, site.contact.waGreeting), { ghost: true, ext: true, ico: 'message' })}</div>
   </div>
   <div class="vline" aria-hidden="true"></div>
-  <div class="hero-art fade-in" aria-hidden="true"><span class="orbit"></span>${logoS()}</div>
+  <div class="hero-art fade-in" aria-hidden="true"><span class="orbit"></span>${logoA()}</div>
 </div></section>
 
 <section class="section section--alt"><div class="container">

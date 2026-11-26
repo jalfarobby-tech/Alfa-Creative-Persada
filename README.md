@@ -118,6 +118,7 @@ Tambah produk baru dengan menambah objek di `products.json`. Detail produk otoma
 - Animasi menghormati `prefers-reduced-motion`.
 
 ## Identitas visual (logo)
-- **Tanda A** = logo perusahaan Alfa Cipta Persada (header, footer, favicon, logo WhatsApp, gambar share, kartu nama).
-- **Tanda S** = sub-merek "Software & Digital Solutions" (hero beranda, baris di footer, kartu nama).
+- **Tanda Chevron Ganda** = logo perusahaan Alfa Cipta Persada: dua panah naik bertumpuk (puncak huruf A + "naik"). Dipakai di header, footer, hero, favicon, logo WhatsApp, gambar share, dan kartu nama.
+- "Software & Digital Solutions" = keterangan bidang usaha (teks), bukan logo terpisah.
+- File logo: `assets/img/brand/` (versi gelap, terang, satu warna; SVG).
 - Buat ulang semua aset logo: `python tools/make_brand.py --wa-out logo-wa.png` (butuh `pip install playwright pillow`).

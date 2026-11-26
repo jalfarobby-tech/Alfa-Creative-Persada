@@ -11,9 +11,8 @@ ROOT = Path(__file__).resolve().parent.parent
 IMG = ROOT / 'assets/img'
 fonts = (ROOT / 'assets/fonts').as_uri()
 
-A_POLY = ('<polygon fill="#E6E6E6" points="21,5 27,5 13,43 6,43"/>'
-          '<polygon fill="#8A8D93" points="21,5 27,5 42,43 35,43"/>'
-          '<polygon fill="#E6E6E6" points="11,32 37,32 39,38 9,38"/>')
+A_POLY = ('<polygon fill="#E6E6E6" points="24,4 45.33,36 37.33,36 24,16 10.67,36 2.67,36"/>'
+          '<polygon fill="#8A8D93" points="24,21 38.67,43 32.67,43 24,30 15.33,43 9.33,43"/>')
 A_SVG = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">{A_POLY}</svg>'
 
 site = json.load(open(ROOT / 'data/site.json', encoding='utf8'))
@@ -59,6 +58,11 @@ body{{width:1200px;height:630px;background:linear-gradient(120deg,#0a0a0a 0%,#10
 
 async def main(wa_out):
     (IMG / 'favicon.svg').write_text(FAVICON, encoding='utf8')
+    kit = IMG / 'brand'; kit.mkdir(exist_ok=True)
+    def mk(c1, c2): return A_POLY.replace('#E6E6E6', c1).replace('#8A8D93', c2)
+    for name, (c1, c2) in {'logo-mark.svg': ('#E6E6E6', '#8A8D93'), 'logo-mark-terang.svg': ('#17181A', '#6E727A'),
+                           'logo-mark-satu-warna.svg': ('#FFFFFF', '#FFFFFF')}.items():
+        (kit / name).write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">{mk(c1, c2)}</svg>\n', encoding='utf8')
     async with async_playwright() as p:
         br = await p.chromium.launch()
         async def shot(html, w, h, out, **kw):

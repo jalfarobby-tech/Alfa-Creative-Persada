@@ -40,8 +40,7 @@ rows = [('phone', c['whatsappDisplay']), ('mail', c['email'])] + ([('globe', sit
 rows_html = ''.join(f'<li>{ico(I[k])}<span>{v}</span></li>' for k, v in rows)
 front_site = f'<div class="fsite">{site_label}</div>' if site_label else f'<div class="fsite">{b["fullName"]}</div>'
 
-S_LOGO = '<svg viewBox="0 0 48 48"><polygon fill="#E6E6E6" points="12,5 42,5 36,12 14,12 14,20 6,20 6,11"/><polygon fill="#E6E6E6" points="14,20 36,20 42,28 14,28"/><polygon fill="#8A8D93" points="34,28 42,28 42,37 36,43 6,43 12,36 34,36"/></svg>'
-A_LOGO = '<svg viewBox="0 0 48 48"><polygon fill="#E6E6E6" points="21,5 27,5 13,43 6,43"/><polygon fill="#8A8D93" points="21,5 27,5 42,43 35,43"/><polygon fill="#E6E6E6" points="11,32 37,32 39,38 9,38"/></svg>'
+A_LOGO = '<svg viewBox="0 0 48 48"><polygon fill="#E6E6E6" points="24,4 45.33,36 37.33,36 24,16 10.67,36 2.67,36"/><polygon fill="#8A8D93" points="24,21 38.67,43 32.67,43 24,30 15.33,43 9.33,43"/></svg>'
 
 html = f'''<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Kartu Nama - {o['name']} (siap cetak, bleed 3mm)</title><style>
 @font-face{{font-family:P;font-weight:300;src:url({fonts}/poppins-latin-300-normal.woff2)}}
@@ -58,9 +57,7 @@ html,body{{background:#0B0B0B}}
 .vline{{left:36mm;top:23.5mm;width:.25mm;height:23.4mm;background:#6B7280}}
 .w1,.w2{{left:40mm;font-weight:400;font-size:8pt;letter-spacing:.2em;line-height:1}}
 .w1{{top:25mm;font-weight:500;font-size:9pt}} .w2{{top:30.4mm;color:#B9BDC6;font-weight:300}}
-.ssub{{left:40mm;top:36.5mm;width:3.2mm;height:3.2mm}}
-.ssub svg{{width:100%;height:100%;display:block}}
-.stext{{left:44.4mm;top:37.7mm;font-weight:400;font-size:4.3pt;letter-spacing:.15em;line-height:1;color:#E6E6E6}}
+.stext{{left:40mm;top:37.7mm;font-weight:400;font-size:4.3pt;letter-spacing:.15em;line-height:1;color:#E6E6E6}}
 .tag{{left:40mm;top:43.2mm;font-weight:300;font-size:6.6pt;letter-spacing:.12em;color:#B9BDC6}}
 .fline{{left:11mm;top:49.2mm;width:6mm;height:.25mm;background:#8A8D93}}
 .fsite{{left:11mm;top:51mm;font-weight:300;font-size:5.6pt;letter-spacing:.1em;color:#B9BDC6}}
@@ -82,7 +79,7 @@ li{{display:flex;align-items:center;gap:2.2mm;font-weight:300;font-size:6.8pt;le
   <svg class="bg" viewBox="0 0 96 61" preserveAspectRatio="none"><polygon points="85.1,0 96,0 96,11 81.2,11" fill="#1a1a1b"/><polygon points="63.2,61 96,13 96,61" fill="#131314"/><polygon points="69.6,61 96,22.4 96,31.8 76,61" fill="#262627"/><polygon points="78.8,61 96,35.9 96,43.5 84,61" fill="#3a3a3c"/></svg>
   <div class="abs slogo">{A_LOGO}</div><div class="abs vline"></div>
   <div class="abs w1">ALFA CIPTA</div><div class="abs w2">PERSADA</div>
-  <div class="abs ssub">{S_LOGO}</div><div class="abs stext">SOFTWARE &amp; DIGITAL SOLUTIONS</div>
+  <div class="abs stext">SOFTWARE &amp; DIGITAL SOLUTIONS</div>
   <div class="abs tag">{b['tagline']}</div>
   <div class="abs fline"></div><div class="abs fsite">{site_label or b['fullName']}</div>
 </section>
