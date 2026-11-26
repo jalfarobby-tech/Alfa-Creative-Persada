@@ -54,11 +54,14 @@ html,body{{background:#0B0B0B}}
 .page:last-child{{page-break-after:auto}}
 .bg{{position:absolute;inset:0;width:96mm;height:61mm}}
 .abs{{position:absolute}}
-.slogo{{left:14mm;top:20.5mm;width:17.5mm;height:17.5mm}}
-.vline{{left:36mm;top:21.5mm;width:.25mm;height:15.5mm;background:#6B7280}}
+.slogo{{left:14mm;top:26mm;width:17.5mm;height:17.5mm}}
+.vline{{left:36mm;top:23.5mm;width:.25mm;height:23.4mm;background:#6B7280}}
 .w1,.w2{{left:40mm;font-weight:400;font-size:8pt;letter-spacing:.2em;line-height:1}}
-.w1{{top:26.4mm}} .w2{{top:31.3mm}}
-.tag{{left:40mm;top:37.4mm;font-weight:300;font-size:6.6pt;letter-spacing:.12em;color:#B9BDC6}}
+.w1{{top:25mm;font-weight:500;font-size:9pt}} .w2{{top:30.4mm;color:#B9BDC6;font-weight:300}}
+.ssub{{left:40mm;top:36.5mm;width:3.2mm;height:3.2mm}}
+.ssub svg{{width:100%;height:100%;display:block}}
+.stext{{left:44.4mm;top:37.7mm;font-weight:400;font-size:4.3pt;letter-spacing:.15em;line-height:1;color:#E6E6E6}}
+.tag{{left:40mm;top:43.2mm;font-weight:300;font-size:6.6pt;letter-spacing:.12em;color:#B9BDC6}}
 .fline{{left:11mm;top:49.2mm;width:6mm;height:.25mm;background:#8A8D93}}
 .fsite{{left:11mm;top:51mm;font-weight:300;font-size:5.6pt;letter-spacing:.1em;color:#B9BDC6}}
 .name{{left:11mm;top:10.6mm;font-weight:500;font-size:12.5pt;letter-spacing:.01em;line-height:1.1}}
@@ -77,8 +80,9 @@ li{{display:flex;align-items:center;gap:2.2mm;font-weight:300;font-size:6.8pt;le
 </style></head><body>
 <section class="page">
   <svg class="bg" viewBox="0 0 96 61" preserveAspectRatio="none"><polygon points="85.1,0 96,0 96,11 81.2,11" fill="#1a1a1b"/><polygon points="63.2,61 96,13 96,61" fill="#131314"/><polygon points="69.6,61 96,22.4 96,31.8 76,61" fill="#262627"/><polygon points="78.8,61 96,35.9 96,43.5 84,61" fill="#3a3a3c"/></svg>
-  <div class="abs slogo">{S_LOGO}</div><div class="abs vline"></div>
-  <div class="abs w1">SOFTWARE &amp;</div><div class="abs w2">DIGITAL SOLUTIONS</div>
+  <div class="abs slogo">{A_LOGO}</div><div class="abs vline"></div>
+  <div class="abs w1">ALFA CIPTA</div><div class="abs w2">PERSADA</div>
+  <div class="abs ssub">{S_LOGO}</div><div class="abs stext">SOFTWARE &amp; DIGITAL SOLUTIONS</div>
   <div class="abs tag">{b['tagline']}</div>
   <div class="abs fline"></div><div class="abs fsite">{site_label or b['fullName']}</div>
 </section>

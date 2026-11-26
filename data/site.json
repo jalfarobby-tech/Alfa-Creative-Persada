@@ -18,7 +18,11 @@
     "tagline": "Build. Automate. Grow.",
     "acpTagline": "Creative Ideas for a Better Future",
     "description": "Jasa pembuatan website, sistem, aplikasi, dashboard bisnis, dan otomasi.",
-    "logoPng": "assets/img/logo-512.png"
+    "logoPng": "assets/img/logo-512.png",
+    "companyMark": [
+      "ALFA CIPTA",
+      "PERSADA"
+    ]
   },
   "owner": {
     "name": "Joanda Alfarobby",

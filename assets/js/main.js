@@ -87,7 +87,7 @@
 
   /* ---------- Komponen reusable ---------- */
   const brand = (site) =>
-    `<a class="brand" href="${esc(url('index.html'))}" aria-label="${esc(site.brand.short)}, ${esc(UI.backHome)}">${logoS()}<span class="brand-text"><span>${esc(site.brand.wordmark[0])}</span><span>${esc(site.brand.wordmark[1])}</span></span></a>`;
+    `<a class="brand" href="${esc(url('index.html'))}" aria-label="${esc(site.brand.short)}, ${esc(UI.backHome)}">${logoA()}<span class="brand-text"><span>${esc(site.brand.companyMark[0])}</span><span>${esc(site.brand.companyMark[1])}</span></span></a>`;
 
   const button = (label, href, { ghost = false, ext = false, ico = '' } = {}) =>
     `<a class="btn${ghost ? ' btn--ghost' : ''}" href="${esc(url(href))}"${ext ? ' target="_blank" rel="noopener"' : ''}>${esc(label)}${ico ? icon(ico) : ''}</a>`;
@@ -216,7 +216,7 @@
       .filter((s) => s.url)
       .map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener" aria-label="${esc(s.name)}">${icon(s.icon)}</a>`)
       .join('');
-    $('#site-footer').innerHTML = `<span class="diag diag--tr" aria-hidden="true"></span><div class="container"><div class="footer-grid"><div>${brand(site)}<p>${esc(site.brand.acpTagline)}. ${esc(site.brand.fullName)} by ${esc(site.owner.name)}.</p>${social ? `<div class="social">${social}</div>` : ''}</div><div><h4>${esc(UI.footerMenu)}</h4><ul class="footer-links">${links}</ul></div><div><h4>${esc(UI.footerContact)}</h4><ul class="footer-contact"><li>${icon('mail')}<a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></li><li>${icon('message')}<a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(site.contact.whatsappDisplay)}</a></li><li>${icon('pin')}<span>${esc(site.contact.location)}</span></li></ul></div></div><div class="footer-bottom"><span>&copy; ${new Date().getFullYear()} ${esc(site.brand.fullName)}. ${esc(UI.rights)}</span><span>${esc(site.brand.tagline)}</span></div></div>`;
+    $('#site-footer').innerHTML = `<span class="diag diag--tr" aria-hidden="true"></span><div class="container"><div class="footer-grid"><div>${brand(site)}<p class="subbrand">${logoS()}<span>${esc(site.brand.name)}</span></p><p>${esc(site.brand.acpTagline)}. ${esc(site.brand.fullName)} by ${esc(site.owner.name)}.</p>${social ? `<div class="social">${social}</div>` : ''}</div><div><h4>${esc(UI.footerMenu)}</h4><ul class="footer-links">${links}</ul></div><div><h4>${esc(UI.footerContact)}</h4><ul class="footer-contact"><li>${icon('mail')}<a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></li><li>${icon('message')}<a href="${esc(waLink(site))}" target="_blank" rel="noopener">${esc(site.contact.whatsappDisplay)}</a></li><li>${icon('pin')}<span>${esc(site.contact.location)}</span></li></ul></div></div><div class="footer-bottom"><span>&copy; ${new Date().getFullYear()} ${esc(site.brand.fullName)}. ${esc(UI.rights)}</span><span>${esc(site.brand.tagline)}</span></div></div>`;
   }
 
   /* ---------- Halaman: Home ---------- */

@@ -116,3 +116,8 @@ Tambah produk baru dengan menambah objek di `products.json`. Detail produk otoma
 - Navbar, footer, kartu, dan tombol dirender dari satu file `main.js`, tidak ada duplikasi di HTML.
 - Data terstruktur (Organization, Person, WebSite, halaman, breadcrumb, layanan, daftar portfolio) dibuat otomatis dari `site.json` dan data JSON.
 - Animasi menghormati `prefers-reduced-motion`.
+
+## Identitas visual (logo)
+- **Tanda A** = logo perusahaan Alfa Cipta Persada (header, footer, favicon, logo WhatsApp, gambar share, kartu nama).
+- **Tanda S** = sub-merek "Software & Digital Solutions" (hero beranda, baris di footer, kartu nama).
+- Buat ulang semua aset logo: `python tools/make_brand.py --wa-out logo-wa.png` (butuh `pip install playwright pillow`).
