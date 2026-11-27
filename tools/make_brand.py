@@ -74,6 +74,16 @@ def lockup_html(fg, sub, grad):
 </style></head><body><div class="w" id="w"><svg viewBox="0 0 48 48" width="260" height="260">{mark}</svg><div><div class="n">{WORD}</div></div><div class="p">PERSADA</div></div></body></html>'''
 
 
+WA_HTML = f'''<html><head><style>{FONT_CSS}
+*{{margin:0;padding:0;box-sizing:border-box}}
+body{{width:1024px;height:1024px;background:radial-gradient(circle at 50% 42%,#1d1d1f 0%,#111112 55%,#0a0a0a 100%);font-family:P,sans-serif;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:46px}}
+.n{{font-weight:500;font-size:78px;letter-spacing:.2em;display:flex;align-items:baseline;margin-right:-.2em;line-height:1;white-space:nowrap}}
+.lam{{display:inline-block;width:.8em;height:.7em;background:currentColor;clip-path:polygon(50% 0,100% 100%,79% 100%,50% 30%,21% 100%,0 100%);margin-right:.2em}}
+.p{{font-weight:300;font-size:36px;letter-spacing:.5em;color:#B9BDC6;margin-right:-.5em;margin-top:-14px}}
+</style></head><body><svg viewBox="0 0 48 48" width="330" height="330" style="margin-top:-20px">{A_GRAD}</svg>
+<div class="n">{WORD}</div><div class="p">PERSADA</div></body></html>'''
+
+
 async def main(wa_out):
     (IMG / 'favicon.svg').write_text(FAVICON, encoding='utf8')
     kit = IMG / 'brand'; kit.mkdir(exist_ok=True)
@@ -94,6 +104,7 @@ async def main(wa_out):
             await shot(ICON_HTML.format(svg=svg), size, size, IMG / name)
         await shot(LOGO_HTML, 1024, 1024, IMG / '_logo1024.png')
         await shot(OG_HTML, 1200, 630, IMG / '_og.png')
+        await shot(WA_HTML, 1024, 1024, kit / 'logo-wa-profil.png')
         for name, args in (('lockup-gelap.png', ('#FFFFFF', '#B9BDC6', True)), ('lockup-terang.png', ('#17181A', '#6E727A', False))):
             tmp = ROOT / '_brand_tmp.html'; tmp.write_text(lockup_html(*args), encoding='utf8')
             pg = await br.new_page(viewport={'width': 900, 'height': 700}, device_scale_factor=2)
@@ -102,7 +113,7 @@ async def main(wa_out):
         await br.close()
     big = Image.open(IMG / '_logo1024.png').convert('RGB')
     big.resize((512, 512), Image.LANCZOS).save(IMG / 'logo-512.png', optimize=True)
-    if wa_out: big.save(wa_out)
+    if wa_out: Image.open(kit / 'logo-wa-profil.png').convert('RGB').save(wa_out)
     Image.open(IMG / '_og.png').convert('RGB').save(IMG / 'og-image.jpg', quality=90, optimize=True)
     Image.open(IMG / 'favicon-48.png').convert('RGBA').save(
         ROOT / 'favicon.ico', sizes=[(16, 16), (32, 32), (48, 48)])
