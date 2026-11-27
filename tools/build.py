@@ -62,7 +62,7 @@ def page_defs(sites, blogs, products):
             defs.append(dict(key=key, lang=lang, file=ep + f, pre='../' * (depth + (1 if lang == 'en' else 0)), cfg=cfg,
                              altpath={l: ('en/' if l == 'en' else '') + idpath for l in LANGS}, page=key, slug=None, ld=True))
         for post in blogs[lang]['posts']:
-            cfg = dict(title=f"{post['title']} | {site['brand']['fullName']}", description=post['description'], path=f"{ep}blog/{post['id']}.html")
+            cfg = dict(title=(f"{post['seoTitle']} | {site['brand']['companyMark'][0].title()}" if post.get('seoTitle') else f"{post['title']} | {site['brand']['fullName']}"), description=post['description'], path=f"{ep}blog/{post['id']}.html")
             defs.append(dict(key=f"post:{post['id']}", lang=lang, file=f"{ep}blog/{post['id']}.html", pre='../' * (2 if lang == 'en' else 1), cfg=cfg,
                              altpath={l: ('en/' if l == 'en' else '') + f"blog/{post['id']}.html" for l in LANGS}, page='article', slug=post['id'], ld=True,
                              og_type='article', published=post['date']))

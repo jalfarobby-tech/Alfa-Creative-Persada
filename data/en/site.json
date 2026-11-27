@@ -46,7 +46,7 @@
   ],
   "home": {
     "hero": {
-      "desc": "We help businesses and personal brands look professional with websites, systems, applications, dashboards, and automation that are clean, fast, and ready to grow.",
+      "desc": "Websites that bring in customers, systems that tidy up daily work. We build websites, applications, dashboards, and automation around your business needs.",
       "ctaPrimary": {
         "label": "View Services",
         "href": "services.html"
@@ -83,13 +83,13 @@
     "hero": {
       "eyebrow": "About",
       "title": "About Alfa Cipta Persada",
-      "text": "Alfa Cipta Persada builds websites, applications, systems, and automation for businesses that want to look professional and work more efficiently."
+      "text": "Alfa Cipta Persada builds websites, applications, systems, and automation for businesses that want to win customers more easily and cut manual work."
     },
     "profile": {
       "eyebrow": "Profile",
       "title": "Joanda Alfarobby",
       "paragraphs": [
-        "Joanda Alfarobby is the Software Developer behind Alfa Cipta Persada. We build websites, applications, systems, and software products that help businesses look professional and work more efficiently.",
+        "Joanda Alfarobby is the Software Developer behind Alfa Cipta Persada. We build websites, applications, systems, and software products that help businesses win customers and cut manual work.",
         "Our approach is simple: understand the need first, build it cleanly, then release it ready to use. No feature exists just for show.",
         "Based in Indonesia and open to remote projects from anywhere."
       ],

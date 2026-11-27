@@ -3,7 +3,7 @@
     {
       "id": "biaya-membuat-website-company-profile",
       "title": "Berapa Biaya Membuat Website Company Profile? Ini Faktor yang Menentukan",
-      "description": "Biaya website company profile tidak bisa disamakan untuk semua bisnis. Kenali faktor yang memengaruhi harga dan hal yang perlu disiapkan sebelum meminta penawaran.",
+      "description": "Biaya website company profile berbeda untuk tiap bisnis. Kenali faktor penentu harganya dan apa yang perlu disiapkan sebelum meminta penawaran.",
       "date": "2026-10-30",
       "minutes": 4,
       "tags": [
@@ -75,12 +75,13 @@
         {
           "p": "Dengan bahan itu, penawaran yang Anda terima akan lebih akurat dan mudah dibandingkan. Di Alfa Cipta Persada, konsultasi awal gratis dan estimasi biaya serta waktu kami kirim tertulis sebelum pengerjaan dimulai."
         }
-      ]
+      ],
+      "seoTitle": "Biaya Membuat Website Company Profile"
     },
     {
       "id": "kapan-bisnis-butuh-sistem-sendiri",
       "title": "Kapan Bisnis Butuh Sistem Sendiri, Bukan Sekadar Spreadsheet?",
-      "description": "Spreadsheet sangat membantu di awal. Kenali tanda-tanda bisnis Anda sudah perlu sistem informasi sendiri, dan cara memulainya tanpa langsung membangun yang besar.",
+      "description": "Spreadsheet membantu di awal. Kenali tanda bisnis Anda sudah perlu sistem sendiri, dan cara memulainya tanpa langsung membangun yang besar.",
       "date": "2026-10-29",
       "minutes": 4,
       "tags": [
@@ -138,7 +139,8 @@
         {
           "p": "Jawaban dari tiga pertanyaan ini biasanya sudah cukup menjadi bahan awal diskusi. Kami pernah membangun dashboard manajemen tim dan sistem lamaran kerja online dengan pola yang sama, dimulai dari satu masalah konkret."
         }
-      ]
+      ],
+      "seoTitle": "Kapan Bisnis Butuh Sistem Sendiri?"
     },
     {
       "id": "checklist-seo-website-baru",
@@ -195,7 +197,8 @@
         {
           "p": "SEO bukan tombol instan. Biasanya butuh beberapa minggu sampai beberapa bulan sebelum website baru mulai muncul stabil. Yang bisa dilakukan adalah memastikan fondasinya benar sejak hari pertama, lalu menambah konten secara konsisten. Website yang kami bangun sudah mencakup poin teknis di atas, jadi Anda bisa fokus pada kontennya."
         }
-      ]
+      ],
+      "seoTitle": "Checklist SEO Website Baru Sebelum Online"
     }
   ]
 }
