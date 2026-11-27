@@ -11,8 +11,11 @@ ROOT = Path(__file__).resolve().parent.parent
 IMG = ROOT / 'assets/img'
 fonts = (ROOT / 'assets/fonts').as_uri()
 
-A_POLY = ('<polygon fill="#E6E6E6" points="24,4 45.33,36 37.33,36 24,16 10.67,36 2.67,36"/>'
-          '<polygon fill="#8A8D93" points="24,21 38.67,43 32.67,43 24,30 15.33,43 9.33,43"/>')
+A_POLY = ('<polygon fill="#E6E6E6" points="24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95"/>'
+          '<polygon fill="#8A8D93" points="24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25"/>')
+GRAD = ('<defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#D4D5D9"/><stop offset="1" stop-color="#8B8C92"/></linearGradient>'
+        '<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B4B6BB"/><stop offset=".55" stop-color="#7C7E85"/><stop offset="1" stop-color="#55575D"/></linearGradient></defs>')
+A_GRAD = GRAD + (A_POLY.replace('fill="#E6E6E6"', 'fill="url(#ga)"').replace('fill="#8A8D93"', 'fill="url(#gb)"'))
 A_SVG = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">{A_POLY}</svg>'
 
 site = json.load(open(ROOT / 'data/site.json', encoding='utf8'))
@@ -32,7 +35,7 @@ ICON_HTML = '''<html><body style="margin:0;background:#0B0B0B">{svg}</body></htm
 
 LOGO_HTML = f'''<html><body style="margin:0;width:1024px;height:1024px;background:radial-gradient(circle at 50% 50%,#1b1b1c 0%,#0f0f10 55%,#0a0a0a 100%);position:relative">
 <svg width="1024" height="1024" style="position:absolute;inset:0"><circle cx="512" cy="512" r="440" fill="none" stroke="#2c2c2e" stroke-width="2"/><circle cx="512" cy="512" r="380" fill="none" stroke="#212123" stroke-width="2"/></svg>
-<svg viewBox="0 0 48 48" width="560" height="560" style="position:absolute;left:232px;top:232px">{A_POLY}</svg></body></html>'''
+<svg viewBox="0 0 48 48" width="560" height="560" style="position:absolute;left:232px;top:232px">{A_GRAD}</svg></body></html>'''
 
 OG_HTML = f'''<html><head><style>{FONT_CSS}
 *{{margin:0;padding:0;box-sizing:border-box}}
@@ -53,7 +56,22 @@ body{{width:1200px;height:630px;background:linear-gradient(120deg,#0a0a0a 0%,#10
 <div class="t r"></div><div class="t g">{b['tagline'].upper()}</div>
 <div class="t s">{SERVICES}</div>
 <div class="art"><svg width="360" height="360" style="position:absolute;inset:0"><circle cx="180" cy="180" r="178" fill="none" stroke="#2f2f31" stroke-width="1.5"/><circle cx="180" cy="180" r="128" fill="none" stroke="#3a3a3d" stroke-width="1.5"/></svg>
-<svg class="m" viewBox="0 0 48 48">{A_POLY}</svg></div></body></html>'''
+<svg class="m" viewBox="0 0 48 48">{A_GRAD}</svg></div></body></html>'''
+
+
+LAM = '<i class="lam"></i>'
+WORD = f'{LAM}LF{LAM}<span style="display:inline-block;width:.6em"></span>CIPT{LAM}'
+
+
+def lockup_html(fg, sub, grad):
+    mark = A_GRAD if grad else A_POLY.replace('#E6E6E6', fg).replace('#8A8D93', sub)
+    return f'''<html><head><style>{FONT_CSS}
+*{{margin:0;padding:0;box-sizing:border-box}} body{{background:transparent;font-family:P,sans-serif;color:{fg};display:inline-block;padding:40px}}
+.w{{display:flex;flex-direction:column;align-items:center;gap:26px}}
+.n{{font-weight:500;font-size:58px;letter-spacing:.2em;display:flex;align-items:baseline;margin-right:-.2em;line-height:1;white-space:nowrap}}
+.lam{{display:inline-block;width:.8em;height:.7em;background:currentColor;clip-path:polygon(50% 0,100% 100%,79% 100%,50% 30%,21% 100%,0 100%);margin-right:.2em}}
+.p{{font-weight:300;font-size:25px;letter-spacing:.46em;color:{sub};margin-right:-.46em}}
+</style></head><body><div class="w" id="w"><svg viewBox="0 0 48 48" width="260" height="260">{mark}</svg><div><div class="n">{WORD}</div></div><div class="p">PERSADA</div></div></body></html>'''
 
 
 async def main(wa_out):
@@ -76,6 +94,11 @@ async def main(wa_out):
             await shot(ICON_HTML.format(svg=svg), size, size, IMG / name)
         await shot(LOGO_HTML, 1024, 1024, IMG / '_logo1024.png')
         await shot(OG_HTML, 1200, 630, IMG / '_og.png')
+        for name, args in (('lockup-gelap.png', ('#FFFFFF', '#B9BDC6', True)), ('lockup-terang.png', ('#17181A', '#6E727A', False))):
+            tmp = ROOT / '_brand_tmp.html'; tmp.write_text(lockup_html(*args), encoding='utf8')
+            pg = await br.new_page(viewport={'width': 900, 'height': 700}, device_scale_factor=2)
+            await pg.goto(tmp.as_uri()); await pg.evaluate('document.fonts.ready'); await pg.wait_for_timeout(400)
+            await pg.locator('body').screenshot(path=str(kit / name), omit_background=True); await pg.close(); tmp.unlink()
         await br.close()
     big = Image.open(IMG / '_logo1024.png').convert('RGB')
     big.resize((512, 512), Image.LANCZOS).save(IMG / 'logo-512.png', optimize=True)

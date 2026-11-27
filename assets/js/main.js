@@ -80,8 +80,10 @@
   const icon = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ICONS.code}</svg>`;
 
   /* ---------- Logo (SVG inline, dua tone silver) ---------- */
+  const logoAG = () =>
+    `<svg class="logo" viewBox="0 0 48 48" role="img" aria-label="Logo Alfa Cipta Persada"><defs><linearGradient id="aH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#D4D5D9"/><stop offset="1" stop-color="#8B8C92"/></linearGradient><linearGradient id="bH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B4B6BB"/><stop offset=".55" stop-color="#7C7E85"/><stop offset="1" stop-color="#55575D"/></linearGradient></defs><polygon style="fill:url(#aH)" points="24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95"/><polygon style="fill:url(#bH)" points="24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25"/></svg>`;
   const logoA = (cls = '') =>
-    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Mark Alfa Cipta Persada"><polygon class="l1" points="24,4 45.33,36 37.33,36 24,16 10.67,36 2.67,36"/><polygon class="l2" points="24,21 38.67,43 32.67,43 24,30 15.33,43 9.33,43"/></svg>`;
+    `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Mark Alfa Cipta Persada"><polygon class="l1" points="24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95"/><polygon class="l2" points="24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25"/></svg>`;
 
   /* ---------- Komponen reusable ---------- */
   const brand = (site) =>
@@ -231,7 +233,7 @@
     <div class="btn-row">${button(h.ctaPrimary.label, h.ctaPrimary.href)}${button(h.ctaSecondary.label, waLink(site, site.contact.waGreeting), { ghost: true, ext: true, ico: 'message' })}</div>
   </div>
   <div class="vline" aria-hidden="true"></div>
-  <div class="hero-art fade-in" aria-hidden="true"><span class="orbit"></span>${logoA()}</div>
+  <div class="hero-art fade-in" aria-hidden="true"><span class="orbit"></span>${logoAG()}</div>
 </div></section>
 
 <section class="section section--alt"><div class="container">

@@ -40,7 +40,10 @@ rows = [('phone', c['whatsappDisplay']), ('mail', c['email'])] + ([('globe', sit
 rows_html = ''.join(f'<li>{ico(I[k])}<span>{v}</span></li>' for k, v in rows)
 front_site = f'<div class="fsite">{site_label}</div>' if site_label else f'<div class="fsite">{b["fullName"]}</div>'
 
-A_LOGO = '<svg viewBox="0 0 48 48"><polygon fill="#E6E6E6" points="24,4 45.33,36 37.33,36 24,16 10.67,36 2.67,36"/><polygon fill="#8A8D93" points="24,21 38.67,43 32.67,43 24,30 15.33,43 9.33,43"/></svg>'
+A_LOGO_G = ('<svg viewBox="0 0 48 48"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#D4D5D9"/><stop offset="1" stop-color="#8B8C92"/></linearGradient>'
+            '<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B4B6BB"/><stop offset=".55" stop-color="#7C7E85"/><stop offset="1" stop-color="#55575D"/></linearGradient></defs>'
+            '<polygon fill="url(#ga)" points="%s"/><polygon fill="url(#gb)" points="%s"/></svg>') % ("24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95", "24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25")
+A_LOGO = '<svg viewBox="0 0 48 48"><polygon fill="#E6E6E6" points="24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95"/><polygon fill="#8A8D93" points="24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25"/></svg>'
 
 html = f'''<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Kartu Nama - {o['name']} (siap cetak, bleed 3mm)</title><style>
 @font-face{{font-family:P;font-weight:300;src:url({fonts}/poppins-latin-300-normal.woff2)}}
@@ -56,7 +59,8 @@ html,body{{background:#0B0B0B}}
 .slogo{{left:14mm;top:26mm;width:17.5mm;height:17.5mm}}
 .vline{{left:36mm;top:23.5mm;width:.25mm;height:23.4mm;background:#6B7280}}
 .w1,.w2{{left:40mm;font-weight:400;font-size:8pt;letter-spacing:.2em;line-height:1}}
-.w1{{top:25mm;font-weight:500;font-size:9pt}} .w2{{top:30.4mm;color:#B9BDC6;font-weight:300}}
+.w1{{top:25mm;font-weight:500;font-size:9pt;display:flex;align-items:baseline;white-space:nowrap}}
+.lam{{display:inline-block;width:.8em;height:.7em;background:currentColor;clip-path:polygon(50% 0,100% 100%,79% 100%,50% 30%,21% 100%,0 100%);margin-right:.2em}} .w2{{top:30.4mm;color:#B9BDC6;font-weight:300}}
 .stext{{left:40mm;top:37.7mm;font-weight:400;font-size:4.3pt;letter-spacing:.15em;line-height:1;color:#E6E6E6}}
 .tag{{left:40mm;top:43.2mm;font-weight:300;font-size:6.6pt;letter-spacing:.12em;color:#B9BDC6}}
 .fline{{left:11mm;top:49.2mm;width:6mm;height:.25mm;background:#8A8D93}}
@@ -77,8 +81,8 @@ li{{display:flex;align-items:center;gap:2.2mm;font-weight:300;font-size:6.8pt;le
 </style></head><body>
 <section class="page">
   <svg class="bg" viewBox="0 0 96 61" preserveAspectRatio="none"><polygon points="85.1,0 96,0 96,11 81.2,11" fill="#1a1a1b"/><polygon points="63.2,61 96,13 96,61" fill="#131314"/><polygon points="69.6,61 96,22.4 96,31.8 76,61" fill="#262627"/><polygon points="78.8,61 96,35.9 96,43.5 84,61" fill="#3a3a3c"/></svg>
-  <div class="abs slogo">{A_LOGO}</div><div class="abs vline"></div>
-  <div class="abs w1">ALFA CIPTA</div><div class="abs w2">PERSADA</div>
+  <div class="abs slogo">{A_LOGO_G}</div><div class="abs vline"></div>
+  <div class="abs w1"><i class="lam"></i>LF<i class="lam"></i><span style="display:inline-block;width:.6em"></span>CIPT<i class="lam"></i></div><div class="abs w2">PERSADA</div>
   <div class="abs stext">SOFTWARE &amp; DIGITAL SOLUTIONS</div>
   <div class="abs tag">{b['tagline']}</div>
   <div class="abs fline"></div><div class="abs fsite">{site_label or b['fullName']}</div>
