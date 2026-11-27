@@ -27,7 +27,7 @@ FONT_CSS = ''.join(
 
 FAVICON = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   <rect width="48" height="48" rx="8" fill="#0B0B0B"/>
-  <g transform="translate(4 4) scale(.83)">{A_POLY}</g>
+  <g transform="translate(1.2 1.2) scale(.95)">{A_POLY}</g>
 </svg>
 '''
 
@@ -99,7 +99,7 @@ async def main(wa_out):
             await pg.goto(tmp.as_uri()); await pg.evaluate('document.fonts.ready'); await pg.wait_for_timeout(500)
             tmp.unlink()
             await pg.screenshot(path=str(out), omit_background=False, **kw); await pg.close()
-        for size, name in ((48, 'favicon-48.png'), (192, 'favicon-192.png'), (180, 'apple-touch-icon.png')):
+        for size, name in ((48, 'favicon-48.png'), (96, 'favicon-96.png'), (192, 'favicon-192.png'), (256, '_fav256.png'), (180, 'apple-touch-icon.png')):
             svg = FAVICON.replace('<svg ', f'<svg width="{size}" height="{size}" ', 1)
             await shot(ICON_HTML.format(svg=svg), size, size, IMG / name)
         await shot(LOGO_HTML, 1024, 1024, IMG / '_logo1024.png')
@@ -115,8 +115,9 @@ async def main(wa_out):
     big.resize((512, 512), Image.LANCZOS).save(IMG / 'logo-512.png', optimize=True)
     if wa_out: Image.open(kit / 'logo-wa-profil.png').convert('RGB').save(wa_out)
     Image.open(IMG / '_og.png').convert('RGB').save(IMG / 'og-image.jpg', quality=90, optimize=True)
-    Image.open(IMG / 'favicon-48.png').convert('RGBA').save(
+    Image.open(IMG / '_fav256.png').convert('RGBA').save(
         ROOT / 'favicon.ico', sizes=[(16, 16), (32, 32), (48, 48)])
+    (IMG / '_fav256.png').unlink()
     (IMG / '_logo1024.png').unlink(); (IMG / '_og.png').unlink()
     print('OK: favicon.svg/ico, favicon-48/192, apple-touch-icon, logo-512, og-image' + (f', WA -> {wa_out}' if wa_out else ''))
 
