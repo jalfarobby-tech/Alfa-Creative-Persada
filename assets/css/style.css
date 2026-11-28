@@ -595,3 +595,26 @@ h1,h2,h3,h4{color:#fff}
 /* Keterangan bidang usaha di footer */
 .subbrand{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:.6rem;font-weight:500;letter-spacing:.15em;white-space:nowrap;line-height:1;text-transform:uppercase;color:var(--silver)}
 .subbrand+p{margin-top:10px}
+
+/* ========== Kartu formulir yang keluar dari logo hero (desktop) ========== */
+.art-logo{position:absolute;inset:0;display:grid;place-items:center}
+.hero-card{display:none}
+@media (min-width:861px){
+  .hero-art{transform:translateY(var(--drift,0px));will-change:transform;--p:0}
+  .art-logo{opacity:calc(1 - var(--p)*1.15);transform:scale(calc(1 - var(--p)*.35))}
+  .hero-art::before,.hero-art::after{opacity:calc(1 - var(--p))}
+  .hero-card{display:grid;gap:14px;position:absolute;left:50%;top:50%;width:min(112%,360px);padding:26px;
+    background:linear-gradient(180deg,#141416,#0E0E10);border:1px solid var(--line-strong);border-radius:14px;
+    box-shadow:0 30px 70px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.03) inset;
+    opacity:var(--p);pointer-events:none;
+    transform:translate(-50%,-50%) translateY(calc((1 - var(--p))*34px)) scale(calc(.82 + var(--p)*.18))}
+  .hero-art.is-card .hero-card{pointer-events:auto}
+  .hero-card h3{font-size:.9rem;letter-spacing:.14em}
+  .hero-card p{font-size:.82rem;margin-top:-8px}
+  .hero-card .field{gap:6px}
+  .hero-card .field input{padding:11px 13px;font-size:.88rem}
+  .hero-card .btn{width:100%;justify-content:center;margin-top:4px}
+}
+@media (min-width:861px){.home-hero-pad,.hero{padding-bottom:calc(clamp(64px,9vw,112px) + 90px)}}
+
+.hero-art.fade-in{animation-fill-mode:backwards}

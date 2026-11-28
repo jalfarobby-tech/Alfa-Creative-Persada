@@ -354,7 +354,9 @@
       "portfolio": "Portfolio",
       "contact": "Kontak",
       "blog": "Blog"
-    }
+    },
+    "cardTitle": "Ceritakan kebutuhan Anda",
+    "cardSub": "Konsultasi awal gratis dan tanpa komitmen."
   },
   "blogPage": {
     "hero": {

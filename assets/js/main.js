@@ -233,7 +233,13 @@
     <div class="btn-row">${button(h.ctaPrimary.label, h.ctaPrimary.href)}${button(h.ctaSecondary.label, waLink(site, site.contact.waGreeting), { ghost: true, ext: true, ico: 'message' })}</div>
   </div>
   <div class="vline" aria-hidden="true"></div>
-  <div class="hero-art fade-in" aria-hidden="true"><span class="orbit"></span>${logoAG()}</div>
+  <div class="hero-art fade-in" id="hero-art"><span class="orbit" aria-hidden="true"></span><div class="art-logo" aria-hidden="true">${logoAG()}</div>
+    <form class="hero-card" id="hero-card" aria-label="${esc(UI.cardTitle)}">
+      <h3>${esc(UI.cardTitle)}</h3><p>${esc(UI.cardSub)}</p>
+      <div class="field"><label for="hc-name">${esc(UI.formName)}</label><input id="hc-name" name="name" type="text" autocomplete="name" required placeholder="${esc(UI.formNamePh)}" tabindex="-1"></div>
+      <div class="field"><label for="hc-msg">${esc(UI.formMessage)}</label><input id="hc-msg" name="message" type="text" required placeholder="${esc(UI.formMessagePh)}" tabindex="-1"></div>
+      <button class="btn" type="submit" tabindex="-1">${esc(UI.sendWa)}</button>
+    </form></div>
 </div></section>
 
 <section class="section section--alt"><div class="container">
@@ -663,6 +669,41 @@ ${ctaBand(site)}`;
     });
   }
 
+
+  /* Kartu formulir keluar dari logo hero saat halaman digulir (hanya desktop) */
+  function setupHeroCard(site) {
+    const art = $('#hero-art'), card = $('#hero-card');
+    if (!art || !card) return;
+    card.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const f = Object.fromEntries(new FormData(card));
+      window.open(waLink(site, `${UI.waIntro}\n\n${UI.waName}: ${f.name}\n${UI.waMsg}: ${f.message}`), '_blank', 'noopener');
+    });
+    const mq = window.matchMedia('(min-width:861px)');
+    const calm = window.matchMedia('(prefers-reduced-motion:reduce)');
+    const hero = art.closest('.hero');
+    let base = 0, ticking = false;
+    const measure = () => { base = art.getBoundingClientRect().bottom + window.scrollY - hero.getBoundingClientRect().top - window.scrollY; };
+    const update = () => {
+      ticking = false;
+      if (!mq.matches || calm.matches) { art.style.removeProperty('--p'); art.style.removeProperty('--drift'); art.classList.remove('is-card'); card.querySelectorAll('input,button').forEach((x) => { x.tabIndex = -1; }); return; }
+      const y = window.scrollY;
+      const p = Math.min(1, Math.max(0, (y - 30) / 260));
+      const room = Math.max(0, hero.offsetHeight - base - 8);
+      art.style.setProperty('--p', p.toFixed(3));
+      art.style.setProperty('--drift', Math.min(y * 1, room).toFixed(1) + 'px');
+      const on = p > 0.6;
+      if (on !== art.classList.contains('is-card')) {
+        art.classList.toggle('is-card', on);
+        card.querySelectorAll('input,button').forEach((x) => { x.tabIndex = on ? 0 : -1; });
+      }
+    };
+    const tick = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', tick, { passive: true });
+    window.addEventListener('resize', () => { measure(); tick(); });
+    measure(); update();
+  }
+
   function setupReveal() {
     const els = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
@@ -746,6 +787,7 @@ ${ctaBand(site)}`;
       setupPhotoFallback();
       setupPortfolioFilter();
       setupContactForm(site);
+      setupHeroCard(site);
       injectSEO(site, data);
       setupReveal();
       setupMotion();

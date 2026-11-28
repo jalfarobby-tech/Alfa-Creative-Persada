@@ -254,7 +254,9 @@
       "portfolio": "Portfolio",
       "contact": "Contact",
       "blog": "Blog"
-    }
+    },
+    "cardTitle": "Tell us what you need",
+    "cardSub": "Free initial consultation, no commitment."
   },
   "seo": {
     "pages": {
