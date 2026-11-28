@@ -159,16 +159,17 @@
 </div></section>`;
   };
 
-  const flyForm = (id, hero) => `<form class="fly${hero ? ' fly--hero' : ''}" id="${id}" aria-label="${esc(UI.cardTitle)}"><div class="fly-form">
+  const flyForm = (id, hero, services) => `<form class="fly${hero ? ' fly--hero' : ''}" id="${id}" aria-label="${esc(UI.cardTitle)}"><div class="fly-form">
       <h3>${esc(UI.cardTitle)}</h3><p>${esc(UI.cardSub)}</p>
       <div class="field"><label for="${id}-name">${esc(UI.formName)}</label><input id="${id}-name" name="name" type="text" autocomplete="name" required placeholder="${esc(UI.formNamePh)}"></div>
+      <div class="field"><label for="${id}-svc">${esc(UI.formService)}</label><select id="${id}-svc" name="service"><option value="">${esc(UI.formServicePh)}</option>${services.services.map((s) => `<option value="${esc(s.title)}">${esc(s.title)}</option>`).join('')}<option value="${esc(UI.formOther)}">${esc(UI.formOther)}</option></select></div>
       <div class="field"><label for="${id}-msg">${esc(UI.formMessage)}</label><input id="${id}-msg" name="message" type="text" required placeholder="${esc(UI.formMessagePh)}"></div>
       <button class="btn" type="submit">${esc(UI.sendWa)}</button></div></form>`;
 
-  const ctaBand = (site, withSlot) => {
+  const ctaBand = (site, withSlot, services) => {
     const c = site.home.cta;
     const body = `<span class="eyebrow">${esc(c.eyebrow)}</span><h2>${esc(c.title)}</h2><p>${esc(c.text)}</p><div class="btn-row">${button(UI.chatWa, waLink(site, site.contact.waGreeting), { ext: true, ico: 'message' })}${button(UI.contactPage, 'contact.html', { ghost: true })}</div>`;
-    return `<section class="cta-band${withSlot ? ' cta-split' : ''}"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal">${withSlot ? `<div class="cta-text">${body}</div><div class="fly-slot" id="fly-slot">${flyForm('cta-card', false)}</div>` : body}</div></section>`;
+    return `<section class="cta-band${withSlot ? ' cta-split' : ''}"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal">${withSlot ? `<div class="cta-text">${body}</div><div class="fly-slot" id="fly-slot">${flyForm('cta-card', false, services)}</div>` : body}</div></section>`;
   };
 
 
@@ -241,7 +242,7 @@
     <div class="btn-row">${button(h.ctaPrimary.label, h.ctaPrimary.href)}${button(h.ctaSecondary.label, waLink(site, site.contact.waGreeting), { ghost: true, ext: true, ico: 'message' })}</div>
   </div>
   <div class="vline" aria-hidden="true"></div>
-  <div class="hero-art fade-in" id="hero-art"><span class="orbit" aria-hidden="true"></span><div class="art-logo" aria-hidden="true">${logoAG()}</div>${flyForm('fly', true)}</div>
+  <div class="hero-art fade-in" id="hero-art"><span class="orbit" aria-hidden="true"></span><div class="art-logo" aria-hidden="true">${logoAG()}</div>${flyForm('fly', true, services)}</div>
 </div></section>
 
 <section class="section section--alt"><div class="container">
@@ -256,7 +257,7 @@
 ${stackSection(stack, site.home.stackIntro, true)}
 ${blogSection(site, blog)}
 ${faqSection({ faq })}
-${ctaBand(site, true)}`;
+${ctaBand(site, true, services)}`;
   }
 
   /* ---------- Halaman: About ---------- */
@@ -678,7 +679,7 @@ ${ctaBand(site)}`;
     document.querySelectorAll('form.fly').forEach((f) => f.addEventListener('submit', (e) => {
       e.preventDefault();
       const d = Object.fromEntries(new FormData(f));
-      window.open(waLink(site, `${UI.waIntro}\n\n${UI.waName}: ${d.name}\n${UI.waMsg}: ${d.message}`), '_blank', 'noopener');
+      window.open(waLink(site, `${UI.waIntro}\n\n${UI.waName}: ${d.name}${d.service ? `\n${UI.waService}: ${d.service}` : ''}\n${UI.waMsg}: ${d.message}`), '_blank', 'noopener');
     }));
     if (!art || !fly) return;
     const form = fly.querySelector('.fly-form'), logoEl = art.querySelector('.art-logo');
