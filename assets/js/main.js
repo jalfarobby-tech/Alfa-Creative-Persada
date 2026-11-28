@@ -159,10 +159,19 @@
 </div></section>`;
   };
 
-  const ctaBand = (site) => {
+  const flyForm = () => `<form class="fly" id="fly" aria-label="${esc(UI.cardTitle)}"><div class="fly-form">
+      <h3>${esc(UI.cardTitle)}</h3><p>${esc(UI.cardSub)}</p>
+      <div class="field"><label for="hc-name">${esc(UI.formName)}</label><input id="hc-name" name="name" type="text" autocomplete="name" required placeholder="${esc(UI.formNamePh)}"></div>
+      <div class="field"><label for="hc-msg">${esc(UI.formMessage)}</label><input id="hc-msg" name="message" type="text" required placeholder="${esc(UI.formMessagePh)}"></div>
+      <button class="btn" type="submit">${esc(UI.sendWa)}</button></div>
+    <button class="fly-chip" type="button" tabindex="-1" aria-label="${esc(UI.cardTitle)}"><span>${esc(UI.cardTitle)}</span>${icon('arrow')}</button></form>`;
+
+  const ctaBand = (site, withSlot) => {
     const c = site.home.cta;
-    return `<section class="cta-band"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal"><span class="eyebrow">${esc(c.eyebrow)}</span><h2>${esc(c.title)}</h2><p>${esc(c.text)}</p><div class="btn-row">${button(UI.chatWa, waLink(site, site.contact.waGreeting), { ext: true, ico: 'message' })}${button(UI.contactPage, 'contact.html', { ghost: true })}</div></div></section>`;
+    const body = `<span class="eyebrow">${esc(c.eyebrow)}</span><h2>${esc(c.title)}</h2><p>${esc(c.text)}</p><div class="btn-row">${button(UI.chatWa, waLink(site, site.contact.waGreeting), { ext: true, ico: 'message' })}${button(UI.contactPage, 'contact.html', { ghost: true })}</div>`;
+    return `<section class="cta-band${withSlot ? ' cta-split' : ''}"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal">${withSlot ? `<div class="cta-text">${body}</div><div class="fly-slot" id="fly-slot">${flyForm()}</div>` : body}</div></section>`;
   };
+
 
   /* ---------- Header & Footer ---------- */
   /* Pengalih bahasa: tampil hanya di halaman yang punya padanan */
@@ -233,13 +242,7 @@
     <div class="btn-row">${button(h.ctaPrimary.label, h.ctaPrimary.href)}${button(h.ctaSecondary.label, waLink(site, site.contact.waGreeting), { ghost: true, ext: true, ico: 'message' })}</div>
   </div>
   <div class="vline" aria-hidden="true"></div>
-  <div class="hero-art fade-in" id="hero-art"><span class="orbit" aria-hidden="true"></span><div class="art-logo" aria-hidden="true">${logoAG()}</div>
-    <form class="hero-card" id="hero-card" aria-label="${esc(UI.cardTitle)}">
-      <h3>${esc(UI.cardTitle)}</h3><p>${esc(UI.cardSub)}</p>
-      <div class="field"><label for="hc-name">${esc(UI.formName)}</label><input id="hc-name" name="name" type="text" autocomplete="name" required placeholder="${esc(UI.formNamePh)}" tabindex="-1"></div>
-      <div class="field"><label for="hc-msg">${esc(UI.formMessage)}</label><input id="hc-msg" name="message" type="text" required placeholder="${esc(UI.formMessagePh)}" tabindex="-1"></div>
-      <button class="btn" type="submit" tabindex="-1">${esc(UI.sendWa)}</button>
-    </form></div>
+  <div class="hero-art fade-in" id="hero-art"><span class="orbit" aria-hidden="true"></span><div class="art-logo" aria-hidden="true">${logoAG()}</div></div>
 </div></section>
 
 <section class="section section--alt"><div class="container">
@@ -254,7 +257,7 @@
 ${stackSection(stack, site.home.stackIntro, true)}
 ${blogSection(site, blog)}
 ${faqSection({ faq })}
-${ctaBand(site)}`;
+${ctaBand(site, true)}`;
   }
 
   /* ---------- Halaman: About ---------- */
@@ -670,38 +673,80 @@ ${ctaBand(site)}`;
   }
 
 
-  /* Kartu formulir keluar dari logo hero saat halaman digulir (hanya desktop) */
+  /* Kartu formulir: keluar dari logo hero, ikut turun, lalu menempel di bagian ajakan di bawah (desktop) */
   function setupHeroCard(site) {
-    const art = $('#hero-art'), card = $('#hero-card');
-    if (!art || !card) return;
-    card.addEventListener('submit', (e) => {
+    const art = $('#hero-art'), fly = $('#fly'), slot = $('#fly-slot');
+    if (!art || !fly || !slot) return;
+    fly.addEventListener('submit', (e) => {
       e.preventDefault();
-      const f = Object.fromEntries(new FormData(card));
+      const f = Object.fromEntries(new FormData(fly));
       window.open(waLink(site, `${UI.waIntro}\n\n${UI.waName}: ${f.name}\n${UI.waMsg}: ${f.message}`), '_blank', 'noopener');
     });
-    const mq = window.matchMedia('(min-width:861px)');
-    const calm = window.matchMedia('(prefers-reduced-motion:reduce)');
+    const form = fly.querySelector('.fly-form'), chip = fly.querySelector('.fly-chip');
+    const mq = window.matchMedia('(min-width:861px)'), calm = window.matchMedia('(prefers-reduced-motion:reduce)');
     const hero = art.closest('.hero');
-    let base = 0, ticking = false;
-    const measure = () => { base = art.getBoundingClientRect().bottom + window.scrollY - hero.getBoundingClientRect().top - window.scrollY; };
+    const W = 360, CW = 236, CH = 48, M = 24;
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const ease = (t) => t * t * (3 - 2 * t);
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const mix = (a, b, t) => ({ x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t), w: lerp(a.w, b.w, t), h: lerp(a.h, b.h, t) });
+    let flying = false, ticking = false, st = '';
+    const tabs = (formOn, chipOn) => {
+      form.querySelectorAll('input,button').forEach((x) => { x.tabIndex = formOn ? 0 : -1; });
+      chip.tabIndex = chipOn ? 0 : -1;
+    };
+    const measure = () => { slot.style.setProperty('--fh', (form.offsetHeight || 330) + 'px'); };
     const update = () => {
       ticking = false;
-      if (!mq.matches || calm.matches) { art.style.removeProperty('--p'); art.style.removeProperty('--drift'); art.classList.remove('is-card'); card.querySelectorAll('input,button').forEach((x) => { x.tabIndex = -1; }); return; }
-      const y = window.scrollY;
-      const p = Math.min(1, Math.max(0, (y - 30) / 260));
-      const room = Math.max(0, hero.offsetHeight - base - 8);
+      if (!flying) return;
+      const y = window.scrollY, vh = window.innerHeight, vw = document.documentElement.clientWidth;
+      const H = form.offsetHeight || 330;
+      const ar = art.getBoundingClientRect(), hr = hero.getBoundingClientRect(), sr = slot.getBoundingClientRect();
+      const p = clamp((y - 20) / 180);
       art.style.setProperty('--p', p.toFixed(3));
-      art.style.setProperty('--drift', Math.min(y * 1, room).toFixed(1) + 'px');
-      const on = p > 0.6;
-      if (on !== art.classList.contains('is-card')) {
-        art.classList.toggle('is-card', on);
-        card.querySelectorAll('input,button').forEach((x) => { x.tabIndex = on ? 0 : -1; });
-      }
+      const room = Math.max(0, hr.bottom + y - (ar.bottom + y) - 8);
+      const pin = Math.min(y, room);
+      const A = { x: ar.left + ar.width / 2 - W / 2, y: ar.top + y + ar.height / 2 - y + pin - H / 2, w: W, h: H };
+      const C = { x: vw - M - CW, y: vh - M - CH, w: CW, h: CH };
+      const S = { x: sr.left, y: sr.top, w: W, h: H };
+      const u = ease(clamp((y - Math.max(room + 40, 240)) / 240));
+      const s = ease(clamp((vh * 0.95 - sr.top) / (vh * 0.6)));
+      const R = mix(mix(A, C, u), S, s);
+      const c = u * (1 - s);
+      const pre = u === 0 && s === 0;
+      const op = pre ? p : 1;
+      fly.style.width = R.w.toFixed(1) + 'px';
+      fly.style.height = R.h.toFixed(1) + 'px';
+      fly.style.opacity = op.toFixed(3);
+      fly.style.borderRadius = lerp(14, 24, c).toFixed(1) + 'px';
+      fly.style.transform = `translate3d(${R.x.toFixed(1)}px,${R.y.toFixed(1)}px,0)` + (pre ? ` translateY(${((1 - p) * 34).toFixed(1)}px) scale(${(0.82 + 0.18 * p).toFixed(3)})` : '');
+      form.style.opacity = (1 - clamp(c * 1.8)).toFixed(3);
+      chip.style.opacity = clamp(c * 1.8 - 0.8).toFixed(3);
+      const formOn = c < 0.1 && op > 0.9, chipOn = c > 0.7;
+      const k = (formOn ? 'f' : '') + (chipOn ? 'c' : '');
+      if (k !== st) { st = k; fly.classList.toggle('is-form', formOn); fly.classList.toggle('is-chip', chipOn); tabs(formOn, chipOn); }
     };
     const tick = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    const sync = () => {
+      const want = mq.matches && !calm.matches;
+      if (want && !flying) {
+        flying = true; document.body.appendChild(fly); fly.classList.add('is-fly'); st = '#'; measure(); update();
+      } else if (!want && flying) {
+        flying = false; fly.classList.remove('is-fly', 'is-form', 'is-chip');
+        ['width', 'height', 'opacity', 'transform', 'borderRadius'].forEach((q) => fly.style.removeProperty(q === 'borderRadius' ? 'border-radius' : q));
+        form.style.removeProperty('opacity'); chip.style.removeProperty('opacity');
+        art.style.removeProperty('--p'); slot.appendChild(fly); tabs(true, false); st = '';
+      } else if (want) { measure(); tick(); }
+    };
+    chip.addEventListener('click', () => {
+      const r = slot.getBoundingClientRect();
+      window.scrollTo({ top: window.scrollY + r.top - (window.innerHeight - r.height) / 2, behavior: 'smooth' });
+    });
     window.addEventListener('scroll', tick, { passive: true });
-    window.addEventListener('resize', () => { measure(); tick(); });
-    measure(); update();
+    window.addEventListener('resize', sync);
+    window.addEventListener('load', sync);
+    mq.addEventListener && mq.addEventListener('change', sync);
+    sync();
   }
 
   function setupReveal() {

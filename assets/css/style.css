@@ -596,25 +596,32 @@ h1,h2,h3,h4{color:#fff}
 .subbrand{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:.6rem;font-weight:500;letter-spacing:.15em;white-space:nowrap;line-height:1;text-transform:uppercase;color:var(--silver)}
 .subbrand+p{margin-top:10px}
 
-/* ========== Kartu formulir yang keluar dari logo hero (desktop) ========== */
+/* ========== Kartu formulir: keluar dari logo, ikut turun, menempel di bagian ajakan ========== */
 .art-logo{position:absolute;inset:0;display:grid;place-items:center}
-.hero-card{display:none}
+.cta-split .container{max-width:var(--container);display:grid;gap:40px;align-items:center}
+.fly-slot{width:100%;max-width:360px;margin-inline:auto;min-height:var(--fh,330px)}
+.fly{position:relative;background:linear-gradient(180deg,#141416,#0E0E10);border:1px solid var(--line-strong);border-radius:14px;
+  box-shadow:0 30px 70px -34px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.03) inset;text-align:left}
+.fly-form{display:grid;gap:14px;padding:26px}
+.fly-form h3{font-size:.9rem;letter-spacing:.14em}
+.fly-form p{font-size:.82rem;margin:-8px 0 0}
+.fly-form .field{gap:6px}.fly-form .field input{padding:11px 13px;font-size:.88rem}
+.fly-form .btn{width:100%;justify-content:center;margin-top:4px}
+.fly-chip{display:none}
+.fly.is-fly{position:fixed;left:0;top:0;z-index:60;overflow:hidden;will-change:transform,width,height;opacity:0}
+.fly.is-fly .fly-form{position:absolute;left:0;top:0;width:360px;pointer-events:none}
+.fly.is-fly.is-form .fly-form{pointer-events:auto}
+.fly.is-fly .fly-chip{display:flex;position:absolute;inset:0;align-items:center;justify-content:space-between;gap:10px;padding:0 18px;
+  background:none;border:0;color:var(--text);font:500 .7rem var(--font);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;opacity:0;pointer-events:none;white-space:nowrap}
+.fly.is-fly.is-chip .fly-chip{pointer-events:auto}
+.fly-chip .icon,.fly-chip svg{width:16px;height:16px;flex:none}
 @media (min-width:861px){
-  .hero-art{transform:translateY(var(--drift,0px));will-change:transform;--p:0}
-  .art-logo{opacity:calc(1 - var(--p)*1.15);transform:scale(calc(1 - var(--p)*.35))}
-  .hero-art::before,.hero-art::after{opacity:calc(1 - var(--p))}
-  .hero-card{display:grid;gap:14px;position:absolute;left:50%;top:50%;width:min(112%,360px);padding:26px;
-    background:linear-gradient(180deg,#141416,#0E0E10);border:1px solid var(--line-strong);border-radius:14px;
-    box-shadow:0 30px 70px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.03) inset;
-    opacity:var(--p);pointer-events:none;
-    transform:translate(-50%,-50%) translateY(calc((1 - var(--p))*34px)) scale(calc(.82 + var(--p)*.18))}
-  .hero-art.is-card .hero-card{pointer-events:auto}
-  .hero-card h3{font-size:.9rem;letter-spacing:.14em}
-  .hero-card p{font-size:.82rem;margin-top:-8px}
-  .hero-card .field{gap:6px}
-  .hero-card .field input{padding:11px 13px;font-size:.88rem}
-  .hero-card .btn{width:100%;justify-content:center;margin-top:4px}
+  .cta-split .container{grid-template-columns:1fr 360px}
+  .cta-split .cta-text{text-align:left}
+  .cta-split h2::after{margin-inline:0}
+  .cta-split .cta-text p{margin-inline:0;max-width:460px}
+  .cta-split .btn-row{justify-content:flex-start}
+  .fly-slot{margin-inline:0}
+  .art-logo{opacity:calc(1 - var(--p,0)*1.15);transform:scale(calc(1 - var(--p,0)*.35))}
+  .hero-art::before,.hero-art::after{opacity:calc(1 - var(--p,0))}
 }
-@media (min-width:861px){.home-hero-pad,.hero{padding-bottom:calc(clamp(64px,9vw,112px) + 90px)}}
-
-.hero-art.fade-in{animation-fill-mode:backwards}
