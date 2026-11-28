@@ -622,6 +622,11 @@ h1,h2,h3,h4{color:#fff}
   .cta-split .cta-text p{margin-inline:0;max-width:460px}
   .cta-split .btn-row{justify-content:flex-start}
   .fly-slot{margin-inline:0}
-  .art-logo{opacity:calc(1 - var(--p,0)*1.15);transform:scale(calc(1 - var(--p,0)*.35))}
-  .hero-art::before,.hero-art::after{opacity:calc(1 - var(--p,0))}
+  .art-logo.is-fly{position:fixed;inset:auto;left:0;top:0;z-index:59;pointer-events:none}
+  .art-logo .ch1{transform:translateY(calc(var(--o,0)*-9px))}
+  .art-logo .ch2{transform:translateY(calc(var(--o,0)*9px))}
+  .art-logo .logo{transform:scale(calc(1 + var(--o,0)*.12))}
+  .hero-art::before,.hero-art::after{opacity:calc(1 - var(--o,0))}
 }
+.art-logo .logo{width:62%;height:62%;margin:auto;filter:drop-shadow(0 0 40px rgba(192,192,192,.18))}
+@media (prefers-reduced-motion:no-preference){.art-logo .logo{animation:float 9s ease-in-out infinite}}

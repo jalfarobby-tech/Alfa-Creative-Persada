@@ -81,7 +81,7 @@
 
   /* ---------- Logo (SVG inline, dua tone silver) ---------- */
   const logoAG = () =>
-    `<svg class="logo" viewBox="0 0 48 48" role="img" aria-label="Logo Alfa Cipta Persada"><defs><linearGradient id="aH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#D4D5D9"/><stop offset="1" stop-color="#8B8C92"/></linearGradient><linearGradient id="bH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B4B6BB"/><stop offset=".55" stop-color="#7C7E85"/><stop offset="1" stop-color="#55575D"/></linearGradient></defs><polygon style="fill:url(#aH)" points="24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95"/><polygon style="fill:url(#bH)" points="24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25"/></svg>`;
+    `<svg class="logo" viewBox="0 0 48 48" role="img" aria-label="Logo Alfa Cipta Persada"><defs><linearGradient id="aH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#D4D5D9"/><stop offset="1" stop-color="#8B8C92"/></linearGradient><linearGradient id="bH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B4B6BB"/><stop offset=".55" stop-color="#7C7E85"/><stop offset="1" stop-color="#55575D"/></linearGradient></defs><polygon class="ch ch1" style="fill:url(#aH)" points="24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95"/><polygon class="ch ch2" style="fill:url(#bH)" points="24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25"/></svg>`;
   const logoA = (cls = '') =>
     `<svg class="logo ${cls}" viewBox="0 0 48 48" role="img" aria-label="Mark Alfa Cipta Persada"><polygon class="l1" points="24,8.75 46,32.95 38.6,32.95 24,16.89 9.4,32.95 2,32.95"/><polygon class="l2" points="24,21.79 39.87,39.25 32.47,39.25 24,29.93 15.53,39.25 8.13,39.25"/></svg>`;
 
@@ -682,7 +682,8 @@ ${ctaBand(site)}`;
       const f = Object.fromEntries(new FormData(fly));
       window.open(waLink(site, `${UI.waIntro}\n\n${UI.waName}: ${f.name}\n${UI.waMsg}: ${f.message}`), '_blank', 'noopener');
     });
-    const form = fly.querySelector('.fly-form'), chip = fly.querySelector('.fly-chip');
+    const form = fly.querySelector('.fly-form'), chip = fly.querySelector('.fly-chip'), logoEl = art.querySelector('.art-logo');
+    let box = null;
     const mq = window.matchMedia('(min-width:861px)'), calm = window.matchMedia('(prefers-reduced-motion:reduce)');
     const hero = art.closest('.hero');
     const W = 360, CW = 236, CH = 48, M = 24;
@@ -701,28 +702,30 @@ ${ctaBand(site)}`;
       if (!flying) return;
       const y = window.scrollY, vh = window.innerHeight, vw = document.documentElement.clientWidth;
       const H = form.offsetHeight || 330;
-      const ar = art.getBoundingClientRect(), hr = hero.getBoundingClientRect(), sr = slot.getBoundingClientRect();
-      const p = clamp((y - 20) / 180);
-      art.style.setProperty('--p', p.toFixed(3));
-      const room = Math.max(0, hr.bottom + y - (ar.bottom + y) - 8);
-      const pin = Math.min(y, room);
-      const A = { x: ar.left + ar.width / 2 - W / 2, y: ar.top + y + ar.height / 2 - y + pin - H / 2, w: W, h: H };
+      const ar = art.getBoundingClientRect(), sr = slot.getBoundingClientRect();
+      const p = clamp((y - 20) / 340);
+      const open = ease(clamp(p / 0.5));
+      const g = ease(clamp((p - 0.2) / 0.8));
+      art.style.setProperty('--o', open.toFixed(3));
+      if (box) { logoEl.style.setProperty('--o', open.toFixed(3)); logoEl.style.opacity = (1 - open).toFixed(3); logoEl.style.visibility = open >= 1 ? 'hidden' : 'visible'; }
+      const A = { x: ar.left + ar.width / 2 - W / 2, y: ar.top + y + ar.height / 2 - H / 2, w: W, h: H };
       const C = { x: vw - M - CW, y: vh - M - CH, w: CW, h: CH };
       const S = { x: sr.left, y: sr.top, w: W, h: H };
-      const u = ease(clamp((y - Math.max(room + 40, 240)) / 240));
+      const u = ease(clamp((y - 400) / 320));
       const s = ease(clamp((vh * 0.95 - sr.top) / (vh * 0.6)));
       const R = mix(mix(A, C, u), S, s);
       const c = u * (1 - s);
       const pre = u === 0 && s === 0;
-      const op = pre ? p : 1;
+      const op = pre ? clamp(g * 3) : 1;
       fly.style.width = R.w.toFixed(1) + 'px';
       fly.style.height = R.h.toFixed(1) + 'px';
       fly.style.opacity = op.toFixed(3);
       fly.style.borderRadius = lerp(14, 24, c).toFixed(1) + 'px';
-      fly.style.transform = `translate3d(${R.x.toFixed(1)}px,${R.y.toFixed(1)}px,0)` + (pre ? ` translateY(${((1 - p) * 34).toFixed(1)}px) scale(${(0.82 + 0.18 * p).toFixed(3)})` : '');
-      form.style.opacity = (1 - clamp(c * 1.8)).toFixed(3);
+      fly.style.transform = `translate3d(${R.x.toFixed(1)}px,${R.y.toFixed(1)}px,0)` + (pre ? ` scale(${(0.34 + 0.66 * g).toFixed(3)})` : '');
+      const fo = pre ? clamp((g - 0.5) * 2.2) : 1 - clamp(c * 1.8);
+      form.style.opacity = fo.toFixed(3);
       chip.style.opacity = clamp(c * 1.8 - 0.8).toFixed(3);
-      const formOn = c < 0.1 && op > 0.9, chipOn = c > 0.7;
+      const formOn = c < 0.1 && fo > 0.9, chipOn = c > 0.7;
       const k = (formOn ? 'f' : '') + (chipOn ? 'c' : '');
       if (k !== st) { st = k; fly.classList.toggle('is-form', formOn); fly.classList.toggle('is-chip', chipOn); tabs(formOn, chipOn); }
     };
@@ -730,13 +733,24 @@ ${ctaBand(site)}`;
     const sync = () => {
       const want = mq.matches && !calm.matches;
       if (want && !flying) {
+        const r = art.getBoundingClientRect();
+        box = { x: r.left, y: r.top + window.scrollY, w: r.width, h: r.height };
+        logoEl.style.cssText = `width:${box.w}px;height:${box.h}px;transform:translate3d(${box.x}px,${box.y}px,0)`;
+        logoEl.classList.add('is-fly'); document.body.appendChild(logoEl);
         flying = true; document.body.appendChild(fly); fly.classList.add('is-fly'); st = '#'; measure(); update();
       } else if (!want && flying) {
         flying = false; fly.classList.remove('is-fly', 'is-form', 'is-chip');
         ['width', 'height', 'opacity', 'transform', 'borderRadius'].forEach((q) => fly.style.removeProperty(q === 'borderRadius' ? 'border-radius' : q));
         form.style.removeProperty('opacity'); chip.style.removeProperty('opacity');
-        art.style.removeProperty('--p'); slot.appendChild(fly); tabs(true, false); st = '';
-      } else if (want) { measure(); tick(); }
+        logoEl.classList.remove('is-fly'); logoEl.removeAttribute('style'); art.appendChild(logoEl); box = null;
+        art.style.removeProperty('--o'); slot.appendChild(fly); tabs(true, false); st = '';
+      } else if (want) {
+        const r = art.getBoundingClientRect();
+        box = { x: r.left, y: r.top + window.scrollY, w: r.width, h: r.height };
+        logoEl.style.width = box.w + 'px'; logoEl.style.height = box.h + 'px';
+        logoEl.style.transform = `translate3d(${box.x}px,${box.y}px,0)`;
+        measure(); tick();
+      }
     };
     chip.addEventListener('click', () => {
       const r = slot.getBoundingClientRect();
