@@ -696,22 +696,24 @@ ${ctaBand(site)}`;
     const update = () => {
       ticking = false;
       if (!flying || !box) return;
-      const y = window.scrollY, H = form.offsetHeight || 330;
-      const p = clamp((y - 20) / 340);
+      const lock = fly.matches(':focus-within');
+      const y = lock ? 0 : window.scrollY, H = form.offsetHeight || 330;
+      const p = lock ? 1 : clamp((y - 20) / 340);
       const open = ease(clamp(p / 0.5));
       const g = ease(clamp((p - 0.2) / 0.8));
-      const gone = ease(clamp((y - END) / 280));
+      const gone = lock ? 0 : ease(clamp((y - END) / 280));
+      const ys = lock ? 0 : y;
       logoEl.style.setProperty('--o', open.toFixed(3));
       art.style.setProperty('--o', open.toFixed(3));
       logoEl.style.opacity = (1 - open).toFixed(3);
       logoEl.style.visibility = open >= 1 ? 'hidden' : 'visible';
       const cx = box.x + box.w / 2, cy = box.y + box.h / 2;
-      const up = Math.max(0, y - END);
+      const up = Math.max(0, ys - END);
       fly.style.width = W + 'px'; fly.style.height = H + 'px';
       fly.style.opacity = (clamp(g * 3) * (1 - gone)).toFixed(3);
       fly.style.transform = `translate3d(${(cx - W / 2).toFixed(1)}px,${(cy - H / 2 - up).toFixed(1)}px,0) scale(${(0.34 + 0.66 * g).toFixed(3)})`;
       form.style.opacity = clamp((g - 0.5) * 2.2).toFixed(3);
-      const live = g > 0.95 && gone < 0.5;
+      const live = g > 0.55 && gone < 0.9;
       if (live !== on) { on = live; fly.classList.toggle('is-form', live); form.querySelectorAll('input,button').forEach((x) => { x.tabIndex = live ? 0 : -1; }); }
     };
     const tick = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
@@ -726,6 +728,7 @@ ${ctaBand(site)}`;
         art.style.removeProperty('--o'); box = null;
       } else if (want) { place(); tick(); }
     };
+    fly.addEventListener('focusin', tick); fly.addEventListener('focusout', () => setTimeout(tick, 0));
     window.addEventListener('scroll', tick, { passive: true });
     window.addEventListener('resize', sync);
     window.addEventListener('load', sync);

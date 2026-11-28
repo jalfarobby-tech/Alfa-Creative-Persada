@@ -608,9 +608,9 @@ h1,h2,h3,h4{color:#fff}
 .fly-form .field{gap:6px}.fly-form .field input{padding:11px 13px;font-size:.88rem}
 .fly-form .btn{width:100%;justify-content:center;margin-top:4px}
 .fly--hero{display:none}
-.fly.is-fly{display:block;position:fixed;left:0;top:0;z-index:59;overflow:hidden;will-change:transform,opacity;opacity:0}
-.fly.is-fly .fly-form{position:absolute;left:0;top:0;width:360px;pointer-events:none}
-.fly.is-fly.is-form .fly-form{pointer-events:auto}
+.fly.is-fly{display:block;position:fixed;left:0;top:0;z-index:59;overflow:hidden;will-change:transform,opacity;opacity:0;pointer-events:none}
+.fly.is-fly .fly-form{position:absolute;left:0;top:0;width:360px}
+.fly.is-fly.is-form{pointer-events:auto}
 @media (min-width:861px){
   .cta-split .container{grid-template-columns:1fr 360px}
   .cta-split .cta-text{text-align:left}

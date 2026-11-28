@@ -111,7 +111,7 @@
     "cta": {
       "eyebrow": "Mulai Proyek",
       "title": "Punya ide? Mari wujudkan.",
-      "text": "Ceritakan kebutuhan Anda. Konsultasi awal gratis dan tanpa komitmen."
+      "text": "Ceritakan kebutuhan Anda. Kami bantu memetakan solusi yang paling tepat."
     },
     "stackIntro": {
       "eyebrow": "Teknologi",
@@ -210,7 +210,7 @@
     "hero": {
       "eyebrow": "Kontak",
       "title": "Mari Bicara",
-      "text": "Ceritakan kebutuhan Anda. Konsultasi awal gratis dan tanpa komitmen."
+      "text": "Ceritakan kebutuhan Anda. Kami bantu memetakan solusi yang paling tepat."
     },
     "info": {
       "title": "Informasi Kontak",
@@ -238,7 +238,7 @@
       "home": {
         "path": "",
         "title": "Alfa Cipta Persada | Jasa Website, Sistem & Otomasi",
-        "description": "Jasa pembuatan website, sistem informasi, aplikasi, dashboard bisnis, dan otomasi. Rapi, cepat, dan mobile-first. Konsultasi awal gratis."
+        "description": "Jasa pembuatan website, sistem informasi, aplikasi, dashboard bisnis, dan otomasi. Rapi, cepat, dan mobile-first. Diskusikan kebutuhan Anda bersama kami."
       },
       "about": {
         "path": "about.html",
@@ -257,7 +257,7 @@
       },
       "contact": {
         "path": "contact.html",
-        "title": "Kontak & Konsultasi Gratis | Alfa Cipta Persada",
+        "title": "Kontak & Diskusi Kebutuhan | Alfa Cipta Persada",
         "description": "Hubungi Alfa Cipta Persada untuk konsultasi website, sistem, aplikasi, dashboard, atau otomasi. Respon via WhatsApp atau email, biasanya dalam 1x24 jam."
       },
       "products": {
@@ -356,7 +356,7 @@
       "blog": "Blog"
     },
     "cardTitle": "Ceritakan kebutuhan Anda",
-    "cardSub": "Konsultasi awal gratis dan tanpa komitmen."
+    "cardSub": "Ceritakan secara singkat, kami bantu memetakan solusinya."
   },
   "blogPage": {
     "hero": {

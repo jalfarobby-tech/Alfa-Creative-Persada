@@ -5,58 +5,58 @@
   "items": [
     {
       "q": "How long does it take to build a website or system?",
-      "a": "It depends on the scope. A company profile or landing page usually takes from a few days to about two weeks, while a custom information system or dashboard is built in stages and we give the estimate after the consultation.",
+      "a": "Timing is agreed together once the requirements are clear. The main factors are the scope of work and how complete the material from you is. A simple website is usually quicker than a custom information system or dashboard, which is built in stages.",
       "home": true
     },
     {
       "q": "How much does a website or application cost?",
-      "a": "Cost depends on your needs, features, and complexity. The first consultation is free, then we send a written estimate of cost and time before work starts, so there are no hidden fees.",
+      "a": "Cost depends on your needs, features, and complexity. Once we understand what you need, we send a written estimate of cost and time before work starts.",
       "home": true
     },
     {
       "q": "Can you build a system or dashboard around our business workflow?",
-      "a": "Yes. We build custom information systems, dashboards, and automation that follow your workflow, complete with user management, access rights, and reports.",
+      "a": "Yes, within the agreed scope. We build information systems, dashboards, and automation that follow your business workflow, including user management, access rights, and reports.",
       "home": true
     },
     {
       "q": "Does the website work well on phones?",
-      "a": "Yes. Every website and application we build is mobile-first and responsive, and tested on various screen sizes before release."
+      "a": "Yes. Our websites and applications are designed mobile-first and responsive, and tested on several common screen sizes before release."
     },
     {
       "q": "Who owns the domain and hosting?",
-      "a": "The domain and hosting are registered in your name so you keep full control. We help with the purchase, setup, and deployment.",
+      "a": "We recommend registering the domain and hosting in your name so you stay in control. We help with the purchase, setup, and going live.",
       "home": true
     },
     {
       "q": "Is there support after the website is finished?",
-      "a": "Yes. We stay with you after release, including bug fixes and help with usage. The scope of ongoing support is agreed before the project starts."
+      "a": "After release, we help resolve issues that come from our work within a period agreed together. Regular maintenance or further development is optional and discussed separately."
     },
     {
       "q": "How is data security handled?",
-      "a": "We apply authentication, role-based access control (RBAC), and database security rules as needed, so data is only reachable by authorized people."
+      "a": "We apply security practices suited to the project, such as authentication, role-based access, and database security rules, to limit data access to authorized people."
     },
     {
-      "q": "What should we prepare before the consultation?",
-      "a": "Just a rough idea of your goals, who will use it, and reference examples if you have any. No concept yet is fine, we help shape it during the consultation.",
+      "q": "What should we prepare before we talk?",
+      "a": "Just a rough idea of your goals, who will use it, and reference examples if you have any. No concept yet is fine; we shape it together during the discussion.",
       "home": true
     },
     {
       "q": "How does payment work?",
-      "a": "Usually in stages: a down payment at the start, then the balance once the work is finished and approved. The exact scheme is written into the estimate so it is clear from the beginning.",
+      "a": "The payment scheme is agreed at the start and put in writing. It is usually in stages: a down payment before work begins and the balance once the work is finished and approved.",
       "home": true
     },
     {
       "q": "Do we own the source code and design?",
-      "a": "The deliverables, including code and design, are handed over to you after full payment. Third-party services such as hosting or databases follow each provider's terms. We explain everything before the project begins."
+      "a": "Rights to the deliverables, including code and design, are discussed and agreed before the project starts and put in a written agreement. Third-party services such as hosting or databases follow each provider's terms."
     },
     {
       "q": "How many revisions are included?",
-      "a": "Revisions during the build are included, and the number of rounds is agreed at the start so both sides know what to expect. Large changes outside the original scope are quoted separately before any work is done.",
+      "a": "The number of revision rounds is agreed at the start according to the project scope. Changes outside the original scope are discussed separately and estimated before any work is done.",
       "home": true
     },
     {
       "q": "Are there monthly fees after the website is done?",
-      "a": "Recurring costs are usually just the domain and hosting, paid yearly to the provider. Maintenance or further development is optional and agreed separately if you need it."
+      "a": "Recurring costs are usually just the domain and hosting paid to the provider. Maintenance or further development is optional and agreed separately if you need it."
     }
   ]
 }

@@ -5,62 +5,62 @@
   "items": [
     {
       "q": "Berapa lama pembuatan website atau sistem?",
-      "a": "Tergantung lingkup. Website company profile atau landing page umumnya selesai dalam hitungan hari hingga sekitar dua minggu, sedangkan sistem informasi atau dashboard custom dikerjakan bertahap dan estimasinya kami sampaikan setelah konsultasi.",
+      "a": "Waktu pengerjaan ditentukan bersama setelah kebutuhan jelas. Faktor utamanya adalah lingkup pekerjaan dan kelengkapan materi dari Anda. Website sederhana umumnya lebih singkat dibanding sistem informasi atau dashboard custom, yang dikerjakan bertahap.",
       "home": true
     },
     {
       "q": "Berapa biaya pembuatan website atau aplikasi?",
-      "a": "Biaya bergantung pada kebutuhan, fitur, dan tingkat kerumitan. Konsultasi awal gratis, lalu kami kirim estimasi biaya dan waktu secara tertulis sebelum pengerjaan dimulai, sehingga tidak ada biaya tersembunyi.",
+      "a": "Biaya bergantung pada kebutuhan, fitur, dan tingkat kerumitan. Setelah kami memahami kebutuhan Anda, kami kirim estimasi biaya dan waktu secara tertulis sebelum pengerjaan dimulai.",
       "home": true
     },
     {
       "q": "Apakah bisa dibuatkan sistem atau dashboard sesuai alur bisnis kami?",
-      "a": "Bisa. Kami membangun sistem informasi, dashboard, dan otomasi custom yang mengikuti alur kerja bisnis Anda, lengkap dengan manajemen pengguna, hak akses, dan laporan.",
+      "a": "Bisa, sesuai lingkup yang disepakati. Kami membangun sistem informasi, dashboard, dan otomasi yang mengikuti alur kerja bisnis Anda, termasuk manajemen pengguna, hak akses, dan laporan.",
       "home": true
     },
     {
       "q": "Apakah website bisa dibuka dengan nyaman di ponsel?",
-      "a": "Ya. Semua website dan aplikasi kami dirancang mobile-first dan responsif, lalu diuji di berbagai ukuran layar sebelum dirilis."
+      "a": "Ya. Website dan aplikasi kami dirancang mobile-first dan responsif, serta diuji di beberapa ukuran layar yang umum sebelum dirilis."
     },
     {
       "q": "Siapa pemilik domain dan hosting-nya?",
-      "a": "Domain dan hosting didaftarkan atas nama Anda agar kendali penuh tetap ada pada Anda. Kami membantu proses pembelian, pengaturan, dan deploy.",
+      "a": "Kami menyarankan domain dan hosting didaftarkan atas nama Anda agar kendali tetap ada pada Anda. Kami membantu proses pembelian, pengaturan, dan penayangan.",
       "home": true
     },
     {
       "q": "Apakah ada dukungan setelah website selesai?",
-      "a": "Ada. Kami mendampingi setelah rilis, termasuk perbaikan bug dan bantuan penggunaan. Cakupan dukungan lanjutan disepakati bersama sebelum proyek dimulai."
+      "a": "Setelah rilis, kami membantu menangani kendala yang berasal dari hasil pekerjaan dalam periode yang disepakati bersama. Perawatan rutin atau pengembangan lanjutan bersifat opsional dan dibahas terpisah."
     },
     {
       "q": "Bagaimana keamanan data di sistem yang dibuat?",
-      "a": "Kami menerapkan autentikasi, pembagian hak akses berbasis peran (RBAC), dan aturan keamanan database sesuai kebutuhan, supaya data hanya bisa diakses oleh pihak yang berwenang."
+      "a": "Kami menerapkan praktik keamanan sesuai kebutuhan proyek, seperti autentikasi, pembagian hak akses berdasarkan peran, dan aturan keamanan database, untuk membatasi akses data hanya kepada pihak yang berwenang."
     },
     {
-      "q": "Apa saja yang perlu disiapkan sebelum konsultasi?",
-      "a": "Cukup gambaran tujuan, target pengguna, dan contoh referensi jika ada. Belum punya konsep pun tidak masalah, kami bantu merumuskannya saat konsultasi.",
+      "q": "Apa yang perlu disiapkan sebelum berdiskusi?",
+      "a": "Cukup gambaran tujuan, calon pengguna, dan contoh referensi jika ada. Belum punya konsep pun tidak masalah, kita rumuskan bersama saat berdiskusi.",
       "home": true
     },
     {
       "q": "Bagaimana cara memulai proyek bersama Alfa Cipta Persada?",
-      "a": "Hubungi kami lewat WhatsApp atau halaman kontak, ceritakan kebutuhan Anda, lalu kami jadwalkan konsultasi gratis dan susun rencana pengerjaannya."
+      "a": "Hubungi kami lewat WhatsApp atau halaman kontak dan ceritakan kebutuhan Anda. Kami akan menanggapi, memetakan kebutuhan, lalu menyusun rencana pengerjaan beserta estimasinya."
     },
     {
       "q": "Bagaimana sistem pembayarannya?",
-      "a": "Umumnya bertahap: uang muka di awal, lalu pelunasan setelah pekerjaan selesai dan disetujui. Skema pastinya kami tuangkan dalam estimasi tertulis supaya jelas dari awal.",
+      "a": "Skema pembayaran disepakati di awal dan dituangkan secara tertulis. Umumnya bertahap, yaitu uang muka sebelum pengerjaan dan pelunasan setelah pekerjaan selesai dan disetujui.",
       "home": true
     },
     {
       "q": "Apakah source code dan desainnya menjadi milik kami?",
-      "a": "Hasil pekerjaan, termasuk kode dan desain, diserahkan kepada Anda setelah pelunasan. Untuk layanan pihak ketiga seperti hosting atau database, berlaku ketentuan masing-masing penyedia. Kami jelaskan semuanya sebelum proyek dimulai."
+      "a": "Hak atas hasil pekerjaan, termasuk kode dan desain, dibahas dan disepakati sebelum proyek dimulai, lalu dituangkan dalam kesepakatan tertulis. Untuk layanan pihak ketiga seperti hosting atau database, berlaku ketentuan masing-masing penyedia."
     },
     {
       "q": "Berapa kali revisi yang termasuk?",
-      "a": "Revisi selama tahap pengerjaan sudah termasuk, dan jumlah putarannya kami sepakati di awal agar jelas bagi kedua pihak. Perubahan besar di luar lingkup awal dihitung terpisah, dengan estimasi sebelum dikerjakan.",
+      "a": "Jumlah putaran revisi disepakati di awal sesuai lingkup proyek. Perubahan di luar lingkup awal dibahas terpisah dan diestimasi sebelum dikerjakan.",
       "home": true
     },
     {
       "q": "Apakah ada biaya bulanan setelah website jadi?",
-      "a": "Biaya rutin umumnya hanya domain dan hosting yang dibayar per tahun ke penyedianya. Perawatan atau pengembangan lanjutan bersifat opsional dan disepakati terpisah kalau Anda membutuhkannya."
+      "a": "Biaya rutin umumnya hanya domain dan hosting yang dibayarkan ke penyedianya. Perawatan atau pengembangan lanjutan bersifat opsional dan disepakati terpisah bila Anda membutuhkannya."
     }
   ]
 }
