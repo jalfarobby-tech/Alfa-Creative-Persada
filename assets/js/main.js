@@ -159,17 +159,16 @@
 </div></section>`;
   };
 
-  const flyForm = () => `<form class="fly" id="fly" aria-label="${esc(UI.cardTitle)}"><div class="fly-form">
+  const flyForm = (id, hero) => `<form class="fly${hero ? ' fly--hero' : ''}" id="${id}" aria-label="${esc(UI.cardTitle)}"><div class="fly-form">
       <h3>${esc(UI.cardTitle)}</h3><p>${esc(UI.cardSub)}</p>
-      <div class="field"><label for="hc-name">${esc(UI.formName)}</label><input id="hc-name" name="name" type="text" autocomplete="name" required placeholder="${esc(UI.formNamePh)}"></div>
-      <div class="field"><label for="hc-msg">${esc(UI.formMessage)}</label><input id="hc-msg" name="message" type="text" required placeholder="${esc(UI.formMessagePh)}"></div>
-      <button class="btn" type="submit">${esc(UI.sendWa)}</button></div>
-    <button class="fly-chip" type="button" tabindex="-1" aria-label="${esc(UI.cardTitle)}"><span>${esc(UI.cardTitle)}</span>${icon('arrow')}</button></form>`;
+      <div class="field"><label for="${id}-name">${esc(UI.formName)}</label><input id="${id}-name" name="name" type="text" autocomplete="name" required placeholder="${esc(UI.formNamePh)}"></div>
+      <div class="field"><label for="${id}-msg">${esc(UI.formMessage)}</label><input id="${id}-msg" name="message" type="text" required placeholder="${esc(UI.formMessagePh)}"></div>
+      <button class="btn" type="submit">${esc(UI.sendWa)}</button></div></form>`;
 
   const ctaBand = (site, withSlot) => {
     const c = site.home.cta;
     const body = `<span class="eyebrow">${esc(c.eyebrow)}</span><h2>${esc(c.title)}</h2><p>${esc(c.text)}</p><div class="btn-row">${button(UI.chatWa, waLink(site, site.contact.waGreeting), { ext: true, ico: 'message' })}${button(UI.contactPage, 'contact.html', { ghost: true })}</div>`;
-    return `<section class="cta-band${withSlot ? ' cta-split' : ''}"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal">${withSlot ? `<div class="cta-text">${body}</div><div class="fly-slot" id="fly-slot">${flyForm()}</div>` : body}</div></section>`;
+    return `<section class="cta-band${withSlot ? ' cta-split' : ''}"><span class="diag diag--tr" aria-hidden="true"></span><span class="diag diag--bl" aria-hidden="true"></span><div class="container reveal">${withSlot ? `<div class="cta-text">${body}</div><div class="fly-slot" id="fly-slot">${flyForm('cta-card', false)}</div>` : body}</div></section>`;
   };
 
 
@@ -242,7 +241,7 @@
     <div class="btn-row">${button(h.ctaPrimary.label, h.ctaPrimary.href)}${button(h.ctaSecondary.label, waLink(site, site.contact.waGreeting), { ghost: true, ext: true, ico: 'message' })}</div>
   </div>
   <div class="vline" aria-hidden="true"></div>
-  <div class="hero-art fade-in" id="hero-art"><span class="orbit" aria-hidden="true"></span><div class="art-logo" aria-hidden="true">${logoAG()}</div></div>
+  <div class="hero-art fade-in" id="hero-art"><span class="orbit" aria-hidden="true"></span><div class="art-logo" aria-hidden="true">${logoAG()}</div>${flyForm('fly', true)}</div>
 </div></section>
 
 <section class="section section--alt"><div class="container">
@@ -673,89 +672,60 @@ ${ctaBand(site)}`;
   }
 
 
-  /* Kartu formulir: keluar dari logo hero, ikut turun, lalu menempel di bagian ajakan di bawah (desktop) */
+  /* Kartu formulir: logo hero terbuka, kartu tumbuh dari kecil ke besar, lalu memudar saat hero ditinggalkan (desktop) */
   function setupHeroCard(site) {
-    const art = $('#hero-art'), fly = $('#fly'), slot = $('#fly-slot');
-    if (!art || !fly || !slot) return;
-    fly.addEventListener('submit', (e) => {
+    const art = $('#hero-art'), fly = $('#fly');
+    document.querySelectorAll('form.fly').forEach((f) => f.addEventListener('submit', (e) => {
       e.preventDefault();
-      const f = Object.fromEntries(new FormData(fly));
-      window.open(waLink(site, `${UI.waIntro}\n\n${UI.waName}: ${f.name}\n${UI.waMsg}: ${f.message}`), '_blank', 'noopener');
-    });
-    const form = fly.querySelector('.fly-form'), chip = fly.querySelector('.fly-chip'), logoEl = art.querySelector('.art-logo');
-    let box = null;
+      const d = Object.fromEntries(new FormData(f));
+      window.open(waLink(site, `${UI.waIntro}\n\n${UI.waName}: ${d.name}\n${UI.waMsg}: ${d.message}`), '_blank', 'noopener');
+    }));
+    if (!art || !fly) return;
+    const form = fly.querySelector('.fly-form'), logoEl = art.querySelector('.art-logo');
     const mq = window.matchMedia('(min-width:861px)'), calm = window.matchMedia('(prefers-reduced-motion:reduce)');
-    const hero = art.closest('.hero');
-    const W = 360, CW = 236, CH = 48, M = 24;
+    const W = 360, END = 360;
     const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
     const ease = (t) => t * t * (3 - 2 * t);
-    const lerp = (a, b, t) => a + (b - a) * t;
-    const mix = (a, b, t) => ({ x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t), w: lerp(a.w, b.w, t), h: lerp(a.h, b.h, t) });
-    let flying = false, ticking = false, st = '';
-    const tabs = (formOn, chipOn) => {
-      form.querySelectorAll('input,button').forEach((x) => { x.tabIndex = formOn ? 0 : -1; });
-      chip.tabIndex = chipOn ? 0 : -1;
+    let flying = false, ticking = false, box = null, on = null;
+    const place = () => {
+      const r = art.getBoundingClientRect();
+      box = { x: r.left, y: r.top + window.scrollY, w: r.width, h: r.height };
+      logoEl.style.width = box.w + 'px'; logoEl.style.height = box.h + 'px';
+      logoEl.style.transform = `translate3d(${box.x}px,${box.y}px,0)`;
     };
-    const measure = () => { slot.style.setProperty('--fh', (form.offsetHeight || 330) + 'px'); };
     const update = () => {
       ticking = false;
-      if (!flying) return;
-      const y = window.scrollY, vh = window.innerHeight, vw = document.documentElement.clientWidth;
-      const H = form.offsetHeight || 330;
-      const ar = art.getBoundingClientRect(), sr = slot.getBoundingClientRect();
+      if (!flying || !box) return;
+      const y = window.scrollY, H = form.offsetHeight || 330;
       const p = clamp((y - 20) / 340);
       const open = ease(clamp(p / 0.5));
       const g = ease(clamp((p - 0.2) / 0.8));
+      const gone = ease(clamp((y - END) / 280));
+      logoEl.style.setProperty('--o', open.toFixed(3));
       art.style.setProperty('--o', open.toFixed(3));
-      if (box) { logoEl.style.setProperty('--o', open.toFixed(3)); logoEl.style.opacity = (1 - open).toFixed(3); logoEl.style.visibility = open >= 1 ? 'hidden' : 'visible'; }
-      const A = { x: ar.left + ar.width / 2 - W / 2, y: ar.top + y + ar.height / 2 - H / 2, w: W, h: H };
-      const C = { x: vw - M - CW, y: vh - M - CH, w: CW, h: CH };
-      const S = { x: sr.left, y: sr.top, w: W, h: H };
-      const u = ease(clamp((y - 400) / 320));
-      const s = ease(clamp((vh * 0.95 - sr.top) / (vh * 0.6)));
-      const R = mix(mix(A, C, u), S, s);
-      const c = u * (1 - s);
-      const pre = u === 0 && s === 0;
-      const op = pre ? clamp(g * 3) : 1;
-      fly.style.width = R.w.toFixed(1) + 'px';
-      fly.style.height = R.h.toFixed(1) + 'px';
-      fly.style.opacity = op.toFixed(3);
-      fly.style.borderRadius = lerp(14, 24, c).toFixed(1) + 'px';
-      fly.style.transform = `translate3d(${R.x.toFixed(1)}px,${R.y.toFixed(1)}px,0)` + (pre ? ` scale(${(0.34 + 0.66 * g).toFixed(3)})` : '');
-      const fo = pre ? clamp((g - 0.5) * 2.2) : 1 - clamp(c * 1.8);
-      form.style.opacity = fo.toFixed(3);
-      chip.style.opacity = clamp(c * 1.8 - 0.8).toFixed(3);
-      const formOn = c < 0.1 && fo > 0.9, chipOn = c > 0.7;
-      const k = (formOn ? 'f' : '') + (chipOn ? 'c' : '');
-      if (k !== st) { st = k; fly.classList.toggle('is-form', formOn); fly.classList.toggle('is-chip', chipOn); tabs(formOn, chipOn); }
+      logoEl.style.opacity = (1 - open).toFixed(3);
+      logoEl.style.visibility = open >= 1 ? 'hidden' : 'visible';
+      const cx = box.x + box.w / 2, cy = box.y + box.h / 2;
+      const up = Math.max(0, y - END);
+      fly.style.width = W + 'px'; fly.style.height = H + 'px';
+      fly.style.opacity = (clamp(g * 3) * (1 - gone)).toFixed(3);
+      fly.style.transform = `translate3d(${(cx - W / 2).toFixed(1)}px,${(cy - H / 2 - up).toFixed(1)}px,0) scale(${(0.34 + 0.66 * g).toFixed(3)})`;
+      form.style.opacity = clamp((g - 0.5) * 2.2).toFixed(3);
+      const live = g > 0.95 && gone < 0.5;
+      if (live !== on) { on = live; fly.classList.toggle('is-form', live); form.querySelectorAll('input,button').forEach((x) => { x.tabIndex = live ? 0 : -1; }); }
     };
     const tick = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
     const sync = () => {
       const want = mq.matches && !calm.matches;
       if (want && !flying) {
-        const r = art.getBoundingClientRect();
-        box = { x: r.left, y: r.top + window.scrollY, w: r.width, h: r.height };
-        logoEl.style.cssText = `width:${box.w}px;height:${box.h}px;transform:translate3d(${box.x}px,${box.y}px,0)`;
-        logoEl.classList.add('is-fly'); document.body.appendChild(logoEl);
-        flying = true; document.body.appendChild(fly); fly.classList.add('is-fly'); st = '#'; measure(); update();
+        place(); logoEl.classList.add('is-fly'); document.body.appendChild(logoEl);
+        flying = true; document.body.appendChild(fly); fly.classList.add('is-fly'); on = null; update();
       } else if (!want && flying) {
-        flying = false; fly.classList.remove('is-fly', 'is-form', 'is-chip');
-        ['width', 'height', 'opacity', 'transform', 'borderRadius'].forEach((q) => fly.style.removeProperty(q === 'borderRadius' ? 'border-radius' : q));
-        form.style.removeProperty('opacity'); chip.style.removeProperty('opacity');
-        logoEl.classList.remove('is-fly'); logoEl.removeAttribute('style'); art.appendChild(logoEl); box = null;
-        art.style.removeProperty('--o'); slot.appendChild(fly); tabs(true, false); st = '';
-      } else if (want) {
-        const r = art.getBoundingClientRect();
-        box = { x: r.left, y: r.top + window.scrollY, w: r.width, h: r.height };
-        logoEl.style.width = box.w + 'px'; logoEl.style.height = box.h + 'px';
-        logoEl.style.transform = `translate3d(${box.x}px,${box.y}px,0)`;
-        measure(); tick();
-      }
+        flying = false; fly.classList.remove('is-fly', 'is-form'); fly.removeAttribute('style'); form.removeAttribute('style');
+        logoEl.classList.remove('is-fly'); logoEl.removeAttribute('style'); art.appendChild(logoEl); art.appendChild(fly);
+        art.style.removeProperty('--o'); box = null;
+      } else if (want) { place(); tick(); }
     };
-    chip.addEventListener('click', () => {
-      const r = slot.getBoundingClientRect();
-      window.scrollTo({ top: window.scrollY + r.top - (window.innerHeight - r.height) / 2, behavior: 'smooth' });
-    });
     window.addEventListener('scroll', tick, { passive: true });
     window.addEventListener('resize', sync);
     window.addEventListener('load', sync);

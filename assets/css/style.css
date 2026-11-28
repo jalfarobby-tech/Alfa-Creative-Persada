@@ -607,14 +607,10 @@ h1,h2,h3,h4{color:#fff}
 .fly-form p{font-size:.82rem;margin:-8px 0 0}
 .fly-form .field{gap:6px}.fly-form .field input{padding:11px 13px;font-size:.88rem}
 .fly-form .btn{width:100%;justify-content:center;margin-top:4px}
-.fly-chip{display:none}
-.fly.is-fly{position:fixed;left:0;top:0;z-index:60;overflow:hidden;will-change:transform,width,height;opacity:0}
+.fly--hero{display:none}
+.fly.is-fly{display:block;position:fixed;left:0;top:0;z-index:59;overflow:hidden;will-change:transform,opacity;opacity:0}
 .fly.is-fly .fly-form{position:absolute;left:0;top:0;width:360px;pointer-events:none}
 .fly.is-fly.is-form .fly-form{pointer-events:auto}
-.fly.is-fly .fly-chip{display:flex;position:absolute;inset:0;align-items:center;justify-content:space-between;gap:10px;padding:0 18px;
-  background:none;border:0;color:var(--text);font:500 .7rem var(--font);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;opacity:0;pointer-events:none;white-space:nowrap}
-.fly.is-fly.is-chip .fly-chip{pointer-events:auto}
-.fly-chip .icon,.fly-chip svg{width:16px;height:16px;flex:none}
 @media (min-width:861px){
   .cta-split .container{grid-template-columns:1fr 360px}
   .cta-split .cta-text{text-align:left}
